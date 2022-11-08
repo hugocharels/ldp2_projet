@@ -11,6 +11,8 @@ class Matrix {
 		
 		Table()=default;
 
+		Table(Table &other)=default;
+
 		~Table() {
 			delete[] this->table;
 		}
@@ -40,6 +42,8 @@ public:
 			this->matrix[i].init(this->rows);
 		}
 	}
+
+	Matrix(Matrix &other)=default;
 
 	~Matrix() {
 		delete[] this->matrix;
