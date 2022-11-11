@@ -1,26 +1,26 @@
-#ifndef _PLAYER_H_
-#define _PLAYER_H_
+#ifndef _PLAYER_H
+#define _PLAYER_H
 
 #include "configs.h"
 
 
-class Player {
+class Player:public Moveable {
 
-	Point position;
 	int step_counter=0;
 
 public:
 
-	Player()=default;
+	Player(Point pos):Moveable(pos);
 
 	~Player()=default;
 
-	void move(Point &pos) {
+	void move(Point &pos) override {
 		this->step_counter++;
-		this->position.x = pos.x;
-		this->position.y = pos.y;
+		Moveable::move(pos);
 	}
 
-}
+	int stepCounter() const { return step_counter; }
+
+};
 
 #endif

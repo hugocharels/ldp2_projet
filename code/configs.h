@@ -1,5 +1,5 @@
-#ifndef _CONFIGS_H_
-#define _CONFIGS_H_
+#ifndef _CONFIGS_H
+#define _CONFIGS_H
 
 typedef struct {
 	int x;
@@ -7,7 +7,23 @@ typedef struct {
 } Point;
 
 
-typedef enum {EMPTY = '0', WALL = '#', BOX = '$', PLAYER = 'P', TARGET = '¤'} CELL;
+typedef enum {EMPTY = '0', WALL = '#', TARGET = '¤'} CELL;
 
+
+class Moveable {
+
+	Point position;
+
+public:
+
+	Moveable(Point pos):position{pos} {}
+	~Moveable()=default;
+
+	void move(Point &pos) {
+		this->position.x = pos.x;
+		this->position.y = pos.y;
+	}
+
+};
 
 #endif

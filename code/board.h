@@ -1,13 +1,16 @@
-#ifndef _BOARD_H_
-#define _BOARD_H_
+#ifndef _BOARD_H
+#define _BOARD_H
 
 #include <string>
+#include <vector>
 #include "matrix.h"
 
 
 class Board {
 
-	Matrix<int> matrix;
+	Matrix<CELL> matrix;
+	Player player;
+	std::vector<Box> boxes;
 
 public:
 
