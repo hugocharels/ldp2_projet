@@ -15,6 +15,7 @@ MOVE strToMOVE(std::string str) {
 
 void Sokoban::start() {
 	std::string input;
+	this->board.print();
 	while (true) {
 		std::cout << "enter a move : ";
 		std::cin >> input;

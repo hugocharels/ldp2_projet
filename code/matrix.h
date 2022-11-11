@@ -27,11 +27,9 @@ class Matrix {
 			for (int i=0; i<this->size; ++i) {
 				this->table[i] = T{};
 			}
-			std::cout << table[0] << std::endl;
 		}
 
 		T &operator[](int y) {
-			std::cout << size << " / " << y << std::endl;
 			return this->table[y];
 		}
 	};
@@ -40,13 +38,17 @@ class Matrix {
 	int rows;
 	int cols;
 
+	void init() {
+		for (int i=0; i<this->cols; ++i) {
+			this->matrix[i].init(this->rows);
+		}
+	}
+
 public:
 
 	Matrix(int rows=0, int cols=0):rows{rows},cols{cols} {
 		this->matrix = new Table[this->cols];
-		for (int i=0; i<this->cols; ++i) {
-			this->matrix[i].init(this->rows);
-		}
+		this->init();
 	}
 
 	Matrix(Matrix &other)=default;
@@ -54,6 +56,14 @@ public:
 	~Matrix() {
 		delete[] this->matrix;
 	}
+
+
+	void operator=(Matrix<T> other) {
+		this->rows = other.rows;
+		this->cols = other.cols;
+		init();
+	}
+
 
 	Matrix<T>::Table &operator[](int x) {
 		return this->matrix[x];

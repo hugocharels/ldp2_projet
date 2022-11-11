@@ -39,11 +39,9 @@ void Board::load(const std::string &file_path) {
 	} else {
 		std::cerr << "Can not open the file '" << file_path << "'" << std::endl;
 	}
-	std::cout << content << std::endl;
 	this->matrix = Matrix<CELL>{i, j};
 	i = 0, j = 0;
 	for (auto c : content) {
-		std::cout << i << " / " << j << std::endl;
 		if (c == '\n') {++j; i=0; continue;}
 		if (c == 'P') {this->player = Player(Point{i,j});}
 		else if (c == 'B') {this->boxes.push_back(Box(Point{i,j}));}
@@ -51,7 +49,6 @@ void Board::load(const std::string &file_path) {
 		if (c == '#' or c == '@') {this->matrix[i][j] = charToCELL(c);}
 		++i;
 	}
-	std::cout << "ah nan" << std::endl;
 }
 
 
@@ -73,8 +70,8 @@ void Board::print(){
 			else {
 				to_print += this->matrix[i][j];
 			}
-			to_print += "\n";
 		}
+		to_print += "\n";
 	}		
 	std::cout<<to_print<<std::endl;
 }
