@@ -1,6 +1,7 @@
 #include "sokoban.h"
 
 int main() {
-	Sokoban();
+	Sokoban sokoban;
+	sokoban.start();
 	return 0;
 }
