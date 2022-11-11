@@ -1,6 +1,8 @@
 #ifndef _MATRIX_H
 #define _MATRIX_H
 
+#include <iostream>
+
 template<typename T>
 class Matrix {
 
@@ -23,11 +25,13 @@ class Matrix {
 			this->size = size;
 			this->table = new T[this->size];
 			for (int i=0; i<this->size; ++i) {
-				this->table[i] = 0;
+				this->table[i] = T{};
 			}
+			std::cout << table[0] << std::endl;
 		}
 
 		T &operator[](int y) {
+			std::cout << size << " / " << y << std::endl;
 			return this->table[y];
 		}
 	};
@@ -38,7 +42,7 @@ class Matrix {
 
 public:
 
-	Matrix(int rows, int cols):rows{rows},cols{cols} {
+	Matrix(int rows=0, int cols=0):rows{rows},cols{cols} {
 		this->matrix = new Table[this->cols];
 		for (int i=0; i<this->cols; ++i) {
 			this->matrix[i].init(this->rows);
