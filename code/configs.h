@@ -1,30 +1,25 @@
 #ifndef _CONFIGS_H
 #define _CONFIGS_H
 
+#include <string>
 
-typedef struct {
+
+const std::string FILE_TEST = "test_board.txt";
+
+
+
+struct Point {
 	int x, y;
-} Point;
-
-bool Point::operator==(Point other) {
-	return x == other.x and y == other.y;
-}
-
-
-typedef enum {EMPTY = '0', WALL = '#', TARGET = '¤'} CELL;
-
-typedef enum { UP, DOWN, RIGHT, LEFT} MOVE;
-
-
-template<typename T>
-contains(T &contener, Point &pos) {
-	for (auto &i : contener) {
-		if (pos == i.getPos()) {
-			return true;
-		}
+	bool operator==(Point other) {
+		return x == other.x and y == other.y;
 	}
-	return false;
-}
+
+};
+
+
+typedef enum {EMPTY = ' ', WALL = '#', TARGET = '@'} CELL;
+
+typedef enum { UP, DOWN, RIGHT, LEFT, INVALID} MOVE;
 
 
 #endif
