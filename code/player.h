@@ -7,6 +7,7 @@
 class Player {
 
 	Point position;
+	int step_counter=0;
 
 public:
 
@@ -15,6 +16,7 @@ public:
 	~Player()=default;
 
 	void move(Point &pos) {
+		this->step_counter++;
 		this->position.x = pos.x;
 		this->position.y = pos.y;
 	}

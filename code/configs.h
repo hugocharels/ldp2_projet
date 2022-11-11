@@ -7,5 +7,7 @@ typedef struct {
 } Point;
 
 
+typedef enum {EMPTY = '0', WALL = '#', BOX = '$', PLAYER = 'P', TARGET = '¤'} CELL;
+
 
 #endif
