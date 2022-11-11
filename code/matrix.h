@@ -1,8 +1,6 @@
 #ifndef _MATRIX_H
 #define _MATRIX_H
 
-#include <iostream>
-
 template<typename T>
 class Matrix {
 
@@ -61,7 +59,7 @@ public:
 	void operator=(Matrix<T> other) {
 		this->rows = other.rows;
 		this->cols = other.cols;
-		init();
+		this->init();
 	}
 
 
