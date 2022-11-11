@@ -16,11 +16,6 @@ public:
 	Moveable(Point pos):position{pos} {}
 	~Moveable()=default;
 
-	int stepCounter() const { return step_counter; }
-
-	Point getPos() const { return position; }
-	
-
 	void move(MOVE movement) {
 		if (movement == UP) {position.x--;}
 		else if (movement == DOWN) {position.x++;}
@@ -29,10 +24,9 @@ public:
 		this->step_counter++;
 	}
 
-	bool canGoUp() { return true; }
-	bool canGoDown() { return true; }
-	bool canGoLeft() { return true; }
-	bool canGoRight() { return true; }
+	int stepCounter() const { return step_counter; }
+
+	Point getPos() const { return position; }
 
 };
 

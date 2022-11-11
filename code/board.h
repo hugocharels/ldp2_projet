@@ -15,7 +15,12 @@ class Board {
 	Player player;
 	std::vector<Box> boxes;
 
-	bool validMove(MOVE move);
+	void boxHere(Point pos);
+
+	bool canMoveUp();
+	bool canMoveDown();
+	bool canMoveLeft();
+	bool canMoveRight();
 
 public:
 

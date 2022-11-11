@@ -77,21 +77,43 @@ void Board::print(){
 }
 
 
-bool Board::validMove(MOVE move) {
-	if (move == INVALID) return false;
-	return true;
+
+
+
+bool Board::canGoUp() {
+	int x, y;
+	x = this->player.position.x;
+	y = this->player.position.y;
+	if (x > 0 and this->matrix[x-1][y] != WALL) {
+		for (auto &box : this->boxes) {
+			if (box.position == Point{x-1, y}) {
+				if (canMoveUp(box)) {
+					moveBox(UP);
+					return true;
+				}
+			} else {return false;}
+		}
+	} return false;
 }
 
+bool Board::canGoDown() {
+
+}
+bool Board::canGoLeft() {
+
+}
+bool Board::canGoRight() {
+
+}
+
+
 bool Board::play(MOVE move) {
-	if (this->validMove(move)) {
-		if (move == UP and player.canGoUp()) {player.move(UP);}
-		else if (move == DOWN and player.canGoDown()) {player.move(DOWN);}
-		else if (move == LEFT and player.canGoLeft()) {player.move(LEFT);}
-		else if (move == RIGHT and player.canGoRight()) {player.move(RIGHT);}
-		return true;
-	}
-	std::cout << "invalid move" << std::endl;
-	return false;
+	if (move == INVALID) {std::cout << "invalid move" << std::endl; return false;}
+	else if (move == UP and canPlayerGoUp()) {player.move(UP);}
+	else if (move == DOWN and player.canPlayerGoDown()) {player.move(DOWN);}
+	else if (move == LEFT and player.canPlayerGoLeft()) {player.move(LEFT);}
+	else if (move == RIGHT and player.canPlayerGoRight()) {player.move(RIGHT);}
+	return true;
 }
 
 
