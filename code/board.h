@@ -5,6 +5,8 @@
 #include <vector>
 
 #include "matrix.h"
+#include "moveable.h"
+#include "configs.h"
 
 
 class Board {
@@ -13,17 +15,20 @@ class Board {
 	Player player;
 	std::vector<Box> boxes;
 
+	bool validMove(MOVE move);
+
 public:
 
-	Board()=default;
+	Board() {}
 	~Board()=default;
 
-	void load(std::string &file_path);
+	void load(const std::string &file_path);
 
-	void print();
+	void print();		// only in terminal
 
-	void play(MOVE move);
+	bool play(MOVE move);
 
+	bool win();
 };
 
 
