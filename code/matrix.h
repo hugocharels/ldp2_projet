@@ -55,6 +55,9 @@ public:
 		return this->matrix[x];
 	}
 
+	int getCols() { return this->cols; }
+	int getRows() { return this->rows; }
+
 };
 
 #endif

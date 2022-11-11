@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+
 #include "matrix.h"
 
 
@@ -20,6 +21,8 @@ public:
 	void load(std::string &file_path);
 
 	void print();
+
+	void play(MOVE move);
 
 };
 

@@ -1,29 +1,30 @@
 #ifndef _CONFIGS_H
 #define _CONFIGS_H
 
+
 typedef struct {
-	int x;
-	int y;
+	int x, y;
 } Point;
+
+bool Point::operator==(Point other) {
+	return x == other.x and y == other.y;
+}
 
 
 typedef enum {EMPTY = '0', WALL = '#', TARGET = '¤'} CELL;
 
+typedef enum { UP, DOWN, RIGHT, LEFT} MOVE;
 
-class Moveable {
 
-	Point position;
-
-public:
-
-	Moveable(Point pos):position{pos} {}
-	~Moveable()=default;
-
-	void move(Point &pos) {
-		this->position.x = pos.x;
-		this->position.y = pos.y;
+template<typename T>
+contains(T &contener, Point &pos) {
+	for (auto &i : contener) {
+		if (pos == i.getPos()) {
+			return true;
+		}
 	}
+	return false;
+}
 
-};
 
 #endif

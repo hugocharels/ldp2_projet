@@ -12,7 +12,12 @@ public:
 
 	Sokoban()=default;
 	~Sokoban()=default;
+ 	
+ 	void changeState(MOVE move);
+ 	
+ 	bool win();
 
+ 	void draw();
 }
 
 
