@@ -67,8 +67,8 @@ public:
 		return this->matrix[x];
 	}
 
-	int getCols() { return this->cols; }
-	int getRows() { return this->rows; }
+	int getCols() const { return this->cols; }
+	int getRows() const { return this->rows; }
 
 };
 
