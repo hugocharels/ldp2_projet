@@ -15,7 +15,7 @@ public:
  	
 	void start();	// only in terminal
 
- 	void changeState(MOVE move);
+ 	void setMove(MOVE move);
  	
  	bool win() { return board.win(); }
 

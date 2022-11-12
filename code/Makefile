@@ -14,5 +14,9 @@ board.o: board.cpp
 	${CXX} ${CXXFLAGS} board.cpp -c board.o
 
 
+fltk: interface.cpp
+	${CXX} ${CXXFLAGS} -o interface interface.cpp ${LDFLAGS}
+
+
 clean :
 	rm *.o
