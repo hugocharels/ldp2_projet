@@ -11,16 +11,12 @@
 
 class Board {
 
-	Matrix<CELL> matrix;
+	Matrix<CELL> map;
 	Player player;
 	std::vector<Box> boxes;
 
-	void boxHere(Point pos);
-
-	bool canMoveUp();
-	bool canMoveDown();
-	bool canMoveLeft();
-	bool canMoveRight();
+	bool inMap(int x, int y) const ;
+	bool canPlayerMove(MOVE move);
 
 public:
 
@@ -33,7 +29,7 @@ public:
 
 	bool play(MOVE move);
 
-	bool win();
+	bool win() const ;
 };
 
 
