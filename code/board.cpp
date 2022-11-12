@@ -39,15 +39,16 @@ void Board::load(const std::string &file_path) {
 	} else {
 		std::cerr << "Can not open the file '" << file_path << "'" << std::endl;
 	}
+	std::cout << content << std::endl;
 	this->map = Matrix<CELL>{i, j};
 	i = 0, j = 0;
 	for (auto c : content) {
-		if (c == '\n') {++j; i=0; continue;}
+		if (c == '\n') {++i; j=0; continue;}
 		if (c == 'P') {this->player = Player(Point{i,j});}
 		else if (c == 'B') {this->boxes.push_back(Box(Point{i,j}));}
 		this->map[i][j] = EMPTY;
 		if (c == '#' or c == '@') {this->map[i][j] = charToCELL(c);}
-		++i;
+		++j;
 	}
 }
 
@@ -59,8 +60,8 @@ void Board::load(const std::string &file_path) {
 void Board::print() {
 	std::string to_print = "";
 
-	for (int i=0; i<this->map.getCols(); i++) {
-	    for (int j=0; j<this->map.getRows(); j++) {
+	for (int i=0; i<this->map.getRows(); i++) {
+	    for (int j=0; j<this->map.getCols(); j++) {
 			if (this->player.getPos() == Point{i,j}) {
 				to_print += "P";
 			}
@@ -82,22 +83,43 @@ bool Board::inMap(int x, int y) const {
 }
 
 
-bool Board::canPlayerMove(MOVE move) {
-	int x = this->player.getPos().x;
-	int y = this->player.getPos().y;
+Point Board::getNextPos(Moveable obj, MOVE move) {
+	int x = obj.getPos().x;
+	int y = obj.getPos().y;
 	if (move == UP) { x--; }
 	else if (move == DOWN) { x++; }
 	else if (move == LEFT) { y--; }
 	else if (move == RIGHT) { y++; }
+	return Point{x, y};
+}
+
+
+bool Board::canPlayerMove(MOVE move) {
+	Point next_pos = this->getNextPos(this->player, move);
+	int x = next_pos.x;
+	int y = next_pos.y;
 	if (not this->inMap(x, y)) { return false; }
-	return this->map[x][y] == EMPTY;
+	return this->map[x][y] == EMPTY or this->map[x][y] == TARGET;
+}
+
+bool Board::boxOnMove(MOVE move) {
+	Point next_pos = this->getNextPos(this->player, move);
+	for (auto &box : this->boxes) {
+		if (box.getPos() == next_pos) {
+			return true;
+		}
+	} return false;
 }
 
 
 bool Board::play(MOVE move) {
 	if (move == INVALID) {std::cout << "invalid move" << std::endl; return false;}
 	if (this->canPlayerMove(move)) {
-		player.move(UP);
+		if (this->boxOnMove(move)) {
+			std::cout << "hum box here" << std::endl;
+		} else {
+			player.move(move);
+		}
 	}
 	return true;
 }

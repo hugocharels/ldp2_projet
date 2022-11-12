@@ -16,6 +16,11 @@ class Board {
 	std::vector<Box> boxes;
 
 	bool inMap(int x, int y) const ;
+
+	Point getNextPos(Moveable obj, MOVE move);
+
+	bool boxOnMove(MOVE move);
+
 	bool canPlayerMove(MOVE move);
 
 public:
