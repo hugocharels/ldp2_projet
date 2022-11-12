@@ -117,6 +117,7 @@ bool Board::play(MOVE move) {
 	if (this->canPlayerMove(move)) {
 		if (this->boxOnMove(move)) {
 			std::cout << "hum box here" << std::endl;
+			
 		} else {
 			player.move(move);
 		}
@@ -127,6 +128,6 @@ bool Board::play(MOVE move) {
 
 bool Board::win() const {
 	for (auto &box : this->boxes) {
-		if (not box.onTarget()) {return false;}
+		if (not box.onTarget()) { return false; }
 	} return true;
 }

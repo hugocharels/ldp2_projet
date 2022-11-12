@@ -19,7 +19,7 @@ struct Point {
 
 typedef enum {EMPTY = ' ', WALL = '#', TARGET = '@'} CELL;
 
-typedef enum { UP, DOWN, RIGHT, LEFT, INVALID} MOVE;
+typedef enum { UP, DOWN, LEFT, RIGHT, INVALID} MOVE;
 
 
 #endif

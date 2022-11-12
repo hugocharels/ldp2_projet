@@ -17,6 +17,7 @@ constexpr double refreshPerSecond = 60;
 
 class Canvas {
 
+	Sokoban sokoban;
 	Fl_Window* fltkWindow;
 
 public:
@@ -48,7 +49,7 @@ public:
 				break;
 		}
 		std::cout << move << std::endl;
-		//sokoban.sendMove(move);
+		sokoban.inputPlayer(move);
 	}
 
 };
