@@ -45,7 +45,7 @@ public:
 
 	bool onTarget() const { return on_target; }
 
-	void setOnTarget(bool x) { this->on_target = x; }
+	void setTarget(bool x) { this->on_target = x; }
 
 };
 

@@ -4,7 +4,7 @@
 #include <string>
 
 
-const std::string FILE_TEST = "test_board.txt";
+const std::string FILE_TEST = "board2.txt";
 
 
 
