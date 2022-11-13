@@ -23,6 +23,11 @@ CELL charToCELL(char c) {
 	return EMPTY;
 }
 
+char CELLToChar(CELL c) {
+	if (c == WALL) return '#';
+	if (c == TARGET) return '@';
+	return ' ';
+}
 
 void Board::load(const std::string &file_path) {
 	std::string content = "";
@@ -40,11 +45,10 @@ void Board::load(const std::string &file_path) {
 	} else {
 		std::cerr << "Can not open the file '" << file_path << "'" << std::endl;
 	}
-	std::cout << content << std::endl;
+	//std::cout << content << std::endl;
 	this->map = Matrix<CELL>{i, j};
 	i = 0, j = 0;
 	for (auto c : content) {
-		std::cout<<c<<" "<<i<<" "<<j<<std::endl;
 		if (c == '\n') {++i; j=0; continue;}
 		if (c == 'P') {this->player = Player(Point{i,j});}
 		else if (c == 'B') {this->boxes.push_back(Box(Point{i,j}));}
@@ -61,24 +65,18 @@ void Board::load(const std::string &file_path) {
 
 void Board::print() {
 	std::string to_print = "";
-
-	std::cout<<map.getRows()<<std::endl;
-	std::cout<<map.getCols()<<std::endl;
-	std::cout<<map[9][0]<<std::endl;
 	for (int i=0; i<this->map.getRows(); i++) {
 	    for (int j=0; j<this->map.getCols(); j++) {
 			if (this->player.getPos() == Point{i,j}) {
 				to_print += "P";
-			}
-			else if (contains(this->boxes, Point{i,j})) {
+			} else if (contains(this->boxes, Point{i,j})) {
 				to_print += "B";
-			}
-			else {
-				to_print += this->map[i][j];
+			} else {
+				to_print += CELLToChar(this->map[i][j]);
 			}
 		}
 		to_print += "\n";
-	}		
+	}
 	std::cout<<to_print<<std::endl;
 }
 

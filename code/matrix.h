@@ -37,15 +37,15 @@ class Matrix {
 	int cols;
 
 	void init() {
-		for (int i=0; i<this->cols; ++i) {
-			this->matrix[i].init(this->rows);
+		this->matrix = new Table[this->rows];
+		for (int i=0; i<this->rows; ++i) {
+			this->matrix[i].init(this->cols);
 		}
 	}
 
 public:
 
 	Matrix(int rows=0, int cols=0):rows{rows},cols{cols} {
-		this->matrix = new Table[this->cols];
 		this->init();
 	}
 
