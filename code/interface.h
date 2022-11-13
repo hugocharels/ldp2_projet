@@ -30,6 +30,7 @@ public:
 	void draw() {}
 
 	void mouseClick(Point mouse_loc) {
+		this->sokoban.restart();
 		std::cout << mouse_loc.x << " / " << mouse_loc.y << std::endl;
 	}
 
