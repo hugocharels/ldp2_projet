@@ -6,6 +6,7 @@
 #include <FL/Fl_Double_Window.H>
 #include <FL/fl_draw.H>
 
+#include "sokoban.h"
 #include "configs.h"
 
 
@@ -17,12 +18,12 @@ constexpr double refreshPerSecond = 60;
 
 class Canvas {
 
-	Sokoban sokoban;
 	Fl_Window* fltkWindow;
+	Sokoban sokoban;
 
 public:
 
-	explicit Canvas(Fl_Window* fltkWindow):fltkWindow{fltkWindow} {}
+	explicit Canvas(Fl_Window* fltkWindow):fltkWindow{fltkWindow},sokoban{Sokoban{}} {}
 
 	~Canvas()=default;
 
@@ -48,8 +49,7 @@ public:
 				move = RIGHT;
 				break;
 		}
-		std::cout << move << std::endl;
-		sokoban.inputPlayer(move);
+		this->sokoban.inputPlayer(move);
 	}
 
 };

@@ -39,13 +39,11 @@ void Board::load(const std::string &file_path) {
 			content += line + "\n";
 			++i;
 			if ((int)line.size() > j) {j= line.size();}
-			//j= line.size();
 		}
 		file.close();
 	} else {
 		std::cerr << "Can not open the file '" << file_path << "'" << std::endl;
 	}
-	//std::cout << content << std::endl;
 	this->map = Matrix<CELL>{i, j};
 	i = 0, j = 0;
 	for (auto c : content) {

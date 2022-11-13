@@ -26,3 +26,13 @@ void Sokoban::start() {
 	}
 	std::cout << "gg" << std::endl;
 }
+
+
+void Sokoban::inputPlayer(MOVE move)  {
+	this->board.play(move);
+	this->board.print();
+	if (this->win()) {
+		std::cout << "gg" << std::endl;
+		exit(0);
+	}
+}

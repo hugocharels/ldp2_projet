@@ -4,18 +4,19 @@ LDFLAGS += -lfltk
 
 
 main: main.cpp sokoban.o board.o
-	${CXX} ${CXXFLAGS} -o sokoban main.cpp sokoban.o board.o
+	${CXX} -o sokoban main.cpp sokoban.o board.o ${CXXFLAGS}
+	make fltk
 	make clean
 
-sokoban.o: sokoban.cpp
-	${CXX} ${CXXFLAGS} sokoban.cpp -c sokoban.o
+sokoban.o: sokoban.cpp sokoban.h
+	${CXX} ${CXXFLAGS} sokoban.cpp -c ${CXXFLAGS}
 
-board.o: board.cpp
-	${CXX} ${CXXFLAGS} board.cpp -c board.o
+board.o: board.cpp board.h
+	${CXX} -c board.cpp ${CXXFLAGS}
 
 
-fltk: interface.cpp
-	${CXX} ${CXXFLAGS} -o interface interface.cpp ${LDFLAGS}
+fltk: interface.cpp interface.h sokoban.o board.o
+	${CXX} -o interface interface.cpp sokoban.o board.o ${CXXFLAGS} ${LDFLAGS}
 
 
 clean :

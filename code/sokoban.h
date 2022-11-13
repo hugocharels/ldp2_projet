@@ -15,7 +15,7 @@ public:
  	
 	void start();	// only in terminal
 
- 	void inputPlayer(MOVE move) { this->board.play(move); }
+ 	void inputPlayer(MOVE move);
  	
  	bool win() { return board.win(); }
 
