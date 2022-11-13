@@ -111,38 +111,29 @@ bool Board::canBoxMove(Box &box, MOVE move) {
 	return this->map[x][y] == EMPTY or this->map[x][y] == TARGET;
 }
 
-bool Board::boxOnMove(MOVE move) {
+bool Board::MoveboxOnMove(MOVE move) {
 	Point next_pos = this->getNextPos(this->player, move);
 	for (auto &box : this->boxes) {
 		if (box.getPos() == next_pos) {
-			return true;
+			if (canBoxMove(box, move)) {
+				box.move(move);
+				Point box_pos = box.getPos();
+				if (this->map[box_pos.x][box_pos.y] == TARGET) { 
+					box.setTarget(true);
+				} else {
+					box.setTarget(false);
+				}
+				return true;
+			} else { return false; }
 		}
-	} return false;
+	} return true;
 }
 
 
 bool Board::play(MOVE move) {
 	if (move == INVALID) {std::cout << "invalid move" << std::endl; return false;}
 	if (this->canPlayerMove(move)) {
-		if (this->boxOnMove(move)) {
-			std::cout << "hum box here" << std::endl;
-			Point next_pos = this->getNextPos(this->player, move);
-			for (auto &box : this->boxes) {
-				if (box.getPos() == next_pos) {
-					if (canBoxMove(box, move)) { 
-						box.move(move); 
-						player.move(move);
-						Point box_pos = box.getPos();
-						if (this->map[box_pos.x][box_pos.y] == TARGET) { 
-							box.setTarget(true);
-						}
-						else {
-							box.setTarget(false);
-						}
-					}
-				}
-			}
-		} else {
+		if (this->MoveboxOnMove(move)) {
 			player.move(move);
 		}
 	}

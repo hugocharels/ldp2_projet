@@ -19,7 +19,7 @@ class Board {
 
 	Point getNextPos(Moveable &obj, MOVE move);
 
-	bool boxOnMove(MOVE move);
+	bool MoveboxOnMove(MOVE move);
 
 	bool canPlayerMove(MOVE move);
 
