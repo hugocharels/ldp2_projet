@@ -141,8 +141,6 @@ bool Board::play(MOVE move) {
 						else {
 							box.setTarget(false);
 						}
-						
-
 					}
 				}
 			}
