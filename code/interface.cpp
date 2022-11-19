@@ -9,11 +9,14 @@
 
 #include "interface.h"
 #include "configs.h"
+#include "sokoban.h"
 
 
 
 int main(int argc, char *argv[]) {
-	MainWindow window;
+	Sokoban sokoban{};		//modèle
+
+	MainWindow window{&sokoban};		//vue + controller
 	window.show(argc, argv);
 	return Fl::run();
 }

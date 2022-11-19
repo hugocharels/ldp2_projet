@@ -15,26 +15,14 @@ constexpr int    windowHeight     = 500;
 constexpr double refreshPerSecond = 60;
 
 
-
-class Canvas {
-
+//-------------Controller----------------------
+class ControllerSokoban {
 	Fl_Window* fltkWindow;
-	Sokoban sokoban;
-
+	Sokoban* sokoban;
 public:
+		ControllerSokoban(Fl_Window* fltkWindow, Sokoban* sokoban) :fltkWindow{fltkWindow},sokoban{sokoban} {}
 
-	explicit Canvas(Fl_Window* fltkWindow):fltkWindow{fltkWindow},sokoban{Sokoban{}} {}
-
-	~Canvas()=default;
-
-	void draw() {}
-
-	void mouseClick(Point mouse_loc) {
-		this->sokoban.restart();
-		std::cout << mouse_loc.x << " / " << mouse_loc.y << std::endl;
-	}
-
-	void keyPressed(int key_code) {
+		void keyPressed(int key_code) {
 		MOVE move = INVALID;
 		switch(key_code) {
 			case 'z':
@@ -50,20 +38,41 @@ public:
 				move = RIGHT;
 				break;
 		}
-		this->sokoban.inputPlayer(move);
+		this->sokoban->inputPlayer(move);
 	}
+
+		void mouseClick(Point mouse_loc) {
+		this->sokoban->restart();
+		std::cout << mouse_loc.x << " / " << mouse_loc.y << std::endl;
+	}
+};
+
+//---------------VIEW---------------
+class Canvas {
+
+	Fl_Window* fltkWindow;
+	Sokoban* sokoban;
+
+public:
+
+	explicit Canvas(Fl_Window* fltkWindow, Sokoban* sokoban):fltkWindow{fltkWindow},sokoban{sokoban} {}
+
+	~Canvas()=default;
+
+	void draw() {}
 
 };
 
 
 
 class MainWindow : public Fl_Window {
-
-	Canvas canvas{this};
+	Sokoban* sokoban_model;
+	Canvas canvas{this, sokoban_model};
+	ControllerSokoban controller{this, sokoban_model};
 
 public:
 
-	MainWindow():Fl_Window(500, 500, windowWidth, windowHeight, "Sokoban") {
+	MainWindow(Sokoban* sokoban):Fl_Window(500, 500, windowWidth, windowHeight, "Sokoban"), sokoban_model{sokoban} {
 		Fl::add_timeout(1.0 / refreshPerSecond, Timer_CB, this);
 		resizable(this);
 	}
@@ -76,10 +85,10 @@ public:
 	int handle(int event) override {
 		switch (event) {
 			case FL_PUSH:
-				canvas.mouseClick(Point{Fl::event_x(), Fl::event_y()});
+				controller.mouseClick(Point{Fl::event_x(), Fl::event_y()});
 				return 1;
 			case FL_KEYDOWN:
-				canvas.keyPressed(Fl::event_key());
+				controller.keyPressed(Fl::event_key());
 				return 1;
 			default:
 				return 0;
