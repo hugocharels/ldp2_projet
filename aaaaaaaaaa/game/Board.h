@@ -6,7 +6,7 @@
 
 #include "Matrix.h"
 #include "../cell/include.h"
-#include ".../configs.h"
+#include "../configs.h"
 
 
 class Board {

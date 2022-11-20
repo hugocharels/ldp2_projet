@@ -73,7 +73,7 @@ bool Board::canBoxMove(Box &box, MOVE move) {
 	Point next_pos = this->getNextPos(box, move);
 	int x = next_pos.x;
 	int y = next_pos.y;
-	if (not this->inMap(x, y)) { return false; }
+	if (not this->inMap(x, y) or contains(this->boxes, Point{x, y})) { return false; }
 	return this->map[x][y] == EMPTY or this->map[x][y] == TARGET;
 }
 

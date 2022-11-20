@@ -13,6 +13,8 @@ public:
 	Cell(char type='0'):type{type} {}
 	~Cell()=default;
 
+	bool operator==(CELL cell) { return type == cell; }
+
 	char getType() const { return type; }
 
 };
