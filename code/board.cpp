@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <tuple>
 #include <string.h>
 
 #include "board.h"
@@ -17,42 +18,65 @@ bool contains(T &contener, Point pos) {
 }
 
 
-CELL charToCELL(char c) {
-	if (c == '#') return WALL;
-	if (c == '@') return TARGET;
-	return EMPTY;
-}
-
-char CELLToChar(CELL c) {
-	if (c == WALL) return '#';
-	if (c == TARGET) return '@';
-	return ' ';
-}
 
 void Board::load(const std::string &file_path) {
 	std::string content = "";
 	std::string line = "";
 	std::ifstream file (file_path);
-	int i = 0, j = 0;
+
+//get n colonne & n line
+	int rows, cols;
+	getline(file, line);
+	rows = stoi(line);
+	getline(file, line);
+	cols = stoi(line);
+
+//load map
 	if (file.is_open()) {
-		while (getline(file, line)) { 
+		for (int k=0; k<rows; k++){ 
+			getline(file, line);
 			content += line + "\n";
-			++i;
-			if ((int)line.size() > j) {j= line.size();}
 		}
 		file.close();
 	} else {
 		std::cerr << "Can not open the file '" << file_path << "'" << std::endl;
 	}
-	this->map = Matrix<CELL>{i, j};
-	i = 0, j = 0;
+
+	this->map = Matrix<CELL>{rows, cols};
+	std::map<std::string, std::string> tp_map; //str_pos, 
+
+	i = 0, j = 0;		//actual pos
 	for (auto c : content) {
-		if (c == '\n') {++i; j=0; continue;}
-		if (c == 'P') {this->player = Player(Point{i,j});}
-		else if (c == 'B') {this->boxes.push_back(Box(Point{i,j}));}
-		this->map[i][j] = EMPTY;
-		if (c == '#' or c == '@') {this->map[i][j] = charToCELL(c);}
+		if (c == '\n') { ++i; j=0; continue; }
+		if (c == '#') { this->map[i][j] = Cell{'#'}; }
+		else if (c == '-') { this->map[i][j] = Cell{}; }
+		else if (isdigit(c)) { this->map[i][j] = Target(c); }
+		else { this->map[i][j] = } //teleporter chiant (dico ou constructeur desti à nulle)
 		++j;
+	}
+
+
+//load boxes
+	while (getline(file, line)) {
+		int x,y;
+		std::string str_pos = '';
+
+		for (auto elem : line){
+			if (isdigit(elem)) { str_pos += elem; }
+			else if (elem == ',') { 
+				x = stoi(str_pos)
+				str_pos = '';
+			}
+			else if (elem == '-') { 
+				y = stoi(str_pos); 
+				this->boxes.push_back(Box{{x,y}, line[line.length]});		//dernier elem est la couleur en chiffre
+				break;
+			}
+			else if (elem == '*') {
+				y = stoi(str_pos);
+				this->player = Player{{x,y}};
+			}
+		}
 	}
 }
 
