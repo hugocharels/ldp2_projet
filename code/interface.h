@@ -15,14 +15,14 @@ constexpr int    windowHeight     = 500;
 constexpr double refreshPerSecond = 60;
 
 
-//-------------Controller----------------------
+//-------------CONTROLLER----------------------
 class ControllerSokoban {
 	Fl_Window* fltkWindow;
 	Sokoban* sokoban;
 public:
-		ControllerSokoban(Fl_Window* fltkWindow, Sokoban* sokoban) :fltkWindow{fltkWindow},sokoban{sokoban} {}
+	ControllerSokoban(Fl_Window* fltkWindow, Sokoban* sokoban) :fltkWindow{fltkWindow},sokoban{sokoban} {}
 
-		void keyPressed(int key_code) {
+	void keyPressed(int key_code) {
 		MOVE move = INVALID;
 		switch(key_code) {
 			case 'z':
@@ -41,11 +41,13 @@ public:
 		this->sokoban->inputPlayer(move);
 	}
 
-		void mouseClick(Point mouse_loc) {
+	void mouseClick(Point mouse_loc) {
 		this->sokoban->restart();
 		std::cout << mouse_loc.x << " / " << mouse_loc.y << std::endl;
 	}
 };
+
+
 
 //---------------VIEW---------------
 class Canvas {
@@ -64,7 +66,7 @@ public:
 };
 
 
-
+//---------------MAIN WINDOWS---------------
 class MainWindow : public Fl_Window {
 	Sokoban* sokoban_model;
 	Canvas canvas{this, sokoban_model};
