@@ -9,7 +9,7 @@ class Player: public MoveableCell {
 
 public:
 
-	Player(Point pos): MoveableCell(pos) {}
+	Player(Point pos=Point{0, 0}): MoveableCell(pos) {}
 
 	~Player()=default;
 

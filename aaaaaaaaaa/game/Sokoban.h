@@ -3,6 +3,7 @@
 
 #include "Board.h"
 
+const std::string FILE_TEST = "aa";
 
 class Sokoban {
 

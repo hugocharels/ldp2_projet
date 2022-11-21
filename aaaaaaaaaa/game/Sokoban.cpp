@@ -2,7 +2,7 @@
 #include <string>
 
 #include "Sokoban.h"
-#include "../configs"
+#include "../configs.h"
 
 
 MOVE strToMOVE(std::string str) {

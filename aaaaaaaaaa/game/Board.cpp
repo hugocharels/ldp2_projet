@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string.h>
 
-#include "board.h"
+#include "Board.h"
 #include "../configs.h"
 
 
@@ -19,7 +19,20 @@ bool contains(T &contener, Point pos) {
 
 
 void Board::load(const std::string &file_path) {
-	std::cout << "aaa" << std::endl;
+	std::cout << file_path << std::endl;
+	int rows = 4, cols = 4;
+	this->map = Matrix<Cell>{rows, cols};
+	std::string content = "####\n#--#\n#1-#\n####";
+	int i, j;
+	for (auto c : content) {
+		if (c == '\n') { ++i; j=0; continue; }
+		if (c == '#') { this->map[i][j] = Cell{'#'}; }
+		else if (c == '-') { this->map[i][j] = Cell{}; }
+		else if (isdigit(c)) { this->map[i][j] = Target{}; }
+		++j;
+	}
+	this->player = Player{Point{1, 1}};
+	this->boxes.push_back(Box(Point{2, 2}));
 }
 
 
@@ -36,7 +49,7 @@ void Board::print() {
 			} else if (contains(this->boxes, Point{i,j})) {
 				to_print += "B";
 			} else {
-				to_print += CELLToChar(this->map[i][j]);
+				to_print += this->map[i][j].getType();
 			}
 		}
 		to_print += "\n";
@@ -50,7 +63,7 @@ bool Board::inMap(int x, int y) const {
 }
 
 
-Point Board::getNextPos(Moveable &obj, MOVE move) {
+Point getNextPos(MoveableCell &obj, MOVE move) {
 	int x = obj.getPos().x;
 	int y = obj.getPos().y;
 	if (move == UP) { x--; }
@@ -62,7 +75,7 @@ Point Board::getNextPos(Moveable &obj, MOVE move) {
 
 
 bool Board::canPlayerMove(MOVE move) {
-	Point next_pos = this->getNextPos(this->player, move);
+	Point next_pos = getNextPos(this->player, move);
 	int x = next_pos.x;
 	int y = next_pos.y;
 	if (not this->inMap(x, y)) { return false; }
@@ -70,7 +83,7 @@ bool Board::canPlayerMove(MOVE move) {
 }
 
 bool Board::canBoxMove(Box &box, MOVE move) {
-	Point next_pos = this->getNextPos(box, move);
+	Point next_pos = getNextPos(box, move);
 	int x = next_pos.x;
 	int y = next_pos.y;
 	if (not this->inMap(x, y) or contains(this->boxes, Point{x, y})) { return false; }
@@ -78,7 +91,7 @@ bool Board::canBoxMove(Box &box, MOVE move) {
 }
 
 bool Board::MoveboxOnMove(MOVE move) {
-	Point next_pos = this->getNextPos(this->player, move);
+	Point next_pos = getNextPos(this->player, move);
 	for (auto &box : this->boxes) {
 		if (box.getPos() == next_pos) {
 			if (canBoxMove(box, move)) {

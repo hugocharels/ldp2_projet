@@ -5,9 +5,13 @@
 #include <FL/Fl_Box.H>
 #include <FL/Fl_Double_Window.H>
 #include <FL/fl_draw.H>
+#include <iostream>
 
 #include "../game/Sokoban.h"
 #include "../configs.h"
+
+#include "DisplaySokoban.h"
+#include "ControllerSokoban.h"
 
 
 class MainWindow : public Fl_Window {

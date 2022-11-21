@@ -5,16 +5,16 @@
 #include "../configs.h"
 
 
-class Moveable: public virtual Cell {
+class MoveableCell: public virtual Cell {
 
 	Point position;
 	int steps=0;
 
 public:
 
-	Moveable(Point pos): Cell('*'), position{pos} {}
+	MoveableCell(Point pos): Cell('*'), position{pos} {}
 	
-	~Moveable()=default;
+	~MoveableCell()=default;
 
 	void move(MOVE movement) {
 		if (movement == UP) {position.x--;}

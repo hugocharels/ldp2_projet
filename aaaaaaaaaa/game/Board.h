@@ -17,8 +17,6 @@ class Board {
 
 	bool inMap(int x, int y) const ;
 
-	Point getNextPos(Moveable &obj, MOVE move);
-
 	bool MoveboxOnMove(MOVE move);
 
 	bool canPlayerMove(MOVE move);

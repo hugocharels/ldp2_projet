@@ -6,13 +6,13 @@
 #include "../configs.h"
 
 
-class Box: public Moveable, public ColorCell {
+class Box: public MoveableCell, public ColorCell {
 
 	bool on_target=false;
 
 public:
 
-	Box(Point pos, COLOR color=COLOR::NONE): ColorCell(color), Moveable(pos) {}
+	Box(Point pos, COLOR color=COLOR::NONE): MoveableCell(pos), ColorCell(color) {}
 
 	~Box()=default;
 
