@@ -22,9 +22,10 @@ void Board::load(const std::string &file_path) {
 	std::cout << file_path << std::endl;
 	int rows = 4, cols = 4;
 	this->map = Matrix<Cell>{rows, cols};
-	std::string content = "####\n#--#\n#1-#\n####";
-	int i, j;
+	std::string content{"####\n#--#\n#1-#\n####"};
+	int i = 0, j = 0;
 	for (auto c : content) {
+		std::cout << c ;
 		if (c == '\n') { ++i; j=0; continue; }
 		if (c == '#') { this->map[i][j] = Cell{'#'}; }
 		else if (c == '-') { this->map[i][j] = Cell{}; }
