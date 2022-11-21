@@ -11,11 +11,13 @@ class Teleporter: public ColorCell {
 
 public:
 
-	Teleporter(Point dest, COLOR color=COLOR::NONE): ColorCell(TP, color), destination{dest} {}
+	Teleporter(Point dest=Point{0,0}, COLOR color=COLOR::NONE): ColorCell(TP, color), destination{dest} {}
 
 	~Teleporter()=default;
 
 	Point getTpPos() const { return destination; }
+
+	void setDestination(Point pos) { this->destination=pos; }
 
 };
 

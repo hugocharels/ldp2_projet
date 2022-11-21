@@ -27,20 +27,85 @@ Board::~Board() {
 
 
 void Board::load(const std::string &file_path) {
-	std::cout << file_path << std::endl;
-	int rows = 4, cols = 4;
-	this->map = Matrix<Cell*>{rows, cols};
-	std::string content{"####\n#--#\n#1-#\n####"};
-	int i = 0, j = 0;
+	std::string content = "";
+	std::string line = "";
+	std::ifstream file (file_path);
+
+//get n colonne & n line
+	int rows, cols;
+	getline(file, line);
+	rows = stoi(line);
+	getline(file, line);
+	cols = stoi(line);
+
+//load map
+	if (file.is_open()) {
+		for (int k=0; k<rows; k++){ 
+			getline(file, line);
+			content += line + "\n";
+		}
+		file.close();
+	} else {
+		std::cerr << "Can not open the file '" << file_path << "'" << std::endl;
+	}
+
+	this->map = Matrix<Cell>{rows, cols};
+	std::vector<std::tuple> tp_vector;
+
+	int i = 0, j = 0;		//actual pos
 	for (auto c : content) {
 		if (c == '\n') { ++i; j=0; continue; }
-		if (c == '#') { this->map[i][j] = new Cell{WALL}; }
-		else if (c == '-') { this->map[i][j] = new Cell{EMPTY}; }
-		else if (isdigit(c)) { this->map[i][j] = new Target{}; }
+		if (c == '#') { this->map[i][j] = Cell{'#'}; }
+		else if (c == '-') { this->map[i][j] = Cell{}; }
+		else if (isdigit(c)) { this->map[i][j] = Target(c); }
+		else { 
+			this->map[i][j] = Teleporter();
+			std::tuple<int,int,std::string, Teleporter> tp_info (i,j,c,this->map[i][j]);
+			tp_vector.push_back(tp_info);
+			} //teleporter chiant (dico ou constructeur desti à nulle)
 		++j;
 	}
-	this->player = Player{Point{1, 1}};
-	this->boxes.push_back(Box(Point{2, 2}));
+
+
+//teleporter association destination
+	while (sizeof(tp_vector)>0) {
+		auto current = tp_vector.back();
+		current.pop_back();
+
+		for (auto elem : tp_vector) {
+			if (elem[2] == current[2]) {
+				current[3].setDestination(Point{elem[0],elem[1]});
+				elem[3].setDestination(Point{current[0],current[1]});
+				tp_vector.erase(elem);
+				break;
+			}
+		}
+	}
+
+
+
+//load boxes
+	while (getline(file, line)) {
+		int x,y;
+		std::string str_pos = "";
+
+		for (auto elem : line){
+			if (isdigit(elem)) { str_pos += elem; }
+			else if (elem == ',') { 
+				x = stoi(str_pos);
+				str_pos = "";
+			}
+			else if (elem == '-') { 
+				y = stoi(str_pos); 
+				this->boxes.push_back(Box{{x,y}, line[line.length()]});		//dernier elem est la couleur en chiffre
+				break;
+			}
+			else if (elem == '*') {
+				y = stoi(str_pos);
+				this->player = Player{{x,y}};
+			}
+		}
+	}
 }
 
 
