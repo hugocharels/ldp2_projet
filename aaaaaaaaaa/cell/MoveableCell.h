@@ -7,7 +7,10 @@
 
 class MoveableCell: public virtual Cell {
 
+protected:
 	Point position;
+	
+private:
 	int steps=0;
 
 public:

@@ -17,7 +17,9 @@ class Board {
 
 	bool inMap(int x, int y) const ;
 
-	bool MoveboxOnMove(MOVE move);
+	bool moveBoxOnMove(MOVE move);
+
+	void movePlayerOnTp();
 
 	bool canPlayerMove(MOVE move);
 

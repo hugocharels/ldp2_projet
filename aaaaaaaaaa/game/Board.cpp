@@ -33,7 +33,6 @@ void Board::load(const std::string &file_path) {
 	std::string content{"####\n#--#\n#1-#\n####"};
 	int i = 0, j = 0;
 	for (auto c : content) {
-		std::cout << c ;
 		if (c == '\n') { ++i; j=0; continue; }
 		if (c == '#') { this->map[i][j] = new Cell{WALL}; }
 		else if (c == '-') { this->map[i][j] = new Cell{EMPTY}; }
@@ -99,7 +98,7 @@ bool Board::canBoxMove(Box &box, MOVE move) {
 	return *(this->map[x][y]) == EMPTY or *(this->map[x][y]) == TARGET;
 }
 
-bool Board::MoveboxOnMove(MOVE move) {
+bool Board::moveBoxOnMove(MOVE move) {
 	Point next_pos = getNextPos(this->player, move);
 	for (auto &box : this->boxes) {
 		if (box.getPos() == next_pos) {
@@ -117,12 +116,25 @@ bool Board::MoveboxOnMove(MOVE move) {
 	} return true;
 }
 
+void Board::movePlayerOnTp() {
+	int x = this->player.getPos().x;
+	int y = this->player.getPos().y;
+
+	if (*(this->map[x][y]) == TP) {
+		Point tp_pos = dynamic_cast<Teleporter*>(this->map[x][y])->getTpPos();
+		if (not contains(this->boxes, tp_pos)) {
+			this->player.tp(tp_pos);
+		}
+	}
+}
+
 
 bool Board::play(MOVE move) {
 	if (move == INVALID) {std::cout << "invalid move" << std::endl; return false;}
 	if (this->canPlayerMove(move)) {
-		if (this->MoveboxOnMove(move)) {
+		if (this->moveBoxOnMove(move)) {
 			player.move(move);
+			this->movePlayerOnTp();
 		}
 	}
 	return true;

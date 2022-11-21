@@ -13,6 +13,10 @@ public:
 
 	~Player()=default;
 
+	void tp(Point pos) {
+		this->position = pos;
+	}
+
 };
 
 
