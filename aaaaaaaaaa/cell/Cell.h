@@ -6,11 +6,11 @@
 
 class Cell {
 
-	char type;
+	CELL type;
 
 public:
 
-	Cell(char type='0'):type{type} {}
+	Cell(CELL type=EMPTY):type{type} {}
 	~Cell()=default;
 
 	bool operator==(CELL cell) { return type == cell; }

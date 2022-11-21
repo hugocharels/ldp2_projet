@@ -12,7 +12,7 @@ class Box: public MoveableCell, public ColorCell {
 
 public:
 
-	Box(Point pos, COLOR color=COLOR::NONE): MoveableCell(pos), ColorCell(color) {}
+	Box(Point pos, COLOR color=COLOR::NONE): MoveableCell(BOX, pos), ColorCell(BOX, color) {}
 
 	~Box()=default;
 

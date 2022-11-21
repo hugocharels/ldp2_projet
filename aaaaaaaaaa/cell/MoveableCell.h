@@ -12,7 +12,7 @@ class MoveableCell: public virtual Cell {
 
 public:
 
-	MoveableCell(Point pos): Cell('*'), position{pos} {}
+	MoveableCell(CELL cell, Point pos): Cell(cell), position{pos} {}
 	
 	~MoveableCell()=default;
 

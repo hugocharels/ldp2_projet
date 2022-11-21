@@ -14,11 +14,12 @@ class ColorCell: public virtual Cell {
 
 public:
 
-	ColorCell(COLOR color=COLOR::NONE): Cell('@'), color{color} {}
+	ColorCell(CELL cell, COLOR color=COLOR::NONE): Cell(cell), color{color} {}
 	
 	~ColorCell()=default;
 
-	COLOR getColor() const { return color; }
+	virtual COLOR getColor() const { return color; }
+	virtual void setColor(COLOR new_color) { this->color = new_color; }
 
 };
 

@@ -27,8 +27,8 @@ void Board::load(const std::string &file_path) {
 	for (auto c : content) {
 		std::cout << c ;
 		if (c == '\n') { ++i; j=0; continue; }
-		if (c == '#') { this->map[i][j] = Cell{'#'}; }
-		else if (c == '-') { this->map[i][j] = Cell{}; }
+		if (c == '#') { this->map[i][j] = Cell{WALL}; }
+		else if (c == '-') { this->map[i][j] = Cell{EMPTY}; }
 		else if (isdigit(c)) { this->map[i][j] = Target{}; }
 		++j;
 	}
@@ -98,11 +98,12 @@ bool Board::MoveboxOnMove(MOVE move) {
 			if (canBoxMove(box, move)) {
 				box.move(move);
 				Point box_pos = box.getPos();
-				if (this->map[box_pos.x][box_pos.y] == TARGET) { 
-					box.setTarget(true);
-				} else {
-					box.setTarget(false);
-				}
+				if (this->map[box_pos.x][box_pos.y] == TARGET) {
+					//Target target = this->map[box_pos.x][box_pos.y];
+					if (this->map[box_pos.x][box_pos.y].getColor() == box.getColor()) {
+						box.setTarget(true);
+					} else { box.setTarget(false); }
+				} else { box.setTarget(false); }
 				return true;
 			} else { return false; }
 		}
