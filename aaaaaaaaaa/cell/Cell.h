@@ -11,7 +11,7 @@ class Cell {
 public:
 
 	Cell(CELL type=EMPTY):type{type} {}
-	~Cell()=default;
+	virtual ~Cell()=default;
 
 	bool operator==(CELL cell) { return type == cell; }
 

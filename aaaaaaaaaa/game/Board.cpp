@@ -17,19 +17,27 @@ bool contains(T &contener, Point pos) {
 }
 
 
+Board::~Board() {
+	for (int i=0; i<this->map.getRows(); i++) {
+	    for (int j=0; j<this->map.getCols(); j++) {
+	    	delete this->map[i][j];
+	    }
+	}
+}
+
 
 void Board::load(const std::string &file_path) {
 	std::cout << file_path << std::endl;
 	int rows = 4, cols = 4;
-	this->map = Matrix<Cell>{rows, cols};
+	this->map = Matrix<Cell*>{rows, cols};
 	std::string content{"####\n#--#\n#1-#\n####"};
 	int i = 0, j = 0;
 	for (auto c : content) {
 		std::cout << c ;
 		if (c == '\n') { ++i; j=0; continue; }
-		if (c == '#') { this->map[i][j] = Cell{WALL}; }
-		else if (c == '-') { this->map[i][j] = Cell{EMPTY}; }
-		else if (isdigit(c)) { this->map[i][j] = Target{}; }
+		if (c == '#') { this->map[i][j] = new Cell{WALL}; }
+		else if (c == '-') { this->map[i][j] = new Cell{EMPTY}; }
+		else if (isdigit(c)) { this->map[i][j] = new Target{}; }
 		++j;
 	}
 	this->player = Player{Point{1, 1}};
@@ -50,7 +58,7 @@ void Board::print() {
 			} else if (contains(this->boxes, Point{i,j})) {
 				to_print += "B";
 			} else {
-				to_print += this->map[i][j].getType();
+				to_print += this->map[i][j]->getType();
 			}
 		}
 		to_print += "\n";
@@ -80,7 +88,7 @@ bool Board::canPlayerMove(MOVE move) {
 	int x = next_pos.x;
 	int y = next_pos.y;
 	if (not this->inMap(x, y)) { return false; }
-	return this->map[x][y] == EMPTY or this->map[x][y] == TARGET;
+	return *(this->map[x][y]) == EMPTY or *(this->map[x][y]) == TARGET;
 }
 
 bool Board::canBoxMove(Box &box, MOVE move) {
@@ -88,7 +96,7 @@ bool Board::canBoxMove(Box &box, MOVE move) {
 	int x = next_pos.x;
 	int y = next_pos.y;
 	if (not this->inMap(x, y) or contains(this->boxes, Point{x, y})) { return false; }
-	return this->map[x][y] == EMPTY or this->map[x][y] == TARGET;
+	return *(this->map[x][y]) == EMPTY or *(this->map[x][y]) == TARGET;
 }
 
 bool Board::MoveboxOnMove(MOVE move) {
@@ -98,9 +106,8 @@ bool Board::MoveboxOnMove(MOVE move) {
 			if (canBoxMove(box, move)) {
 				box.move(move);
 				Point box_pos = box.getPos();
-				if (this->map[box_pos.x][box_pos.y] == TARGET) {
-					//Target target = this->map[box_pos.x][box_pos.y];
-					if (this->map[box_pos.x][box_pos.y].getColor() == box.getColor()) {
+				if (*(this->map[box_pos.x][box_pos.y]) == TARGET) {
+					if (dynamic_cast<Target*>(this->map[box_pos.x][box_pos.y])->getColor() == box.getColor()) {
 						box.setTarget(true);
 					} else { box.setTarget(false); }
 				} else { box.setTarget(false); }

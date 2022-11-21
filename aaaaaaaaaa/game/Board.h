@@ -11,7 +11,7 @@
 
 class Board {
 
-	Matrix<Cell> map;
+	Matrix<Cell*> map;
 	Player player;
 	std::vector<Box> boxes;
 
@@ -26,7 +26,7 @@ class Board {
 public:
 
 	Board() {}
-	~Board()=default;
+	~Board();
 
 	void load(const std::string &file_path);
 
