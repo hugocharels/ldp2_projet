@@ -10,7 +10,7 @@ class Cell {
 
 public:
 
-	Cell(CELL type=EMPTY):type{type} {}
+	Cell(CELL type):type{type} {}
 	virtual ~Cell()=default;
 
 	bool operator==(CELL cell) { return type == cell; }

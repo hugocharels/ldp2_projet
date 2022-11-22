@@ -1,70 +1,32 @@
 #ifndef _MATRIX_H
 #define _MATRIX_H
 
+#include <vector>
+
 template<typename T>
 class Matrix {
 
-	class Table {
-		
-		T* table;
-		int size;
-
-	public:
-		
-		Table()=default;
-
-		Table(Table &other)=default;
-
-		~Table() {
-			delete[] this->table;
-		}
-
-		void init(int size) {
-			this->size = size;
-			this->table = new T[this->size];
-			for (int i=0; i<this->size; ++i) {
-				this->table[i] = T{};
-			}
-		}
-
-		T &operator[](int y) {
-			return this->table[y];
-		}
-	};
-
-	Table* matrix;
+	std::vector<std::vector<T>> matrix;
 	int rows;
 	int cols;
-
-	void init() {
-		this->matrix = new Table[this->rows];
-		for (int i=0; i<this->rows; ++i) {
-			this->matrix[i].init(this->cols);
-		}
-	}
 
 public:
 
 	Matrix(int rows=0, int cols=0):rows{rows},cols{cols} {
-		this->init();
+		if (rows > 0 and cols > 0) {this->resize(rows, cols);}
 	}
 
-	Matrix(Matrix &other)=default;
-
-	~Matrix() {
-		delete[] this->matrix;
+	void resize(int rows, int cols) {
+		this->matrix = std::vector<std::vector<T>>(rows);
+		this->rows = rows;
+		this->cols = cols;
+		for (auto &vect : this->matrix) {
+			vect = std::vector<T>(cols);
+		}
 	}
 
-
-	void operator=(Matrix<T> other) {
-		this->rows = other.rows;
-		this->cols = other.cols;
-		this->init();
-	}
-
-
-	Matrix<T>::Table &operator[](int x) {
-		return this->matrix[x];
+	T& at(int x, int y) {
+		return this->matrix[x][y];
 	}
 
 	int getCols() const { return this->cols; }

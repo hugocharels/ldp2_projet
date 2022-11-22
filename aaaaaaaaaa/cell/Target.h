@@ -9,7 +9,7 @@ class Target: public ColorCell {
 
 public:
 
-	Target(COLOR color=COLOR::NONE): ColorCell(TARGET, color) {}
+	Target(COLOR color=COLOR::NONE): Cell(TARGET), ColorCell(TARGET, color) {}
 
 	~Target()=default;
 

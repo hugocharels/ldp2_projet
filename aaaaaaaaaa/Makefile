@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic
+CXXFLAGS += -std='c++20' -Wall -Wextra -pedantic -g
 LDFLAGS += -lfltk
 
 
@@ -17,4 +17,4 @@ configs.o: configs.cpp configs.h
 	${CXX} -c configs.cpp ${CXXFLAGS}
 
 clean :
-	rm *.o && rm sokoban || rm sokoban || echo no changes
+	rm *.o || echo no changes

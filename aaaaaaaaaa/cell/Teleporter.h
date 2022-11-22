@@ -11,8 +11,8 @@ class Teleporter: public ColorCell {
 
 public:
 
-	Teleporter(Point dest, COLOR color=COLOR::NONE): ColorCell(TP, color), destination{dest} {}
-	Teleporter(COLOR color=COLOR::NONE): ColorCell(TP, color) {}
+	Teleporter(Point dest, COLOR color=COLOR::NONE): Cell(TP), ColorCell(TP, color), destination{dest} {}
+	Teleporter(COLOR color=COLOR::NONE): Cell(TP), ColorCell(TP, color) {}
 
 	~Teleporter()=default;
 

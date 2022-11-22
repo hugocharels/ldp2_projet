@@ -21,7 +21,7 @@ bool contains(T &contener, Point pos) {
 Board::~Board() {
 	for (int i=0; i<this->map.getRows(); i++) {
 	    for (int j=0; j<this->map.getCols(); j++) {
-	    	delete this->map[i][j];
+	    	delete this->map.at(i, j);
 	    }
 	}
 }
@@ -31,44 +31,44 @@ void Board::load(const std::string &file_path) {
 	std::string content = "";
 	std::string line = "";
 	std::ifstream file (file_path);
-
-//get n colonne & n line
+	//get n colonne & n line
 	int rows, cols;
 	getline(file, line);
 	rows = stoi(line);
 	getline(file, line);
 	cols = stoi(line);
 
-//load map
+	//load map
 	if (file.is_open()) {
 		for (int k=0; k<rows; k++){ 
 			getline(file, line);
 			content += line + "\n";
 		}
-		file.close();
 	} else {
 		std::cerr << "Can not open the file '" << file_path << "'" << std::endl;
 	}
 
-	this->map = Matrix<Cell*>{rows, cols};
 	std::vector<std::tuple<int, int, char, Teleporter*>> tp_vector;
 
+	this->map.resize(rows, cols);
 	int i = 0, j = 0;		//actual pos
 	for (auto c : content) {
 		if (c == '\n') { ++i; j=0; continue; }
-		if (c == '#') { this->map[i][j] = new Cell{WALL}; }
-		else if (c == '-') { this->map[i][j] = new Cell{EMPTY}; }
-		else if (isdigit(c)) { this->map[i][j] = new Target{charToColor(c)}; }
+		if (c == WALL) { this->map.at(i, j) = new Cell{WALL}; }
+		else if (c == EMPTY) { this->map.at(i, j) = new Cell{EMPTY}; }
+		else if (isdigit(c)) { this->map.at(i, j) = new Target{charToColor(c)}; }
 		else { 
-			this->map[i][j] = new Teleporter{charToColor(c)};
-			auto tp_info = std::make_tuple(i, j, c, dynamic_cast<Teleporter*>(this->map[i][j]));
+			this->map.at(i, j) = new Teleporter{charToColor(c)};
+			auto tp_info = std::make_tuple(i, j, c, dynamic_cast<Teleporter*>(this->map.at(i, j)));
 			tp_vector.push_back(tp_info);
 		} //teleporter chiant (dico ou constructeur desti à nulle)
 		++j;
 	}
+	std::cout << "size : " << tp_vector.size() << std::endl;
 
 
-//teleporter association destination
+
+	//teleporter association destination
 	while (not tp_vector.empty()) {
 		auto current = tp_vector.back();
 		tp_vector.pop_back();
@@ -84,13 +84,10 @@ void Board::load(const std::string &file_path) {
 		}
 	}
 
-
-
-//load boxes
+	//load boxes
 	while (getline(file, line)) {
 		int x,y;
 		std::string str_pos = "";
-
 		for (auto elem : line){
 			if (isdigit(elem)) { str_pos += elem; }
 			else if (elem == ',') { 
@@ -108,6 +105,7 @@ void Board::load(const std::string &file_path) {
 			}
 		}
 	}
+	file.close();
 }
 
 
@@ -124,7 +122,7 @@ void Board::print() {
 			} else if (contains(this->boxes, Point{i,j})) {
 				to_print += "B";
 			} else {
-				to_print += this->map[i][j]->getType();
+				to_print += this->map.at(i, j)->getType();
 			}
 		}
 		to_print += "\n";
@@ -154,7 +152,7 @@ bool Board::canPlayerMove(MOVE move) {
 	int x = next_pos.x;
 	int y = next_pos.y;
 	if (not this->inMap(x, y)) { return false; }
-	return *(this->map[x][y]) == EMPTY or *(this->map[x][y]) == TARGET;
+	return *(this->map.at(x, y)) == EMPTY or *(this->map.at(x, y)) == TARGET or *(this->map.at(x, y)) == TP;
 }
 
 bool Board::canBoxMove(Box &box, MOVE move) {
@@ -162,7 +160,7 @@ bool Board::canBoxMove(Box &box, MOVE move) {
 	int x = next_pos.x;
 	int y = next_pos.y;
 	if (not this->inMap(x, y) or contains(this->boxes, Point{x, y})) { return false; }
-	return *(this->map[x][y]) == EMPTY or *(this->map[x][y]) == TARGET;
+	return *(this->map.at(x, y)) == EMPTY or *(this->map.at(x, y)) == TARGET or *(this->map.at(x, y)) == TP;
 }
 
 bool Board::moveBoxOnMove(MOVE move) {
@@ -172,8 +170,8 @@ bool Board::moveBoxOnMove(MOVE move) {
 			if (canBoxMove(box, move)) {
 				box.move(move);
 				Point box_pos = box.getPos();
-				if (*(this->map[box_pos.x][box_pos.y]) == TARGET) {
-					if (dynamic_cast<Target*>(this->map[box_pos.x][box_pos.y])->getColor() == box.getColor()) {
+				if (*(this->map.at(box_pos.x, box_pos.y)) == TARGET) {
+					if (dynamic_cast<Target*>(this->map.at(box_pos.x, box_pos.y))->getColor() == box.getColor()) {
 						box.setTarget(true);
 					} else { box.setTarget(false); }
 				} else { box.setTarget(false); }
@@ -187,8 +185,8 @@ void Board::movePlayerOnTp() {
 	int x = this->player.getPos().x;
 	int y = this->player.getPos().y;
 
-	if (*(this->map[x][y]) == TP) {
-		Point tp_pos = dynamic_cast<Teleporter*>(this->map[x][y])->getTpPos();
+	if (*(this->map.at(x, y)) == TP) {
+		Point tp_pos = dynamic_cast<Teleporter*>(this->map.at(x, y))->getTpPos();
 		if (not contains(this->boxes, tp_pos)) {
 			this->player.tp(tp_pos);
 		}
