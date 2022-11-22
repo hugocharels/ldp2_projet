@@ -64,9 +64,6 @@ void Board::load(const std::string &file_path) {
 		} //teleporter chiant (dico ou constructeur desti à nulle)
 		++j;
 	}
-	std::cout << "size : " << tp_vector.size() << std::endl;
-
-
 
 	//teleporter association destination
 	while (not tp_vector.empty()) {
@@ -96,7 +93,7 @@ void Board::load(const std::string &file_path) {
 			}
 			else if (elem == '-') { 
 				y = stoi(str_pos); 
-				this->boxes.push_back(Box{Point{x,y}, charToColor(line[line.length()])});		//dernier elem est la couleur en chiffre
+				this->boxes.push_back(Box{Point{x,y}, charToColor(line[line.length()-1])});		//dernier elem est la couleur en chiffre
 				break;
 			}
 			else if (elem == '*') {
@@ -189,6 +186,7 @@ void Board::movePlayerOnTp() {
 		Point tp_pos = dynamic_cast<Teleporter*>(this->map.at(x, y))->getTpPos();
 		if (not contains(this->boxes, tp_pos)) {
 			this->player.tp(tp_pos);
+			std::cout << "\n tp : " << tp_pos.x << " / " << tp_pos.y << std::endl;
 		}
 	}
 }
