@@ -27,6 +27,20 @@ Board::~Board() {
 }
 
 
+
+COLOR charToColor(char x) {
+	if (x == '2') { return COLOR::RED; }
+	else if (x == '3') { return COLOR::YELLOW; }
+	else if (x == '4') { return COLOR::BLUE; }
+	else if (x == '5') { return COLOR::ORANGE; }
+	else if (x == '5') { return COLOR::GREEN; }
+	else if (x == '5') { return COLOR::PURPLE; }
+	return COLOR::NONE;
+}
+
+
+
+
 void Board::load(const std::string &file_path) {
 	std::string content = "";
 	std::string line = "";
@@ -72,14 +86,15 @@ void Board::load(const std::string &file_path) {
 	while (sizeof(tp_vector)>0) {
 		auto current = tp_vector.back();
 		//current.pop_back();
-
+		int idx = 0;
 		for (auto &elem : tp_vector) {
 			if (std::get<2>(elem) == std::get<2>(current)) {
 				std::get<3>(current)->setDestination(Point{std::get<0>(elem),std::get<1>(elem)});
 				std::get<3>(elem)->setDestination(Point{std::get<0>(current),std::get<1>(current)});
-				tp_vector.erase(elem);
+				tp_vector.erase(tp_vector.begin()+idx);
 				break;
 			}
+			idx++;
 		}
 	}
 
