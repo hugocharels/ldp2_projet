@@ -61,7 +61,7 @@ void Board::load(const std::string &file_path) {
 		else if (isdigit(c)) { this->map[i][j] = new Target{charToColor(c)}; }
 		else { 
 			this->map[i][j] = new Teleporter{charToColor(c)};
-			std::tuple<int, int, char, Teleporter*> tp_info(i, j, c, this->map[i][j]);
+			auto tp_info = std::make_tuple(i, j, c, dynamic_cast<Teleporter*>(this->map[i][j]));
 			tp_vector.push_back(tp_info);
 		} //teleporter chiant (dico ou constructeur desti à nulle)
 		++j;
@@ -71,12 +71,12 @@ void Board::load(const std::string &file_path) {
 //teleporter association destination
 	while (sizeof(tp_vector)>0) {
 		auto current = tp_vector.back();
-		current.pop_back();
+		//current.pop_back();
 
-		for (auto elem : tp_vector) {
-			if (elem[2] == current[2]) {
-				current[3].setDestination(Point{elem[0],elem[1]});
-				elem[3].setDestination(Point{current[0],current[1]});
+		for (auto &elem : tp_vector) {
+			if (std::get<2>(elem) == std::get<2>(current)) {
+				std::get<3>(current)->setDestination(Point{std::get<0>(elem),std::get<1>(elem)});
+				std::get<3>(elem)->setDestination(Point{std::get<0>(current),std::get<1>(current)});
 				tp_vector.erase(elem);
 				break;
 			}
