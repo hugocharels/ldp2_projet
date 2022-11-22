@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
+#include <tuple>
 
 #include "Board.h"
 #include "../configs.h"
@@ -97,7 +98,7 @@ void Board::load(const std::string &file_path) {
 			}
 			else if (elem == '-') { 
 				y = stoi(str_pos); 
-				this->boxes.push_back(Box{{x,y}, line[line.length()]});		//dernier elem est la couleur en chiffre
+				this->boxes.push_back(Box{Point{x,y}, charToColor(line[line.length()])});		//dernier elem est la couleur en chiffre
 				break;
 			}
 			else if (elem == '*') {
