@@ -1,6 +1,11 @@
 #ifndef _CONFIGS_H
 #define _CONFIGS_H
 
+#include <string>
+
+const std::string LEVEL1 = "levels/board2.txt";
+const std::string LEVEL2 = "levels/board3.txt";
+
 constexpr int    windowWidth      = 500;
 constexpr int    windowHeight     = 500;
 constexpr double refreshPerSecond = 60;
