@@ -12,7 +12,7 @@ class ColorCell: public virtual Cell {
 public:
 
 
-	ColorCell(CELL cell, COLOR color=COLOR::NONE): Cell(cell), color{color} {std::cout << (char)cell << " color : " << (int)color << std::endl;}
+	ColorCell(CELL cell, COLOR color=COLOR::NONE): Cell(cell), color{color} {}
 	
 	~ColorCell()=default;
 
