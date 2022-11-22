@@ -49,20 +49,20 @@ void Board::load(const std::string &file_path) {
 		std::cerr << "Can not open the file '" << file_path << "'" << std::endl;
 	}
 
-	this->map = Matrix<Cell>{rows, cols};
-	std::vector<std::tuple> tp_vector;
+	this->map = Matrix<Cell*>{rows, cols};
+	std::vector<std::tuple<int, int, char, Teleporter*>> tp_vector;
 
 	int i = 0, j = 0;		//actual pos
 	for (auto c : content) {
 		if (c == '\n') { ++i; j=0; continue; }
-		if (c == '#') { this->map[i][j] = Cell{'#'}; }
-		else if (c == '-') { this->map[i][j] = Cell{}; }
-		else if (isdigit(c)) { this->map[i][j] = Target(c); }
+		if (c == '#') { this->map[i][j] = new Cell{WALL}; }
+		else if (c == '-') { this->map[i][j] = new Cell{EMPTY}; }
+		else if (isdigit(c)) { this->map[i][j] = new Target{charToColor(c)}; }
 		else { 
-			this->map[i][j] = Teleporter();
-			std::tuple<int,int,std::string, Teleporter> tp_info (i,j,c,this->map[i][j]);
+			this->map[i][j] = new Teleporter{charToColor(c)};
+			std::tuple<int, int, char, Teleporter*> tp_info(i, j, c, this->map[i][j]);
 			tp_vector.push_back(tp_info);
-			} //teleporter chiant (dico ou constructeur desti à nulle)
+		} //teleporter chiant (dico ou constructeur desti à nulle)
 		++j;
 	}
 
