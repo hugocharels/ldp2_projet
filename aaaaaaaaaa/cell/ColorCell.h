@@ -5,9 +5,6 @@
 #include "../configs.h"
 
 
-enum class COLOR { NONE = 1, RED, YELLOW, BLUE, ORANGE, GREEN, PURPLE };
-
-
 class ColorCell: public virtual Cell {
 
 	COLOR color;

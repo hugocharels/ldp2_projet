@@ -27,20 +27,6 @@ Board::~Board() {
 }
 
 
-
-COLOR charToColor(char x) {
-	if (x == '2') { return COLOR::RED; }
-	else if (x == '3') { return COLOR::YELLOW; }
-	else if (x == '4') { return COLOR::BLUE; }
-	else if (x == '5') { return COLOR::ORANGE; }
-	else if (x == '5') { return COLOR::GREEN; }
-	else if (x == '5') { return COLOR::PURPLE; }
-	return COLOR::NONE;
-}
-
-
-
-
 void Board::load(const std::string &file_path) {
 	std::string content = "";
 	std::string line = "";
@@ -83,9 +69,9 @@ void Board::load(const std::string &file_path) {
 
 
 //teleporter association destination
-	while (sizeof(tp_vector)>0) {
+	while (not tp_vector.empty()) {
 		auto current = tp_vector.back();
-		//current.pop_back();
+		tp_vector.pop_back();
 		int idx = 0;
 		for (auto &elem : tp_vector) {
 			if (std::get<2>(elem) == std::get<2>(current)) {
