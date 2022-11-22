@@ -86,7 +86,7 @@ void Board::load(const std::string &file_path) {
 
 	//load boxes
 	while (getline(file, line)) {
-		int x,y;
+		int x=0,y=0;
 		std::string str_pos = "";
 		for (auto elem : line){
 			if (isdigit(elem)) { str_pos += elem; }
