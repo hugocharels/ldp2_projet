@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string.h>
 #include <tuple>
+#include <memory>
 
 #include "Board.h"
 #include "../configs.h"
@@ -24,7 +25,7 @@ Point getNextPos(MoveableCell &obj, MOVE move) {
 Board::~Board() {
 	for (int i=0; i<this->map.getRows(); i++) {
 	    for (int j=0; j<this->map.getCols(); j++) {
-	    	delete this->map.at(i, j);
+	    	delete this->map.at(i, j).get();
 	    }
 	}
 }
@@ -57,12 +58,12 @@ void Board::load(const std::string &file_path) {
 	int i = 0, j = 0;		//actual pos
 	for (auto c : content) {
 		if (c == '\n') { ++i; j=0; continue; }
-		if (c == WALL) { this->map.at(i, j) = new Cell{WALL}; }
-		else if (c == EMPTY) { this->map.at(i, j) = new Cell{EMPTY}; }
-		else if (isdigit(c)) { this->map.at(i, j) = new Target{charToColor(c)}; }
+		if (c == WALL) { this->map.at(i, j) = std::make_unique<Cell>(Cell{WALL}); }
+		else if (c == EMPTY) { this->map.at(i, j) = std::make_unique<Cell>(Cell{EMPTY}); }
+		else if (isdigit(c)) { this->map.at(i, j) = std::make_unique<Target>(Target{charToColor(c)}); }
 		else { 
-			this->map.at(i, j) = new Teleporter{charToColor(c)};
-			auto tp_info = std::make_tuple(i, j, c, dynamic_cast<Teleporter*>(this->map.at(i, j)));
+			this->map.at(i, j) = std::make_unique<Teleporter>(Teleporter{charToColor(c)});
+			auto tp_info = std::make_tuple(i, j, c, dynamic_cast<Teleporter*>(this->map.at(i, j).get()));
 			tp_vector.push_back(tp_info);
 		} //teleporter chiant (dico ou constructeur desti à nulle)
 		++j;
@@ -196,7 +197,7 @@ bool Board::moveBoxOnMove(MOVE move) {
 				box.move(move);
 				Point box_pos = box.getPos();
 				if (*(this->map.at(box_pos.x, box_pos.y)) == TARGET) {
-					if (dynamic_cast<Target*>(this->map.at(box_pos.x, box_pos.y))->getColor() == box.getColor()) {
+					if (dynamic_cast<Target*>(this->map.at(box_pos.x, box_pos.y).get())->getColor() == box.getColor()) {
 						box.setTarget(true);
 					} else { box.setTarget(false); }
 				} else { box.setTarget(false); }
@@ -211,7 +212,7 @@ void Board::movePlayerOnTp() {
 	int y = this->player.getPos().y;
 
 	if (*(this->map.at(x, y)) == TP) {
-		Point tp_pos = dynamic_cast<Teleporter*>(this->map.at(x, y))->getTpPos();
+		Point tp_pos = dynamic_cast<Teleporter*>(this->map.at(x, y).get())->getTpPos();
 		if (not this->boxHere(tp_pos)) {
 			this->player.tp(tp_pos);
 		}

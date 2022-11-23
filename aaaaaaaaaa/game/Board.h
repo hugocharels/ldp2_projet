@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "Matrix.h"
 #include "../cell/include.h"
@@ -11,7 +12,7 @@
 
 class Board {
 
-	Matrix<Cell*> map;
+	Matrix<std::unique_ptr<Cell>> map;
 	Player player;
 	std::vector<Box> boxes;
 
