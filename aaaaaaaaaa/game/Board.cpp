@@ -16,6 +16,31 @@ Board::~Board() {
 }
 
 
+void Board::loadBoxes(auto &file) {
+	std::string line="";
+	while (getline(file, line)) {
+		int x=0,y=0;
+		std::string str_pos = "";
+		for (auto elem : line){
+			if (isdigit(elem)) { str_pos += elem; }
+			else if (elem == ',') { 
+				x = stoi(str_pos);
+				str_pos = "";
+			}
+			else if (elem == '-') { 
+				y = stoi(str_pos); 
+				this->boxes.push_back(Box{Point{x,y}, charToColor(line[line.length()-1])});		//dernier elem est la couleur en chiffre
+				break;
+			}
+			else if (elem == '*') {
+				y = stoi(str_pos);
+				this->player = Player{{x,y}};
+			}
+		}
+	}
+}
+
+
 void Board::load(const std::string &file_path) {
 	std::string content = "";
 	std::string line = "";
@@ -70,27 +95,8 @@ void Board::load(const std::string &file_path) {
 		}
 	}
 
-	//load boxes
-	while (getline(file, line)) {
-		int x=0,y=0;
-		std::string str_pos = "";
-		for (auto elem : line){
-			if (isdigit(elem)) { str_pos += elem; }
-			else if (elem == ',') { 
-				x = stoi(str_pos);
-				str_pos = "";
-			}
-			else if (elem == '-') { 
-				y = stoi(str_pos); 
-				this->boxes.push_back(Box{Point{x,y}, charToColor(line[line.length()-1])});		//dernier elem est la couleur en chiffre
-				break;
-			}
-			else if (elem == '*') {
-				y = stoi(str_pos);
-				this->player = Player{{x,y}};
-			}
-		}
-	}
+	this->loadBoxes(file);
+
 	file.close();
 }
 
@@ -185,7 +191,6 @@ void Board::movePlayerOnTp() {
 		Point tp_pos = dynamic_cast<Teleporter*>(this->map.at(x, y))->getTpPos();
 		if (not this->boxHere(tp_pos)) {
 			this->player.tp(tp_pos);
-			std::cout << "\n tp : " << tp_pos.x << " / " << tp_pos.y << std::endl;
 		}
 	}
 }

@@ -15,6 +15,10 @@ class Board {
 	Player player;
 	std::vector<Box> boxes;
 
+	// LOAD
+	void loadBoxes(auto &file);
+
+
 	bool inMap(int x, int y) const ;
 
 	bool boxHere(Point pos);
