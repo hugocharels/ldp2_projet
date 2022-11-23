@@ -25,6 +25,4 @@ enum class COLOR { NONE = 1, RED, YELLOW, BLUE, ORANGE, GREEN, PURPLE };
 
 COLOR charToColor(char x);
 
-
-
 #endif

@@ -7,36 +7,25 @@
 #include "../configs.h"
 
 
+
+Point getNextPos(MoveableCell &obj, MOVE move) {
+	int x = obj.getPos().x;
+	int y = obj.getPos().y;
+	if (move == UP) { x--; }
+	else if (move == DOWN) { x++; }
+	else if (move == LEFT) { y--; }
+	else if (move == RIGHT) { y++; }
+	return Point{x, y};
+}
+
+
+// public 
+
 Board::~Board() {
 	for (int i=0; i<this->map.getRows(); i++) {
 	    for (int j=0; j<this->map.getCols(); j++) {
 	    	delete this->map.at(i, j);
 	    }
-	}
-}
-
-
-void Board::loadBoxes(auto &file) {
-	std::string line="";
-	while (getline(file, line)) {
-		int x=0,y=0;
-		std::string str_pos = "";
-		for (auto elem : line){
-			if (isdigit(elem)) { str_pos += elem; }
-			else if (elem == ',') { 
-				x = stoi(str_pos);
-				str_pos = "";
-			}
-			else if (elem == '-') { 
-				y = stoi(str_pos); 
-				this->boxes.push_back(Box{Point{x,y}, charToColor(line[line.length()-1])});		//dernier elem est la couleur en chiffre
-				break;
-			}
-			else if (elem == '*') {
-				y = stoi(str_pos);
-				this->player = Player{{x,y}};
-			}
-		}
 	}
 }
 
@@ -123,6 +112,56 @@ void Board::print() {
 }
 
 
+bool Board::play(MOVE move) {
+	if (move == INVALID) {std::cout << "invalid move" << std::endl; return false;}
+	if (this->canPlayerMove(move)) {
+		if (this->moveBoxOnMove(move)) {
+			player.move(move);
+			this->movePlayerOnTp();
+		}
+	}
+	return true;
+}
+
+bool Board::win() const {
+	for (auto &box : this->boxes) {
+		if (not box.onTarget()) { return false; }
+	} return true;
+}
+
+
+
+
+// private
+
+void Board::loadBoxes(auto &file) {
+	std::string line="";
+	while (getline(file, line)) {
+		int x=0,y=0;
+		std::string str_pos = "";
+		for (auto elem : line){
+			if (isdigit(elem)) { str_pos += elem; }
+			else if (elem == ',') { 
+				x = stoi(str_pos);
+				str_pos = "";
+			}
+			else if (elem == '-') { 
+				y = stoi(str_pos); 
+				this->boxes.push_back(Box{Point{x,y}, charToColor(line[line.length()-1])});		//dernier elem est la couleur en chiffre
+				break;
+			}
+			else if (elem == '*') {
+				y = stoi(str_pos);
+				this->player = Player{{x,y}};
+			}
+		}
+	}
+}
+
+bool Board::inMap(int x, int y) const {
+	return x > 0 and x < this->map.getRows()-1 and y > 0 and y < this->map.getCols()-1 ;
+}
+
 bool Board::boxHere(Point pos) {
 	for (auto &box : this->boxes) {
 		if (pos == box.getPos()) {
@@ -130,22 +169,6 @@ bool Board::boxHere(Point pos) {
 		}
 	}
 	return false;
-}
-
-
-bool Board::inMap(int x, int y) const {
-	return x > 0 and x < this->map.getRows()-1 and y > 0 and y < this->map.getCols()-1 ;
-}
-
-
-Point getNextPos(MoveableCell &obj, MOVE move) {
-	int x = obj.getPos().x;
-	int y = obj.getPos().y;
-	if (move == UP) { x--; }
-	else if (move == DOWN) { x++; }
-	else if (move == LEFT) { y--; }
-	else if (move == RIGHT) { y++; }
-	return Point{x, y};
 }
 
 
@@ -195,21 +218,3 @@ void Board::movePlayerOnTp() {
 	}
 }
 
-
-bool Board::play(MOVE move) {
-	if (move == INVALID) {std::cout << "invalid move" << std::endl; return false;}
-	if (this->canPlayerMove(move)) {
-		if (this->moveBoxOnMove(move)) {
-			player.move(move);
-			this->movePlayerOnTp();
-		}
-	}
-	return true;
-}
-
-
-bool Board::win() const {
-	for (auto &box : this->boxes) {
-		if (not box.onTarget()) { return false; }
-	} return true;
-}

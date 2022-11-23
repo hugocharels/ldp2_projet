@@ -10,4 +10,3 @@ COLOR charToColor(char x) {
 	else if (x == '5' or x == 'G') { return COLOR::PURPLE; }
 	return COLOR::NONE;
 }
-
