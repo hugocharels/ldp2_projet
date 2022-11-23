@@ -7,17 +7,6 @@
 #include "../configs.h"
 
 
-template<typename T>
-bool contains(T &contener, Point pos) {
-	for (auto &i : contener) {
-		if (pos == i.getPos()) {
-			return true;
-		}
-	}
-	return false;
-}
-
-
 Board::~Board() {
 	for (int i=0; i<this->map.getRows(); i++) {
 	    for (int j=0; j<this->map.getCols(); j++) {
@@ -116,7 +105,7 @@ void Board::print() {
 	    for (int j=0; j<this->map.getCols(); j++) {
 			if (this->player.getPos() == Point{i,j}) {
 				to_print += "P";
-			} else if (contains(this->boxes, Point{i,j})) {
+			} else if (this->boxHere(Point{i,j})) {
 				to_print += "B";
 			} else {
 				to_print += this->map.at(i, j)->getType();
@@ -125,6 +114,16 @@ void Board::print() {
 		to_print += "\n";
 	}
 	std::cout<<to_print<<std::endl;
+}
+
+
+bool Board::boxHere(Point pos) {
+	for (auto &box : this->boxes) {
+		if (pos == box.getPos()) {
+			return true;
+		}
+	}
+	return false;
 }
 
 
@@ -156,7 +155,7 @@ bool Board::canBoxMove(Box &box, MOVE move) {
 	Point next_pos = getNextPos(box, move);
 	int x = next_pos.x;
 	int y = next_pos.y;
-	if (not this->inMap(x, y) or contains(this->boxes, Point{x, y})) { return false; }
+	if (not this->inMap(x, y) or this->boxHere(Point{x, y})) { return false; }
 	return this->map.at(x, y)->walkable();
 }
 
@@ -184,7 +183,7 @@ void Board::movePlayerOnTp() {
 
 	if (*(this->map.at(x, y)) == TP) {
 		Point tp_pos = dynamic_cast<Teleporter*>(this->map.at(x, y))->getTpPos();
-		if (not contains(this->boxes, tp_pos)) {
+		if (not this->boxHere(tp_pos)) {
 			this->player.tp(tp_pos);
 			std::cout << "\n tp : " << tp_pos.x << " / " << tp_pos.y << std::endl;
 		}
