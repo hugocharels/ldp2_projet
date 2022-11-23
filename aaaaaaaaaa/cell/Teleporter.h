@@ -20,6 +20,8 @@ public:
 
 	void setDestination(Point pos) { this->destination=pos; }
 
+	virtual bool walkable() override { return true; }
+	
 };
 
 

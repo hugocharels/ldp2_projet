@@ -17,6 +17,8 @@ public:
 
 	char getType() const { return type; }
 
+	virtual bool walkable() { return type==EMPTY; }
+
 };
 
 #endif

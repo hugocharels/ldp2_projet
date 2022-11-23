@@ -15,6 +15,8 @@ public:
 
 	void operator=(Target &other) { this->setColor(other.getColor()); }
 
+	virtual bool walkable() override { return true; }
+
 };
 
 

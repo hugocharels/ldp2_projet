@@ -149,7 +149,7 @@ bool Board::canPlayerMove(MOVE move) {
 	int x = next_pos.x;
 	int y = next_pos.y;
 	if (not this->inMap(x, y)) { return false; }
-	return *(this->map.at(x, y)) == EMPTY or *(this->map.at(x, y)) == TARGET or *(this->map.at(x, y)) == TP;
+	return this->map.at(x, y)->walkable();
 }
 
 bool Board::canBoxMove(Box &box, MOVE move) {
@@ -157,7 +157,7 @@ bool Board::canBoxMove(Box &box, MOVE move) {
 	int x = next_pos.x;
 	int y = next_pos.y;
 	if (not this->inMap(x, y) or contains(this->boxes, Point{x, y})) { return false; }
-	return *(this->map.at(x, y)) == EMPTY or *(this->map.at(x, y)) == TARGET or *(this->map.at(x, y)) == TP;
+	return this->map.at(x, y)->walkable();
 }
 
 bool Board::moveBoxOnMove(MOVE move) {

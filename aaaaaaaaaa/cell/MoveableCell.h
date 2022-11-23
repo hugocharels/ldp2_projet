@@ -31,6 +31,7 @@ public:
 
 	Point getPos() const { return position; }
 
+	virtual bool walkable() override { return false; }
 };
 
 
