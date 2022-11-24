@@ -50,6 +50,14 @@ public:
 
 	bool win() const ;
 
+	Player* getPlayerPTR() { return &player; }
+
+	auto* getToutDeg() { return &map; } 
+
+	auto* getTouBoxDeg() { return &boxes; }
+
+	
+
 };
 
 

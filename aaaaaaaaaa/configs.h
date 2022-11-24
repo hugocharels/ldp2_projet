@@ -6,8 +6,9 @@
 const std::string LEVEL1 = "levels/board2.txt";
 const std::string LEVEL2 = "levels/board3.txt";
 
-constexpr int    windowWidth      = 500;
-constexpr int    windowHeight     = 500;
+constexpr int    windowWidth      = 1000;
+constexpr int    windowHeight     = 600;
+constexpr int 	 cellSize         = 50; 
 constexpr double refreshPerSecond = 60;
 
 struct Point {

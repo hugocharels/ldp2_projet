@@ -21,6 +21,12 @@ public:
 
  	bool win() { return board.win(); }
 
+ 	Player* getPlayerPTR() { return board.getPlayerPTR(); }
+
+	auto* getToutDeg() { return board.getToutDeg(); } 
+
+	auto* getTouBoxDeg() { return board.getTouBoxDeg(); }
+
 };
 
 
