@@ -3,12 +3,15 @@ CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic
 LDFLAGS += -lfltk
 
 
-main: main.cpp Sokoban.o Board.o configs.o
-	${CXX} -o sokoban main.cpp Sokoban.o Board.o configs.o ${CXXFLAGS} ${LDFLAGS}
+main: main.cpp Sokoban.o DisplaySokoban.o Board.o configs.o
+	${CXX} -o sokoban main.cpp Sokoban.o DisplaySokoban.o Board.o configs.o ${CXXFLAGS} ${LDFLAGS}
 	make clean
 
 Sokoban.o: game/Sokoban.cpp game/Sokoban.h
 	${CXX} -c game/Sokoban.cpp ${CXXFLAGS}
+
+DisplaySokoban.o: interface/DisplaySokoban.cpp interface/DisplaySokoban.h
+	${CXX} -c interface/DisplaySokoban.cpp ${CXXFLAGS}
 
 Board.o: game/Board.cpp game/Board.h
 	${CXX} -c game/Board.cpp ${CXXFLAGS}

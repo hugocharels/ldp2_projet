@@ -2,6 +2,8 @@
 #define _DISPLAY_SOKOBAN_H
 
 #include "MainWindow.h"
+#include "../cell/include.h"
+#include "../configs.h"
 
 
 class DisplaySokoban {
@@ -10,7 +12,7 @@ class DisplaySokoban {
 	Sokoban* sokoban;
 
 	Point modelPosToDisplayPos(Point model_pos) { return Point{cellSize+(cellSize*model_pos.x), cellSize+(cellSize*model_pos.y)}; }
-	void drawACell(Point display_pos, CELL c_type); 
+	void drawACell(Point display_pos, Cell* cell); 
 
 public:
 

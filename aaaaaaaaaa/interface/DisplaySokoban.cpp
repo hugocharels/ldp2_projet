@@ -1,5 +1,7 @@
 #include "DisplaySokoban.h"
+#include "../cell/include.h"
 #include "../configs.h"
+
 
 void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
 	
@@ -20,5 +22,5 @@ void DisplaySokoban::draw(){
 
 	drawACell(modelPosToDisplayPos(player->getPos()), player);
 	//box
-	for (auto& box: *boxes){ drawACell(modelPosToDisplayPos(box.getPos()), box);}
+	for (auto& box: *boxes){ drawACell(modelPosToDisplayPos(box.getPos()), &box);}
 }

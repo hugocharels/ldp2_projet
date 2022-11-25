@@ -14,6 +14,8 @@
 #include "ControllerSokoban.h"
 
 
+class DisplaySokoban;
+
 class MainWindow : public Fl_Window {
 	
 	Sokoban* sokoban_model;
