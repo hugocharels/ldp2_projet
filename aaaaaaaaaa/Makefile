@@ -1,10 +1,9 @@
 CXX = g++
-CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic
-LDFLAGS += -lfltk
+CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic -lfltk -lfltk_images
 
 
 main: main.cpp Sokoban.o DisplaySokoban.o Board.o configs.o
-	${CXX} -o sokoban main.cpp Sokoban.o DisplaySokoban.o Board.o configs.o ${CXXFLAGS} ${LDFLAGS}
+	${CXX} -o sokoban main.cpp Sokoban.o DisplaySokoban.o Board.o configs.o ${CXXFLAGS}
 	make clean
 
 Sokoban.o: game/Sokoban.cpp game/Sokoban.h

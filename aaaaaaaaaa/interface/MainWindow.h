@@ -33,7 +33,7 @@ public:
 
 	void draw() {
 		Fl_Window::draw();
-		//display.draw();
+		display.draw();
 	}
 
 	int handle(int event) override {
