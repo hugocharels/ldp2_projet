@@ -10,92 +10,124 @@
 #include "../images.h"
 
 
+void DisplaySokoban::drawAFloor(Point display_pos) {
+	auto image_ptr = Fl_PNG_Image(FLOOR).copy(cellSize, cellSize);
+	image_ptr->draw(display_pos.y, display_pos.x);
+	delete image_ptr;
+}
+
+void DisplaySokoban::drawAWall(Point display_pos) {
+	auto image_ptr = Fl_PNG_Image(IM_WALL).copy(cellSize, cellSize);
+	image_ptr->draw(display_pos.y, display_pos.x);
+	delete image_ptr;
+}
+
+
+void DisplaySokoban::drawATp(Point display_pos, COLOR color) {
+	this->drawAFloor(display_pos);
+	auto image_ptr;
+	switch(color) {
+		case COLOR::GREEN:
+			image_ptr = Fl_PNG_Image(GREEN_TP).copy(cellSize, cellSize);
+			break;
+		case COLOR::PINK:
+			image_ptr = Fl_PNG_Image(PINK_TP).copy(cellSize, cellSize);
+			break;
+		case COLOR::PURPLE:
+			image_ptr = Fl_PNG_Image(PURPLE_TP).copy(cellSize, cellSize);
+			break;
+		default:
+			break;
+	}
+	image_ptr->draw(display_pos.y, display_pos.x);
+	delete image_ptr;
+}
+
+
+void DisplaySokoban::drawATarget(Point display_pos, COLOR color) {
+	this->drawAFloor(display_pos);
+	auto image_ptr;
+	switch(color) {
+		case COLOR::NONE:
+			image_ptr = Fl_PNG_Image(NONE_TARGET).copy(cellSize, cellSize);
+			break;
+		case COLOR::RED:
+			image_ptr = Fl_PNG_Image(RED_TARGET).copy(cellSize, cellSize);
+			break;
+		case COLOR::ORANGE:
+			image_ptr = Fl_PNG_Image(ORANGE_TARGET).copy(cellSize, cellSize);
+			break;
+		case COLOR::YELLOW:
+			image_ptr = Fl_PNG_Image(YELLOW_TARGET).copy(cellSize, cellSize);
+			break;
+		case COLOR::GREEN:
+			image_ptr = Fl_PNG_Image(GREEN_TARGET).copy(cellSize, cellSize);
+			break;
+		case COLOR::PURPLE:
+			image_ptr = Fl_PNG_Image(PURPLE_TARGET).copy(cellSize, cellSize);
+			break;
+		case COLOR::BLUE:
+			image_ptr = Fl_PNG_Image(BLUE_TARGET).copy(cellSize, cellSize);
+			break;
+		default:
+			break;
+	}
+	image_ptr->draw(display_pos.y, display_pos.x);
+	delete image_ptr;
+}
+
+
+void DisplaySokoban::drawABox(Point display_pos, COLOR color) {
+	auto image_ptr;
+	switch(color) {
+		case COLOR::NONE:
+			image_ptr = Fl_PNG_Image(NONE_BOX).copy(cellSize, cellSize);
+			break;
+		case COLOR::RED:
+			image_ptr = Fl_PNG_Image(RED_BOX).copy(cellSize, cellSize);
+			break;
+		case COLOR::ORANGE:
+			image_ptr = Fl_PNG_Image(ORANGE_BOX).copy(cellSize, cellSize);
+			break;
+		case COLOR::YELLOW:
+			image_ptr = Fl_PNG_Image(YELLOW_BOX).copy(cellSize, cellSize);
+			break;
+		case COLOR::GREEN:
+			image_ptr = Fl_PNG_Image(GREEN_BOX).copy(cellSize, cellSize);
+			break;
+		case COLOR::PURPLE:
+			image_ptr = Fl_PNG_Image(PURPLE_BOX).copy(cellSize, cellSize);
+			break;
+		case COLOR::BLUE:
+			image_ptr = Fl_PNG_Image(BLUE_BOX).copy(cellSize, cellSize);
+			break;
+		default:
+			break;
+	}
+	image_ptr->draw(display_pos.y, display_pos.x);
+	delete image_ptr;
+}
+
+
 void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
 	switch(cell->getType()) {
 		case EMPTY:
-			Fl_PNG_Image(FLOOR).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
+			this->drawAWall(display_pos);
 			break;
-
 		case WALL:
-			Fl_PNG_Image(IM_WALL).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
+			this->drawAWall(display_pos);
 			break;
-
 		case TP:
-			Fl_PNG_Image(FLOOR).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-			switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
-				case COLOR::GREEN:
-					Fl_PNG_Image(GREEN_TP).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::PINK:
-					Fl_PNG_Image(PINK_TP).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::PURPLE:
-					Fl_PNG_Image(PURPLE_TP).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				default:
-					break;
-			}
+			this->drawATp(display_pos, dynamic_cast<ColorCell*>(cell)->getColor());
 			break;
-
 		case TARGET:
-			Fl_PNG_Image(FLOOR).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-			switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
-				case COLOR::NONE:
-					Fl_PNG_Image(NONE_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::RED:
-					Fl_PNG_Image(RED_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::ORANGE:
-					Fl_PNG_Image(ORANGE_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::YELLOW:
-					Fl_PNG_Image(YELLOW_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::GREEN:
-					Fl_PNG_Image(GREEN_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::PURPLE:
-					Fl_PNG_Image(PURPLE_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::BLUE:
-					Fl_PNG_Image(BLUE_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				default:
-					break;
-			}
+			this->drawATarget(display_pos, dynamic_cast<ColorCell*>(cell)->getColor());
 			break;
-
 		case PLAYER:
 			Fl_PNG_Image(IM_PLAYER).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);;
 			break;
-
 		case BOX:
-			switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
-				case COLOR::NONE:
-					Fl_PNG_Image(NONE_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::RED:
-					Fl_PNG_Image(RED_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::ORANGE:
-					Fl_PNG_Image(ORANGE_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::YELLOW:
-					Fl_PNG_Image(YELLOW_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::GREEN:
-					Fl_PNG_Image(GREEN_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::PURPLE:
-					Fl_PNG_Image(PURPLE_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				case COLOR::BLUE:
-					Fl_PNG_Image(BLUE_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
-					break;
-				default:
-					break;
-			}
+			this->drawAbox(display_pos, dynamic_cast<ColorCell*>(cell)->getColor());
 			break;
 		default:
 			break;

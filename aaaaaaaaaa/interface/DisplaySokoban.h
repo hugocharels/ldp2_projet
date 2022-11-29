@@ -12,6 +12,13 @@ class DisplaySokoban {
 	Sokoban* sokoban;
 
 	Point modelPosToDisplayPos(Point model_pos) { return Point{cellSize+(cellSize*model_pos.x), cellSize+(cellSize*model_pos.y)}; }
+	
+	void drawAFloor(Point display_pos);
+	void drawAWall(Point display_pos);
+	void drawATp(Point display_pos, COLOR color);
+	void drawATarget(Point display_pos, COLOR color);
+	void drawABox(Point display_pos, COLOR color);
+
 	void drawACell(Point display_pos, Cell* cell); 
 
 public:
