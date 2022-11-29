@@ -11,7 +11,7 @@ class DisplaySokoban {
 	Fl_Window* fltkWindow;
 	Sokoban* sokoban;
 
-	Point modelPosToDisplayPos(Point model_pos) { return Point{cellSize+(cellSize*model_pos.x), cellSize+(cellSize*model_pos.y)}; }
+	Point modelPosToDisplayPos(Point model_pos) { return Point{cellSize+(cellSize*model_pos.y), cellSize+(cellSize*model_pos.x)}; }
 	
 	void drawAFloor(Point display_pos);
 	void drawAWall(Point display_pos);

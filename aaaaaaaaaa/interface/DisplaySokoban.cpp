@@ -12,19 +12,19 @@
 
 void DisplaySokoban::drawAFloor(Point display_pos) {
 	Fl_Image* image_ptr = Fl_PNG_Image(FLOOR).copy(cellSize, cellSize);
-	image_ptr->draw(display_pos.y, display_pos.x);
+	image_ptr->draw(display_pos.x, display_pos.y);
 	delete image_ptr;
 }
 
 void DisplaySokoban::drawAWall(Point display_pos) {
 	Fl_Image* image_ptr = Fl_PNG_Image(IM_WALL).copy(cellSize, cellSize);
-	image_ptr->draw(display_pos.y, display_pos.x);
+	image_ptr->draw(display_pos.x, display_pos.y);
 	delete image_ptr;
 }
 
 void DisplaySokoban::drawAPlayer(Point display_pos) {
 	Fl_Image* image_ptr = Fl_PNG_Image(IM_PLAYER).copy(cellSize, cellSize);
-	image_ptr->draw(display_pos.y, display_pos.x);
+	image_ptr->draw(display_pos.x, display_pos.y);
 	delete image_ptr;
 }
 
@@ -45,7 +45,7 @@ void DisplaySokoban::drawATp(Point display_pos, COLOR color) {
 		default:
 			break;
 	}
-	image_ptr->draw(display_pos.y, display_pos.x);
+	image_ptr->draw(display_pos.x, display_pos.y);
 	delete image_ptr;
 }
 
@@ -78,7 +78,7 @@ void DisplaySokoban::drawATarget(Point display_pos, COLOR color) {
 		default:
 			break;
 	}
-	image_ptr->draw(display_pos.y, display_pos.x);
+	image_ptr->draw(display_pos.x, display_pos.y);
 	delete image_ptr;
 }
 
@@ -110,7 +110,7 @@ void DisplaySokoban::drawABox(Point display_pos, COLOR color) {
 		default:
 			break;
 	}
-	image_ptr->draw(display_pos.y, display_pos.x);
+	image_ptr->draw(display_pos.x, display_pos.y);
 	delete image_ptr;
 }
 
