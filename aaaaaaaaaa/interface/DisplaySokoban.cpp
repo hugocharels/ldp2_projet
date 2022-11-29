@@ -11,26 +11,26 @@
 
 
 void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
-	Fl_Image* ptr_image;
 	switch(cell->getType()) {
 		case EMPTY:
-			ptr_image = Fl_PNG_Image(FLOOR).copy(cellSize, cellSize);
+			Fl_PNG_Image(FLOOR).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 			break;
 
 		case WALL:
-			ptr_image = Fl_PNG_Image(IM_WALL).copy(cellSize, cellSize);
+			Fl_PNG_Image(IM_WALL).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 			break;
 
 		case TP:
+			Fl_PNG_Image(FLOOR).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 			switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
 				case COLOR::GREEN:
-					ptr_image = Fl_PNG_Image(GREEN_TP).copy(cellSize, cellSize);
+					Fl_PNG_Image(GREEN_TP).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::PINK:
-					ptr_image = Fl_PNG_Image(PINK_TP).copy(cellSize, cellSize);
+					Fl_PNG_Image(PINK_TP).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::PURPLE:
-					ptr_image = Fl_PNG_Image(PURPLE_TP).copy(cellSize, cellSize);
+					Fl_PNG_Image(PURPLE_TP).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				default:
 					break;
@@ -38,27 +38,28 @@ void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
 			break;
 
 		case TARGET:
+			Fl_PNG_Image(FLOOR).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 			switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
 				case COLOR::NONE:
-					ptr_image = Fl_PNG_Image(NONE_TARGET).copy(cellSize, cellSize);
+					Fl_PNG_Image(NONE_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::RED:
-					ptr_image = Fl_PNG_Image(RED_TARGET).copy(cellSize, cellSize);
+					Fl_PNG_Image(RED_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::ORANGE:
-					ptr_image = Fl_PNG_Image(ORANGE_TARGET).copy(cellSize, cellSize);
+					Fl_PNG_Image(ORANGE_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::YELLOW:
-					ptr_image = Fl_PNG_Image(YELLOW_TARGET).copy(cellSize, cellSize);
+					Fl_PNG_Image(YELLOW_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::GREEN:
-					ptr_image = Fl_PNG_Image(GREEN_TARGET).copy(cellSize, cellSize);
+					Fl_PNG_Image(GREEN_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::PURPLE:
-					ptr_image = Fl_PNG_Image(PURPLE_TARGET).copy(cellSize, cellSize);
+					Fl_PNG_Image(PURPLE_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::BLUE:
-					ptr_image = Fl_PNG_Image(BLUE_TARGET).copy(cellSize, cellSize);
+					Fl_PNG_Image(BLUE_TARGET).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				default:
 					break;
@@ -66,31 +67,31 @@ void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
 			break;
 
 		case PLAYER:
-			ptr_image = Fl_PNG_Image(IM_PLAYER).copy(cellSize, cellSize);
+			Fl_PNG_Image(IM_PLAYER).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);;
 			break;
 
 		case BOX:
 			switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
 				case COLOR::NONE:
-					ptr_image = Fl_PNG_Image(NONE_BOX).copy(cellSize, cellSize);
+					Fl_PNG_Image(NONE_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::RED:
-					ptr_image = Fl_PNG_Image(RED_BOX).copy(cellSize, cellSize);
+					Fl_PNG_Image(RED_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::ORANGE:
-					ptr_image = Fl_PNG_Image(ORANGE_BOX).copy(cellSize, cellSize);
+					Fl_PNG_Image(ORANGE_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::YELLOW:
-					ptr_image = Fl_PNG_Image(YELLOW_BOX).copy(cellSize, cellSize);
+					Fl_PNG_Image(YELLOW_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::GREEN:
-					ptr_image = Fl_PNG_Image(GREEN_BOX).copy(cellSize, cellSize);
+					Fl_PNG_Image(GREEN_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::PURPLE:
-					ptr_image = Fl_PNG_Image(PURPLE_BOX).copy(cellSize, cellSize);
+					Fl_PNG_Image(PURPLE_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				case COLOR::BLUE:
-					ptr_image = Fl_PNG_Image(BLUE_BOX).copy(cellSize, cellSize);
+					Fl_PNG_Image(BLUE_BOX).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);
 					break;
 				default:
 					break;
@@ -99,9 +100,6 @@ void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
 		default:
 			break;
 	}
-	// DRAW
-	ptr_image->draw(display_pos.y, display_pos.x);
-	delete ptr_image;
 }
 
 

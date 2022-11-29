@@ -16,7 +16,7 @@
 
 //class DisplaySokoban;
 
-class MainWindow : public Fl_Window {
+class MainWindow : public Fl_Double_Window {
 	
 	Sokoban* sokoban_model;
 	
@@ -26,7 +26,7 @@ class MainWindow : public Fl_Window {
 
 public:
 
-	MainWindow(Sokoban* sokoban):Fl_Window(500, 200, windowWidth, windowHeight, "Sokoban"), sokoban_model{sokoban} {
+	MainWindow(Sokoban* sokoban):Fl_Double_Window(500, 200, windowWidth, windowHeight, "Sokoban"), sokoban_model{sokoban} {
 		Fl::add_timeout(1.0 / refreshPerSecond, Timer_CB, this);
 		resizable(this);
 	}
