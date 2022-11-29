@@ -149,12 +149,11 @@ void DisplaySokoban::draw(){
 
 	for (int i=0; i<other_cells->getRows(); i++){
 		for (int j=0; j<other_cells->getCols(); j++){
-			//if (player->getPos() == Point{i, j}) {continue;}
 			drawACell(modelPosToDisplayPos(Point{i,j}), other_cells->at(i,j).get());
 		}
 	}
-
+	// player
 	drawACell(modelPosToDisplayPos(player->getPos()), player);
-	//box
+	// box
 	for (auto& box: *boxes){ drawACell(modelPosToDisplayPos(box.getPos()), &box);}
 }
