@@ -11,13 +11,19 @@
 
 
 void DisplaySokoban::drawAFloor(Point display_pos) {
-	auto image_ptr = Fl_PNG_Image(FLOOR).copy(cellSize, cellSize);
+	Fl_Image* image_ptr = Fl_PNG_Image(FLOOR).copy(cellSize, cellSize);
 	image_ptr->draw(display_pos.y, display_pos.x);
 	delete image_ptr;
 }
 
 void DisplaySokoban::drawAWall(Point display_pos) {
-	auto image_ptr = Fl_PNG_Image(IM_WALL).copy(cellSize, cellSize);
+	Fl_Image* image_ptr = Fl_PNG_Image(IM_WALL).copy(cellSize, cellSize);
+	image_ptr->draw(display_pos.y, display_pos.x);
+	delete image_ptr;
+}
+
+void DisplaySokoban::drawAPlayer(Point display_pos) {
+	Fl_Image* image_ptr = Fl_PNG_Image(IM_PLAYER).copy(cellSize, cellSize);
 	image_ptr->draw(display_pos.y, display_pos.x);
 	delete image_ptr;
 }
@@ -25,7 +31,7 @@ void DisplaySokoban::drawAWall(Point display_pos) {
 
 void DisplaySokoban::drawATp(Point display_pos, COLOR color) {
 	this->drawAFloor(display_pos);
-	auto image_ptr;
+	Fl_Image* image_ptr;
 	switch(color) {
 		case COLOR::GREEN:
 			image_ptr = Fl_PNG_Image(GREEN_TP).copy(cellSize, cellSize);
@@ -46,7 +52,7 @@ void DisplaySokoban::drawATp(Point display_pos, COLOR color) {
 
 void DisplaySokoban::drawATarget(Point display_pos, COLOR color) {
 	this->drawAFloor(display_pos);
-	auto image_ptr;
+	Fl_Image* image_ptr;
 	switch(color) {
 		case COLOR::NONE:
 			image_ptr = Fl_PNG_Image(NONE_TARGET).copy(cellSize, cellSize);
@@ -78,7 +84,7 @@ void DisplaySokoban::drawATarget(Point display_pos, COLOR color) {
 
 
 void DisplaySokoban::drawABox(Point display_pos, COLOR color) {
-	auto image_ptr;
+	Fl_Image* image_ptr;
 	switch(color) {
 		case COLOR::NONE:
 			image_ptr = Fl_PNG_Image(NONE_BOX).copy(cellSize, cellSize);
@@ -112,7 +118,7 @@ void DisplaySokoban::drawABox(Point display_pos, COLOR color) {
 void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
 	switch(cell->getType()) {
 		case EMPTY:
-			this->drawAWall(display_pos);
+			this->drawAFloor(display_pos);
 			break;
 		case WALL:
 			this->drawAWall(display_pos);
@@ -124,10 +130,10 @@ void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
 			this->drawATarget(display_pos, dynamic_cast<ColorCell*>(cell)->getColor());
 			break;
 		case PLAYER:
-			Fl_PNG_Image(IM_PLAYER).copy(cellSize, cellSize)->draw(display_pos.y, display_pos.x);;
+			this->drawAPlayer(display_pos);
 			break;
 		case BOX:
-			this->drawAbox(display_pos, dynamic_cast<ColorCell*>(cell)->getColor());
+			this->drawABox(display_pos, dynamic_cast<ColorCell*>(cell)->getColor());
 			break;
 		default:
 			break;

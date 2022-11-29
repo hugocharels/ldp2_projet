@@ -15,6 +15,7 @@ class DisplaySokoban {
 	
 	void drawAFloor(Point display_pos);
 	void drawAWall(Point display_pos);
+	void drawAPlayer(Point display_pos);
 	void drawATp(Point display_pos, COLOR color);
 	void drawATarget(Point display_pos, COLOR color);
 	void drawABox(Point display_pos, COLOR color);
