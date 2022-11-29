@@ -22,7 +22,7 @@ typedef enum { UP, DOWN, LEFT, RIGHT, INVALID } MOVE;
 
 typedef enum { EMPTY = '-', WALL = '#', TARGET = '@', TP = '%', PLAYER = '$', BOX = '&' } CELL;
 
-enum class COLOR { NONE = 1, RED, YELLOW, BLUE, ORANGE, GREEN, PURPLE };
+enum class COLOR { NONE = 1, RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK };
 
 COLOR charToColor(char x);
 
