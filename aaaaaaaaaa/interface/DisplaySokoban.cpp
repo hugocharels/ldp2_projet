@@ -6,16 +6,22 @@
 void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
 	switch(cell->getType()) {
 		case EMPTY:
+			
 			break;
 		case WALL;
+			
 			break;
 		case TP:
+			
 			break;
 		case TARGET:
+			
 			break;
 		case PLAYER:
+			
 			break;
 		case BOX:
+			
 			break;
 	}
 }
