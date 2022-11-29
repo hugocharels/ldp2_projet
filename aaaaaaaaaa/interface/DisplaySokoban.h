@@ -1,7 +1,7 @@
 #ifndef _DISPLAY_SOKOBAN_H
 #define _DISPLAY_SOKOBAN_H
 
-#include "MainWindow.h"
+#include "../game/Sokoban.h"
 #include "../cell/include.h"
 #include "../configs.h"
 
