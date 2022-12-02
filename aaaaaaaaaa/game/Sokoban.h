@@ -10,7 +10,7 @@ class Sokoban {
 
 public:
 
-	Sokoban() {this->board.load(LEVEL1); this->board.print();}
+	Sokoban() {this->board.load(LEVEL2); this->board.print();}
 	~Sokoban()=default;
  	
 	void start();	// only in terminal

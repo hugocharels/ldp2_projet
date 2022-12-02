@@ -10,26 +10,26 @@
 #include "../images.h"
 
 
-void DisplaySokoban::drawAFloor(Point display_pos) {
+void inline DisplaySokoban::drawAFloor(Point display_pos) {
 	Fl_Image* image_ptr = Fl_PNG_Image(FLOOR).copy(cellSize, cellSize);
 	image_ptr->draw(display_pos.x, display_pos.y);
 	delete image_ptr;
 }
 
-void DisplaySokoban::drawAWall(Point display_pos) {
+void inline DisplaySokoban::drawAWall(Point display_pos) {
 	Fl_Image* image_ptr = Fl_PNG_Image(IM_WALL).copy(cellSize, cellSize);
 	image_ptr->draw(display_pos.x, display_pos.y);
 	delete image_ptr;
 }
 
-void DisplaySokoban::drawAPlayer(Point display_pos) {
+void inline DisplaySokoban::drawAPlayer(Point display_pos) {
 	Fl_Image* image_ptr = Fl_PNG_Image(IM_PLAYER).copy(cellSize, cellSize);
 	image_ptr->draw(display_pos.x, display_pos.y);
 	delete image_ptr;
 }
 
 
-void DisplaySokoban::drawATp(Point display_pos, COLOR color) {
+void inline DisplaySokoban::drawATp(Point display_pos, COLOR color) {
 	this->drawAFloor(display_pos);
 	Fl_Image* image_ptr;
 	switch(color) {
@@ -50,7 +50,7 @@ void DisplaySokoban::drawATp(Point display_pos, COLOR color) {
 }
 
 
-void DisplaySokoban::drawATarget(Point display_pos, COLOR color) {
+void inline DisplaySokoban::drawATarget(Point display_pos, COLOR color) {
 	this->drawAFloor(display_pos);
 	Fl_Image* image_ptr;
 	switch(color) {
@@ -83,7 +83,7 @@ void DisplaySokoban::drawATarget(Point display_pos, COLOR color) {
 }
 
 
-void DisplaySokoban::drawABox(Point display_pos, COLOR color) {
+void inline DisplaySokoban::drawABox(Point display_pos, COLOR color) {
 	Fl_Image* image_ptr;
 	switch(color) {
 		case COLOR::NONE:
@@ -115,7 +115,7 @@ void DisplaySokoban::drawABox(Point display_pos, COLOR color) {
 }
 
 
-void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
+void inline DisplaySokoban::drawACell(Point display_pos, Cell* cell){
 	switch(cell->getType()) {
 		case EMPTY:
 			this->drawAFloor(display_pos);
