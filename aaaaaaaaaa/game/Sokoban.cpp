@@ -37,3 +37,38 @@ void Sokoban::inputPlayer(MOVE move)  {
 		exit(0);
 	}
 }
+
+/*
+std::vector<Point> possibleMove(auto &map, Point pos) {
+	int x = pos.x, y = pos.y;
+	std::vector<Point> moves;
+	if (x+1 < map.getRows() and not map[x+1][y]) {moves.push_back(Point{x+1, y});}
+	if (x-1 > 0 and not map[x-1][y]) {moves.push_back(Point{x-1, y});}
+	if (y+1 < map.getCols() and not map[x][y+1]) {moves.push_back(Point{x, y+1});}
+	if (y-1 > 0 and not map[x][y-1]) {moves.push_back(Point{x, y-1});}
+	return moves;
+}
+
+
+std::vector<Point> searchPath(auto &map, Point pos, Point dest, std::vector<Point> moves) {
+	if (moves.empty()) { moves.push_back(pos); }
+	if (moves.back() == dest) { return moves; }
+
+	for (auto &move : possibleMove(map, pos)) {
+
+		if (moves.size() > 1 and moves[moves.size()-2] == move) {continue;}
+
+		moves.push_back(move);
+		searchPath(map, move, dest, moves);
+		moves.pop_back();
+
+	}
+
+	return moves;
+}
+
+*/
+void Sokoban::movePlayerTo(Point pos) {
+	// do things
+	std::cout << "suppose to tp " << pos.x << "/" << pos.y << std::endl;
+}

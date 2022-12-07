@@ -12,6 +12,8 @@ class ControllerSokoban {
 	Fl_Window* fltkWindow;
 	Sokoban* sokoban;
 
+	Point displayPosToBoardPos(Point display_pos) { return Point{(display_pos.y / cellSize) - 1, (display_pos.x / cellSize) - 1}; }
+
 public:
 
 	ControllerSokoban(Fl_Window* fltkWindow, Sokoban* sokoban) :fltkWindow{fltkWindow},sokoban{sokoban} {}
@@ -35,13 +37,14 @@ public:
 			case 'd':
 				move = RIGHT;
 				break;
+			case ' ':
+				this->sokoban->restart();
 		}
 		this->sokoban->inputPlayer(move);
 	}
 
 	void mouseClick(Point mouse_loc) {
-		this->sokoban->restart();
-		std::cout << mouse_loc.x << " / " << mouse_loc.y << std::endl;
+		this->sokoban->movePlayerTo(this->displayPosToBoardPos(mouse_loc));
 	}
 };
 

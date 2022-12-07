@@ -21,6 +21,8 @@ public:
 
  	bool win() { return board.win(); }
 
+ 	void movePlayerTo(Point pos);
+
  	Player* getPlayerPTR() { return board.getPlayerPTR(); }
 
 	auto* getToutDeg() { return board.getToutDeg(); } 

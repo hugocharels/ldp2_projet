@@ -1,5 +1,5 @@
-#ifndef _DISPLAY_H
-#define _DISPLAY_H
+#ifndef _MAIN_WINDOW_H
+#define _MAIN_WINDOW_H
 
 #include <FL/Fl.H>
 #include <FL/Fl_Box.H>
