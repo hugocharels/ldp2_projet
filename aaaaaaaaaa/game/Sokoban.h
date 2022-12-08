@@ -21,7 +21,10 @@ public:
 
  	bool win() { return board.win(); }
 
- 	void movePlayerTo(Point pos);
+ 	bool canMovePlayerTo(Point pos);
+
+ 	void movePlayerTo(Point pos) { board.getPlayerPTR()->tp(pos); }
+
 
  	Player* getPlayerPTR() { return board.getPlayerPTR(); }
 

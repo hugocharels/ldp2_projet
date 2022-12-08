@@ -44,7 +44,10 @@ public:
 	}
 
 	void mouseClick(Point mouse_loc) {
-		this->sokoban->movePlayerTo(this->displayPosToBoardPos(mouse_loc));
+		Point pos = this->displayPosToBoardPos(mouse_loc);
+		if (this->sokoban->canMovePlayerTo(pos)) {
+			this->sokoban->movePlayerTo(pos);
+		}
 	}
 };
 

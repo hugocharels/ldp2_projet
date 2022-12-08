@@ -68,7 +68,8 @@ std::vector<Point> searchPath(auto &map, Point pos, Point dest, std::vector<Poin
 }
 
 */
-void Sokoban::movePlayerTo(Point pos) {
+bool Sokoban::canMovePlayerTo(Point pos) {
 	// do things
 	std::cout << "suppose to tp " << pos.x << "/" << pos.y << std::endl;
+	return true;
 }
