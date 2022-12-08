@@ -21,9 +21,9 @@ public:
 
  	bool win() { return board.win(); }
 
- 	bool canMovePlayerTo(Point pos);
+ 	void canMovePlayerTo(std::vector<MOVE>& moves, Point pos);
 
- 	void movePlayerTo(Point pos) { board.getPlayerPTR()->tp(pos); }
+ 	void movePlayer(std::vector<MOVE>& moves);
 
 
  	Player* getPlayerPTR() { return board.getPlayerPTR(); }

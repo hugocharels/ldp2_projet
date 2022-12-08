@@ -45,8 +45,10 @@ public:
 
 	void mouseClick(Point mouse_loc) {
 		Point pos = this->displayPosToBoardPos(mouse_loc);
-		if (this->sokoban->canMovePlayerTo(pos)) {
-			this->sokoban->movePlayerTo(pos);
+		std::vector<MOVE> moves;
+		this->sokoban->canMovePlayerTo(moves, pos);
+		if (not moves.empty()) {
+			this->sokoban->movePlayer(moves);
 		}
 	}
 };

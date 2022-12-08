@@ -68,8 +68,15 @@ std::vector<Point> searchPath(auto &map, Point pos, Point dest, std::vector<Poin
 }
 
 */
-bool Sokoban::canMovePlayerTo(Point pos) {
+void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 	// do things
+	moves.push_back(UP);
 	std::cout << "suppose to tp " << pos.x << "/" << pos.y << std::endl;
-	return true;
+}
+
+void Sokoban::movePlayer(std::vector<MOVE>& moves) {
+	Player* p = board.getPlayerPTR();
+	for (auto &move : moves) {
+		p->move(move);
+	}
 }
