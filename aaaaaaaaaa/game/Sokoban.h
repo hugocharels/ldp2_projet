@@ -20,6 +20,8 @@ public:
  	void restart() { this->board.reload(LEVEL1); this->board.print();}
 
  	bool win() { return board.win(); }
+ 	
+ 	bool loose() { return board.loose(); }
 
  	void canMovePlayerTo(std::vector<MOVE>& moves, Point pos);
 

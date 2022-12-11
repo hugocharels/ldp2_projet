@@ -131,6 +131,11 @@ bool Board::win() const {
 }
 
 
+bool Board::loose() const {
+	for (const auto &box : this->boxes) {
+		if (not box.onTarget() and this->blockedBox(box)) { return false; }
+	} return true;
+}
 
 
 // private
@@ -163,8 +168,8 @@ bool Board::inMap(int x, int y) const {
 	return x > 0 and x < this->map.getRows()-1 and y > 0 and y < this->map.getCols()-1 ;
 }
 
-bool Board::boxHere(Point pos) {
-	for (auto &box : this->boxes) {
+bool Board::boxHere(Point pos) const {
+	for (const auto &box : this->boxes) {
 		if (pos == box.getPos()) {
 			return true;
 		}
@@ -219,3 +224,24 @@ void Board::movePlayerOnTp() {
 	}
 }
 
+bool Board::blockedBox(const Box &box) const {
+	int x, y;
+	x = box.getPos().x;
+	y = box.getPos().y;
+	std::array<bool, 4> free;
+	if (this->inMap(x+1, y) and this->map.at(x+1, y)->walkable()) {
+		free[0] = true;
+	} else if (this->inMap(x, y+1) and this->map.at(x, y+1)->walkable()) {
+		free[1] = true;
+	} else if (this->inMap(x-1, y) and this->map.at(x-1, y)->walkable()) {
+		free[2] = true;
+	} else if (this->inMap(x, y-1) and this->map.at(x, y-1)->walkable()) {
+		free[3] = true;
+	}
+
+	for (int i=0;  i < 4; i++) {
+		if (free[i] and free[(i+1)%4]) {
+			return true;
+		}
+	} return false;
+}

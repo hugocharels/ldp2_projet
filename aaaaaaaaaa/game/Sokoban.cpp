@@ -24,10 +24,15 @@ void Sokoban::start() {
 		std::cin >> input;
 		if (this->board.play(strToMOVE(input))) {
 			this->board.print();
-			if (this->win()) {break;}
+			if (this->win()) {
+				std::cout << "gg" << std::endl;
+				break;
+			} else if (this->loose()) {
+				std::cout << "rip" << std::endl;
+				break;
+			}
 		}
 	}
-	std::cout << "gg" << std::endl;
 }
 
 

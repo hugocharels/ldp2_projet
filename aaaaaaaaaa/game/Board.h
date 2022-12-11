@@ -30,6 +30,8 @@ class Board {
 
 	bool canBoxMove(Box &box, MOVE move);
 
+	bool blockedBox(const Box &box) const ;
+
 public:
 
 	Board() {}
@@ -48,15 +50,15 @@ public:
 
 	bool win() const ;
 
-	bool boxHere(Point pos);
+	bool loose() const;
+
+	bool boxHere(Point pos) const ;
 
 	Player* getPlayerPTR() { return &player; }
 
 	auto* getToutDeg() { return &map; } 
 
 	auto* getTouBoxDeg() { return &boxes; }
-
-	
 
 };
 

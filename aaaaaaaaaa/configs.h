@@ -4,7 +4,7 @@
 #include <string>
 
 const std::string LEVEL1 = "levels/board4.txt";
-const std::string LEVEL2 = "levels/board4.txt";
+const std::string LEVEL2 = "levels/board3.txt";
 
 constexpr int    windowWidth      = 1000;
 constexpr int    windowHeight     = 600;
