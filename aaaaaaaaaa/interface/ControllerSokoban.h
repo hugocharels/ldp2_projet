@@ -47,7 +47,6 @@ public:
 		Point pos = this->displayPosToBoardPos(mouse_loc);
 		std::vector<MOVE> moves;
 		this->sokoban->canMovePlayerTo(moves, pos);
-		std::cout << moves.size() << std::endl;
 		if (not moves.empty()) {
 			this->sokoban->movePlayer(moves);
 		}
