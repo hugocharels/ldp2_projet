@@ -44,6 +44,8 @@ void Sokoban::inputPlayer(MOVE move)  {
 
 void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 
+	if (board.boxHere(pos)) { return; }
+
 	struct CellPosMove {
 		Point pos;
 		std::vector<MOVE> moves;
@@ -58,10 +60,10 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 	for (int i = 0; i < map->getRows(); i++) {
 		for (int j = 0; j < map->getCols(); j++) {
 
-			if (map->at(i, j)->walkable() and map->at(i, j)->getType() != TP and not board.boxHere(Point{i, j})) { 
-				visited.at(i, j) = 1;
+			if ((map->at(i, j)->getType() == EMPTY or map->at(i, j)->getType() == TARGET) and not board.boxHere(Point{i, j})) { 
+				visited.at(i, j) = 0;
 			} else { 
-				visited.at(i, j) = 0; 
+				visited.at(i, j) = 1; 
 			}
 		}
 	}
