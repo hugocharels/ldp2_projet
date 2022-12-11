@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <vector>
+#include <queue>
 
 #include "Sokoban.h"
 #include "../configs.h"
@@ -38,41 +40,81 @@ void Sokoban::inputPlayer(MOVE move)  {
 	}
 }
 
-/*
-std::vector<Point> possibleMove(auto &map, Point pos) {
-	int x = pos.x, y = pos.y;
-	std::vector<Point> moves;
-	if (x+1 < map.getRows() and not map[x+1][y]) {moves.push_back(Point{x+1, y});}
-	if (x-1 > 0 and not map[x-1][y]) {moves.push_back(Point{x-1, y});}
-	if (y+1 < map.getCols() and not map[x][y+1]) {moves.push_back(Point{x, y+1});}
-	if (y-1 > 0 and not map[x][y-1]) {moves.push_back(Point{x, y-1});}
-	return moves;
-}
 
 
-std::vector<Point> searchPath(auto &map, Point pos, Point dest, std::vector<Point> moves) {
-	if (moves.empty()) { moves.push_back(pos); }
-	if (moves.back() == dest) { return moves; }
+void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 
-	for (auto &move : possibleMove(map, pos)) {
+	struct CellPosMove {
+		Point pos;
+		std::vector<MOVE> moves;
+	};
 
-		if (moves.size() > 1 and moves[moves.size()-2] == move) {continue;}
+	CellPosMove source{board.getPlayerPTR()->getPos(), std::vector<MOVE>{}};
 
-		moves.push_back(move);
-		searchPath(map, move, dest, moves);
-		moves.pop_back();
+	auto* map = this->getToutDeg();
 
+	Matrix<char> visited{map->getRows(), map->getCols()};
+
+	for (int i = 0; i < map->getRows(); i++) {
+		for (int j = 0; j < map->getCols(); j++) {
+
+			if (map->at(i, j)->walkable() and map->at(i, j)->getType() != TP and not board.boxHere(Point{i, j})) { 
+				visited.at(i, j) = 1;
+			} else { 
+				visited.at(i, j) = 0; 
+			}
+		}
 	}
 
-	return moves;
+	std::queue<CellPosMove> q;
+	q.push(source);
+	visited.at(source.pos.x, source.pos.y) = 1;
+	while (!q.empty()) {
+		CellPosMove p = q.front();
+		q.pop();
+
+		// Destination found;
+		if (p.pos == pos) {
+			moves = p.moves;
+			return;
+		}
+
+		// moving up
+		if (p.pos.x - 1 >= 0 and not visited.at(p.pos.x - 1, p.pos.y)) {
+			std::vector<MOVE> tmp = p.moves;
+			tmp.push_back(UP);
+			q.push(CellPosMove(Point{p.pos.x - 1, p.pos.y}, tmp));
+			visited.at(p.pos.x - 1, p.pos.y) = 1;
+		}
+
+		// moving down
+		if (p.pos.x + 1 < map->getRows() and not visited.at(p.pos.x + 1, p.pos.y)) {
+			std::vector<MOVE> tmp = p.moves;
+			tmp.push_back(DOWN);
+			q.push(CellPosMove(Point{p.pos.x + 1, p.pos.y}, tmp));
+			visited.at(p.pos.x + 1, p.pos.y) = 1;
+		}
+
+		// moving left
+		if (p.pos.y - 1 >= 0 and not visited.at(p.pos.x, p.pos.y - 1)) {
+			std::vector<MOVE> tmp = p.moves;
+			tmp.push_back(LEFT);
+			q.push(CellPosMove(Point{p.pos.x, p.pos.y - 1}, tmp));
+			visited.at(p.pos.x, p.pos.y - 1) = 1;
+		}
+
+		// moving right
+		if (p.pos.y + 1 < map->getCols() and not visited.at(p.pos.x, p.pos.y + 1)) {
+			std::vector<MOVE> tmp = p.moves;
+			tmp.push_back(RIGHT);
+			q.push(CellPosMove(Point{p.pos.x, p.pos.y + 1}, tmp));
+			visited.at(p.pos.x, p.pos.y + 1) = 1;
+		}
+	}
+	moves = std::vector<MOVE>{};
 }
 
-*/
-void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
-	// do things
-	moves.push_back(UP);
-	std::cout << "suppose to tp " << pos.x << "/" << pos.y << std::endl;
-}
+
 
 void Sokoban::movePlayer(std::vector<MOVE>& moves) {
 	Player* p = board.getPlayerPTR();

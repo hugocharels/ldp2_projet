@@ -29,8 +29,8 @@ public:
 		return this->matrix[x][y];
 	}
 
-	int getCols() const { return this->cols; }
 	int getRows() const { return this->rows; }
+	int getCols() const { return this->cols; }
 
 };
 

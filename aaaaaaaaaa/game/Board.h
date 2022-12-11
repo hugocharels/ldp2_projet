@@ -22,8 +22,6 @@ class Board {
 
 	bool inMap(int x, int y) const ;
 
-	bool boxHere(Point pos);
-
 	bool moveBoxOnMove(MOVE move);
 
 	void movePlayerOnTp();
@@ -49,6 +47,8 @@ public:
 	bool play(MOVE move);
 
 	bool win() const ;
+
+	bool boxHere(Point pos);
 
 	Player* getPlayerPTR() { return &player; }
 
