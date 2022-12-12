@@ -42,6 +42,9 @@ void Sokoban::inputPlayer(MOVE move)  {
 	if (this->win()) {
 		std::cout << "gg" << std::endl;
 		exit(0);
+	} else if (this->loose()) {
+		std::cout << "rip" << std::endl;
+		exit(0);
 	}
 }
 

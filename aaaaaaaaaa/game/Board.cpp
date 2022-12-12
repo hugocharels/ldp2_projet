@@ -131,10 +131,10 @@ bool Board::win() const {
 }
 
 
-bool Board::loose() const {
+bool Board::loose() {
 	for (const auto &box : this->boxes) {
-		if (not box.onTarget() and this->blockedBox(box)) { return false; }
-	} return true;
+		if (not box.onTarget() and this->blockedBox(box)) { return true; }
+	} return false;
 }
 
 
@@ -224,23 +224,22 @@ void Board::movePlayerOnTp() {
 	}
 }
 
-bool Board::blockedBox(const Box &box) const {
+bool Board::blockedBox(const Box &box) {
 	int x, y;
 	x = box.getPos().x;
 	y = box.getPos().y;
-	std::array<bool, 4> free;
+	std::array<bool, 4> free{false, false, false, false};
 	if (this->inMap(x+1, y) and this->map.at(x+1, y)->walkable()) {
 		free[0] = true;
-	} else if (this->inMap(x, y+1) and this->map.at(x, y+1)->walkable()) {
+	} if (this->inMap(x, y+1) and this->map.at(x, y+1)->walkable()) {
 		free[1] = true;
-	} else if (this->inMap(x-1, y) and this->map.at(x-1, y)->walkable()) {
+	} if (this->inMap(x-1, y) and this->map.at(x-1, y)->walkable()) {
 		free[2] = true;
-	} else if (this->inMap(x, y-1) and this->map.at(x, y-1)->walkable()) {
+	} if (this->inMap(x, y-1) and this->map.at(x, y-1)->walkable()) {
 		free[3] = true;
 	}
-
 	for (int i=0;  i < 4; i++) {
-		if (free[i] and free[(i+1)%4]) {
+		if (not free[i] and not free[(i+1)%4]) {
 			return true;
 		}
 	} return false;

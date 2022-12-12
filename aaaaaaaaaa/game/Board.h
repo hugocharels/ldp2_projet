@@ -30,7 +30,7 @@ class Board {
 
 	bool canBoxMove(Box &box, MOVE move);
 
-	bool blockedBox(const Box &box) const ;
+	bool blockedBox(const Box &box);
 
 public:
 
@@ -50,7 +50,7 @@ public:
 
 	bool win() const ;
 
-	bool loose() const;
+	bool loose();
 
 	bool boxHere(Point pos) const ;
 
