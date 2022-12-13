@@ -3,6 +3,7 @@
 #include <string.h>
 #include <tuple>
 #include <memory>
+#include <array>
 
 #include "Board.h"
 #include "../configs.h"
@@ -228,18 +229,18 @@ bool Board::blockedBox(const Box &box) {
 	int x, y;
 	x = box.getPos().x;
 	y = box.getPos().y;
-	std::array<bool, 4> free{false, false, false, false};
+	std::array<bool, 4> free_pos{false, false, false, false};
 	if (this->inMap(x+1, y) and this->map.at(x+1, y)->walkable()) {
-		free[0] = true;
+		free_pos[0] = true;
 	} if (this->inMap(x, y+1) and this->map.at(x, y+1)->walkable()) {
-		free[1] = true;
+		free_pos[1] = true;
 	} if (this->inMap(x-1, y) and this->map.at(x-1, y)->walkable()) {
-		free[2] = true;
+		free_pos[2] = true;
 	} if (this->inMap(x, y-1) and this->map.at(x, y-1)->walkable()) {
-		free[3] = true;
+		free_pos[3] = true;
 	}
 	for (int i=0;  i < 4; i++) {
-		if (not free[i] and not free[(i+1)%4]) {
+		if (not free_pos[i] and not free_pos[(i+1)%4]) {
 			return true;
 		}
 	} return false;
