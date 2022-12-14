@@ -7,6 +7,8 @@
 class Sokoban {
 
 	Board board;
+	int step_limit;
+	int best_score;
 
 public:
 
