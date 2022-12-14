@@ -12,14 +12,14 @@ class Sokoban {
 
 public:
 
-	Sokoban() {this->board.load(LEVEL2); this->board.print();}
+	Sokoban() {this->board.load(LEVEL1); this->board.print();}
 	~Sokoban()=default;
  	
 	void start();	// only in terminal
 
  	void inputPlayer(MOVE move);
  	
- 	void restart() { this->board.reload(LEVEL1); this->board.print();}
+ 	void restart(const std::string &level) { this->board.load(level); this->board.print();}
 
  	bool win() { return board.win(); }
  	

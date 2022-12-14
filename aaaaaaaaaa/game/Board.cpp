@@ -33,6 +33,7 @@ Board::~Board() {
 
 
 void Board::load(const std::string &file_path) {
+	this->boxes.clear();
 	std::string content = "";
 	std::string line = "";
 	std::ifstream file (file_path);

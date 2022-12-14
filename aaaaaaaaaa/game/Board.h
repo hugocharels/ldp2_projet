@@ -39,11 +39,6 @@ public:
 
 	void load(const std::string &file_path);
 
-	void reload(const std::string &file_path) {
-		this->boxes.clear();
-		this->load(file_path);
-	}
-
 	void print();		// only in terminal
 
 	bool play(MOVE move);
