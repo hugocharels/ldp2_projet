@@ -12,7 +12,7 @@ class DisplaySokoban {
 
 	Fl_Window* fltkWindow;
 	Sokoban* sokoban;
-	//vector<shared_ptr<Printable>> menu_elem;
+	vector<shared_ptr<Printable>> menu_elem;
 
 	Point modelPosToDisplayPos(Point model_pos) { return Point{cellSize+(cellSize*model_pos.y), cellSize+(cellSize*model_pos.x)}; }
 	
@@ -26,6 +26,9 @@ class DisplaySokoban {
 	void drawACell(Point display_pos, Cell* cell);
 
 	//void drawMenu();
+	//void drawBestScore();
+	//void drawStepCounter();
+	//void drawLimitStep();
 
 
 public:
