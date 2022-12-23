@@ -4,6 +4,7 @@
 #include <FL/Fl_PNG_Image.H>
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include "DisplaySokoban.h"
 //#include "menu_element.h"
@@ -17,8 +18,10 @@ void DisplaySokoban::drawBestScore(){
 
 void DisplaySokoban::drawStepCounter(){
 	menu_elem.push_back(std::make_shared<Text>("Steps:", Point{650,150}, textSize));
-	//count = sokoban.getPlayerPTR()->getSteps();
+	int count = sokoban->getPlayerPTR()->getSteps();
 	//rectangle avec step dedans
+	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,175}, 150, 30, std::to_string(count)));
+	//burk
 }
 
 void DisplaySokoban::drawLimitStep(){
