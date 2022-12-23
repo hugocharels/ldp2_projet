@@ -1,4 +1,10 @@
+#include <FL/Fl.H>
+#include <FL/Fl_Box.H>
+#include <FL/fl_draw.H>
+
+#include <array>
 #include <vector>
+#include <string>
 #include "../configs.h" //pour struct point et observer(subject)
 
 // ###################################################################
@@ -11,22 +17,22 @@ class Printable {
 
 //--------------------------------------------------------------------
 class Text : public virtual Printable {
-  string   s;
+  std::string   s;
   Point    center;
   int      fontSize;
   Fl_Color color;
 
  public:
   // Constructor
-  Text(string s, Point center, int fontSize = 10, Fl_Color color = FL_BLACK)
+  Text(std::string s, Point center, int fontSize = 10, Fl_Color color = FL_BLACK)
       : s{std::move(s)}, center{center}, fontSize{fontSize}, color{color} {}
 
   // Draw
   void print() override;
 
   // Setters and getters
-  string getString() { return s; }
-  void   setString(const string &newString) { s = newString; }
+  std::string getString() { return s; }
+  void   setString(const std::string &newString) { s = newString; }
   int    getFontSize() { return fontSize; }
   void   setFontSize(int newFontSize) { fontSize = newFontSize; }
   Point  getCenter() { return center; }
@@ -60,7 +66,7 @@ class Rectangle : public virtual Printable {
 //--------------------------------------------------------------------
 class TextRectangle : public Text, public Rectangle {
  public:
-  TextRectangle(Point center, int w, int h, string text, int fontSize = 10)
+  TextRectangle(Point center, int w, int h, std::string text, int fontSize = 10)
       : Text{std::move(text), center, fontSize}, Rectangle{center, w, h} {}
   bool contains(Point p) const override { return Rectangle::contains(p); }
   void print() override {
@@ -71,10 +77,10 @@ class TextRectangle : public Text, public Rectangle {
 };
 
 //--------------------------------------------------------------------
-class IntRectangle : public TextRectangle, public Subject {
+/*class IntRectangle : public TextRectangle, public Subject {
   int  theInteger = 0;
   void update() {
-    setString(to_string(theInteger));
+    setString(std::to_string(theInteger));
     notifyObservers();
   }
 
@@ -89,4 +95,4 @@ class IntRectangle : public TextRectangle, public Subject {
     theInteger = newInteger;
     update();
   }
-};
+};*/

@@ -1,18 +1,20 @@
 #ifndef _DISPLAY_SOKOBAN_H
 #define _DISPLAY_SOKOBAN_H
 
-#include<vector>
+#include <vector>
 
 #include "../game/Sokoban.h"
 #include "../cell/include.h"
 #include "../configs.h"
+#include "menu_element.h"
 
 
 class DisplaySokoban {
 
 	Fl_Window* fltkWindow;
 	Sokoban* sokoban;
-	vector<shared_ptr<Printable>> menu_elem;
+	std::vector<std::shared_ptr<Printable>> menu_elem;
+	int textSize=20;
 
 	Point modelPosToDisplayPos(Point model_pos) { return Point{cellSize+(cellSize*model_pos.y), cellSize+(cellSize*model_pos.x)}; }
 	
@@ -25,10 +27,10 @@ class DisplaySokoban {
 	void drawABox(Point display_pos, COLOR color);
 	void drawACell(Point display_pos, Cell* cell);
 
-	//void drawMenu();
-	//void drawBestScore();
-	//void drawStepCounter();
-	//void drawLimitStep();
+	void drawMenu();
+	void drawBestScore();
+	void drawStepCounter();
+	void drawLimitStep();
 
 
 public:

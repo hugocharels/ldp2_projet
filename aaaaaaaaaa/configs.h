@@ -12,6 +12,7 @@ constexpr int    windowHeight     = 600;
 constexpr int 	 cellSize         = 50; 
 constexpr double refreshPerSecond = 30;
 
+
 struct Point {
 	int x, y;
 

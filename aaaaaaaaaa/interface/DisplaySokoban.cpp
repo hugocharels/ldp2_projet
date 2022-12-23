@@ -23,17 +23,21 @@ void DisplaySokoban::drawMap(){
 	for (auto& box: *boxes){ drawACell(modelPosToDisplayPos(box.getPos()), &box);}
 }
 
-/*void DisplaySokoban::drawMenu(){
+void DisplaySokoban::drawMenu(){
 	drawBestScore();
 	drawStepCounter();
+	drawLimitStep();
 
-}*/
+	for(auto &elem : menu_elem){
+		elem->print();
+	}
+}
 
 
 
 void DisplaySokoban::draw(){
 	drawMap();
-	//drawMenu();
+	drawMenu();
 
 }
 
