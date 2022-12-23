@@ -16,9 +16,6 @@ class Board {
 	Player player;
 	std::vector<Box> boxes;
 
-	// LOAD
-	void loadBoxes(auto &file);
-
 
 	bool inMap(int x, int y) const ;
 
@@ -37,7 +34,11 @@ public:
 	Board() {}
 	~Board();
 
-	void load(const std::string &file_path);
+	// LOAD
+	void loadMap(int rows, int cols, std::string &str_map);
+	void loadBoxes(auto &boxes_info);
+	void loadPlayer(Point pos) { this->player = Player{pos}; }
+
 
 	void print();		// only in terminal
 

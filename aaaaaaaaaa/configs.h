@@ -4,8 +4,10 @@
 #include <string>
 //#include <vector>
 
-const std::string LEVEL1 = "levels/board4.txt";
+const std::string LEVEL3 = "levels/board4.txt";
 const std::string LEVEL2 = "levels/board3.txt";
+const std::string LEVEL1 = "levels/level1.json";
+
 
 constexpr int    windowWidth      = 1000;
 constexpr int    windowHeight     = 600;
@@ -19,22 +21,6 @@ struct Point {
 	bool operator==(Point other) { return x == other.x and y == other.y; }
 };
 
-/*struct Observer {
-  virtual void subjectChanged() = 0;
-  virtual ~Observer()           = default;
-};
-
-class Subject {
-  vector<Observer *> observers;
-
- public:
-  void registerObserver(Observer *observer) { observers.push_back(observer); }
-  void removeObserver(Observer *observer) { erase(observers, observer); }
-  void notifyObservers() const {
-    for (auto &observer : observers) observer->subjectChanged();
-  }
-};*/
-
 
 typedef enum { UP, DOWN, LEFT, RIGHT, INVALID } MOVE;
 
@@ -43,5 +29,6 @@ typedef enum { EMPTY = '-', WALL = '#', TARGET = '@', TP = '%', PLAYER = '$', BO
 enum class COLOR { NONE = 1, RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK };
 
 COLOR charToColor(char x);
+COLOR intToColor(int x);
 
 #endif

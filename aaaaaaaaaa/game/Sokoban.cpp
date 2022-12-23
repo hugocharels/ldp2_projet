@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <fstream>
+#include <json/json.h>
 
 #include "Sokoban.h"
 #include "../configs.h"
@@ -131,4 +133,31 @@ void Sokoban::movePlayer(std::vector<MOVE>& moves) {
 	for (auto &move : moves) {
 		p->move(move);
 	}
+}
+
+
+void Sokoban::load(const std::string &path) {
+
+	// Chargement du fichier JSON
+	Json::Value root;
+	Json::Reader reader;
+	std::ifstream file(path);
+	if (not reader.parse(file, root)) {
+		// Erreur de parsing
+		std::cerr << "Error parsing file" << std::endl;
+		return;
+	}
+
+	// Accès aux différentes valeurs du fichier JSON
+	int rows = root["size"]["x"].asInt();
+	int cols = root["size"]["y"].asInt();
+	std::string str_map = root["matrix"].asString();
+	this->board.loadMap(rows, cols, str_map);
+
+	int player_pos_x = root["player_pos"]["x"].asInt();
+	int player_pos_y = root["player_pos"]["y"].asInt();
+	board.loadPlayer(Point{player_pos_x, player_pos_y});
+
+	this->best_score = root["best_score"].asInt();
+	this->step_limit = root["step_limit"].asInt();
 }

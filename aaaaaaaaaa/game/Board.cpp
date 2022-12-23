@@ -32,67 +32,6 @@ Board::~Board() {
 }
 
 
-void Board::load(const std::string &file_path) {
-	this->boxes.clear();
-	std::string content = "";
-	std::string line = "";
-	std::ifstream file (file_path);
-	//get n colonne & n line
-	int rows, cols;
-	getline(file, line);
-	rows = stoi(line);
-	getline(file, line);
-	cols = stoi(line);
-
-	//load map
-	if (file.is_open()) {
-		for (int k=0; k<rows; k++){ 
-			getline(file, line);
-			content += line + "\n";
-		}
-	} else {
-		std::cerr << "Can not open the file '" << file_path << "'" << std::endl;
-	}
-
-	std::vector<std::tuple<int, int, char, Teleporter*>> tp_vector;
-
-	this->map.resize(rows, cols);
-	int i = 0, j = 0;		//actual pos
-	for (auto c : content) {
-		if (c == '\n') { ++i; j=0; continue; }
-		if (c == WALL) { this->map.at(i, j) = std::make_unique<Cell>(Cell{WALL}); }
-		else if (c == EMPTY) { this->map.at(i, j) = std::make_unique<Cell>(Cell{EMPTY}); }
-		else if (isdigit(c)) { this->map.at(i, j) = std::make_unique<Target>(Target{charToColor(c)}); }
-		else { 
-			this->map.at(i, j) = std::make_unique<Teleporter>(Teleporter{charToColor(c)});
-			auto tp_info = std::make_tuple(i, j, c, dynamic_cast<Teleporter*>(this->map.at(i, j).get()));
-			tp_vector.push_back(tp_info);
-		} //teleporter chiant (dico ou constructeur desti à nulle)
-		++j;
-	}
-
-	//teleporter association destination
-	while (not tp_vector.empty()) {
-		auto current = tp_vector.back();
-		tp_vector.pop_back();
-		int idx = 0;
-		for (auto &elem : tp_vector) {
-			if (std::get<2>(elem) == std::get<2>(current)) {
-				std::get<3>(current)->setDestination(Point{std::get<0>(elem),std::get<1>(elem)});
-				std::get<3>(elem)->setDestination(Point{std::get<0>(current),std::get<1>(current)});
-				tp_vector.erase(tp_vector.begin()+idx);
-				break;
-			}
-			idx++;
-		}
-	}
-
-	this->loadBoxes(file);
-
-	file.close();
-}
-
-
 
 //print verifie pour chaque case de la matrice MAP, si il n'y aurait pas un objet moveable (box ou player)
 //si c'est le cas, un caractère correspondant est mis là
@@ -140,31 +79,60 @@ bool Board::loose() {
 }
 
 
-// private
 
-void Board::loadBoxes(auto &file) {
-	std::string line="";
-	while (getline(file, line)) {
-		int x=0,y=0;
-		std::string str_pos = "";
-		for (auto elem : line){
-			if (isdigit(elem)) { str_pos += elem; }
-			else if (elem == ',') { 
-				x = stoi(str_pos);
-				str_pos = "";
-			}
-			else if (elem == '-') { 
-				y = stoi(str_pos); 
-				this->boxes.push_back(Box{Point{x,y}, charToColor(line[line.length()-1])});		//dernier elem est la couleur en chiffre
+// LOAD
+
+void Board::loadMap(int rows, int cols, std::string &str_map) {
+
+	std::vector<std::tuple<int, int, char, Teleporter*>> tp_vector;
+
+	this->map.resize(rows, cols);
+	int i = 0, j = 0;		//actual pos
+	for (auto c : str_map) {
+		if (c == '\n') { ++i; j=0; continue; }
+		if (c == WALL) { this->map.at(i, j) = std::make_unique<Cell>(Cell{WALL}); }
+		else if (c == EMPTY) { this->map.at(i, j) = std::make_unique<Cell>(Cell{EMPTY}); }
+		else if (isdigit(c)) { this->map.at(i, j) = std::make_unique<Target>(Target{charToColor(c)}); }
+		else { 
+			this->map.at(i, j) = std::make_unique<Teleporter>(Teleporter{charToColor(c)});
+			auto tp_info = std::make_tuple(i, j, c, dynamic_cast<Teleporter*>(this->map.at(i, j).get()));
+			tp_vector.push_back(tp_info);
+		} //teleporter chiant (dico ou constructeur desti à nulle)
+		++j;
+	}
+
+	//teleporter association destination
+	while (not tp_vector.empty()) {
+		auto current = tp_vector.back();
+		tp_vector.pop_back();
+		int idx = 0;
+		for (auto &elem : tp_vector) {
+			if (std::get<2>(elem) == std::get<2>(current)) {
+				std::get<3>(current)->setDestination(Point{std::get<0>(elem),std::get<1>(elem)});
+				std::get<3>(elem)->setDestination(Point{std::get<0>(current),std::get<1>(current)});
+				tp_vector.erase(tp_vector.begin()+idx);
 				break;
 			}
-			else if (elem == '*') {
-				y = stoi(str_pos);
-				this->player = Player{{x,y}};
-			}
+			idx++;
 		}
 	}
+
 }
+
+
+void Board::loadBoxes(auto &boxes_info) {
+	this->boxes.clear();
+    for (unsigned int i = 0; i < boxes_info.size(); ++i) {
+        int x = boxes_info[i]["position"]["x"].asInt();
+        int y = boxes_info[i]["position"]["y"].asInt();
+        int color = boxes_info[i]["color"].asInt();
+		this->boxes.push_back(Box{Point{x, y}, intToColor(color)});
+	}
+}
+
+
+
+// private
 
 bool Board::inMap(int x, int y) const {
 	return x > 0 and x < this->map.getRows()-1 and y > 0 and y < this->map.getCols()-1 ;
