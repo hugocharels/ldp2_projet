@@ -22,7 +22,7 @@ public:
 
  	void inputPlayer(MOVE move);
  	
- 	void restart(const std::string &level) { this->load(LEVEL1); this->board.print();}
+ 	void restart(const std::string &level) { this->load(level); this->board.print();}
 
  	bool win() { return board.win(); }
  	

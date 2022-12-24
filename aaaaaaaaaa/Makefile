@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic -lfltk -lfltk_images
+CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic -lfltk -lfltk_images -ljsoncpp
 
 
 main: main.cpp Sokoban.o draw_map.o draw_menu.o DisplaySokoban.o menu_element.o Board.o configs.o 
