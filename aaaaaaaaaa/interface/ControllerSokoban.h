@@ -44,12 +44,14 @@ public:
 	}
 
 	void mouseClick(Point mouse_loc) {
+		this->sokoban->inputPlayer(INVALID);	
 		Point pos = this->displayPosToBoardPos(mouse_loc);
 		std::vector<MOVE> moves;
 		this->sokoban->canMovePlayerTo(moves, pos);
 		if (not moves.empty()) {
 			this->sokoban->movePlayer(moves);
 		}
+		this->sokoban->inputPlayer(INVALID);
 	}
 };
 

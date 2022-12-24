@@ -56,7 +56,7 @@ void Board::print() {
 
 
 bool Board::play(MOVE move) {
-	if (move == INVALID) {std::cout << "invalid move" << std::endl; return false;}
+	if (move == INVALID) { return false; }
 	if (this->canPlayerMove(move)) {
 		if (this->moveBoxOnMove(move)) {
 			player.move(move);
