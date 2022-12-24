@@ -43,6 +43,10 @@ public:
 
 	auto* getTouBoxDeg() { return board.getTouBoxDeg(); }
 
+	int getBestScore() { return best_score; }
+
+	int getStepLimit() { return step_limit; }
+
 };
 
 
