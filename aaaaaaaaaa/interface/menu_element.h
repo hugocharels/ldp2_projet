@@ -66,7 +66,7 @@ class Rectangle : public virtual Printable {
 //--------------------------------------------------------------------
 class TextRectangle : public Text, public Rectangle {
  public:
-  TextRectangle(Point center, int w, int h, std::string text, int fontSize = 10)
+  TextRectangle(Point center, int w, int h, std::string text, int fontSize = 15)
       : Text{std::move(text), center, fontSize}, Rectangle{center, w, h} {}
   bool contains(Point p) const override { return Rectangle::contains(p); }
   void print() override {

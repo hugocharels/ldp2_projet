@@ -27,6 +27,8 @@ void DisplaySokoban::drawMenu(){
 	drawBestScore();
 	drawStepCounter();
 	drawLimitStep();
+	drawLevelSelector();
+	drawStatus();
 
 	for(auto &elem : menu_elem){
 		elem->print();

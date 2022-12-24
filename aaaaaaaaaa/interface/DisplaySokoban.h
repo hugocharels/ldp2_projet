@@ -31,6 +31,8 @@ class DisplaySokoban {
 	void drawBestScore();
 	void drawStepCounter();
 	void drawLimitStep();
+	void drawLevelSelector();
+	void drawStatus();
 
 
 public:

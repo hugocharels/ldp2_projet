@@ -11,23 +11,29 @@
 #include "../configs.h" //pour struct point
 
 void DisplaySokoban::drawBestScore(){
-	menu_elem.push_back(std::make_shared<Text>("Best score:", Point{650,50}, textSize));
-	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,75}, 150, 30, std::to_string(sokoban->getBestScore())));
-	//best_score = sokoban.getBestScore();
-	//rectangle avec best score en text
+	menu_elem.push_back(std::make_shared<Text>("Best score:", Point{650, 60}, textSize));
+	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,90}, 125, 35, std::to_string(sokoban->getBestScore())));
 }
 
 void DisplaySokoban::drawStepCounter(){
-	menu_elem.push_back(std::make_shared<Text>("Steps:", Point{650,150}, textSize));
+	menu_elem.push_back(std::make_shared<Text>("Steps:", Point{650,160}, textSize));
 	int count = sokoban->getPlayerPTR()->getSteps();
-	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,175}, 150, 30, std::to_string(count)));
+	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,190}, 125, 35, std::to_string(count)));
 }
 
 void DisplaySokoban::drawLimitStep(){
-	menu_elem.push_back(std::make_shared<Text>("Left steps:", Point{650,250}, textSize));
+	menu_elem.push_back(std::make_shared<Text>("Left steps:", Point{650,260}, textSize));
 	int step_remaining = sokoban->getStepLimit() - sokoban->getPlayerPTR()->getSteps();
-	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,275}, 150, 30, std::to_string(step_remaining)));
+	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,290}, 125, 35, std::to_string(step_remaining)));
+}
 
-	//limit = sokoban.getLimit
-	// rectangle avec limit-count
+void DisplaySokoban::drawLevelSelector(){
+	menu_elem.push_back(std::make_shared<Text>("Select level:", Point{650,370}, textSize));
+	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,400}, 110, 35, "Level 1"));
+	menu_elem.push_back(std::make_shared<TextRectangle>(Point{620,440}, 60, 30, "Create"));
+	menu_elem.push_back(std::make_shared<TextRectangle>(Point{690,440}, 60, 30, "Load"));
+}
+
+void DisplaySokoban::drawStatus(){
+	menu_elem.push_back(std::make_shared<TextRectangle>(Point{150,550}, 500, 35, "Statut"));
 }
