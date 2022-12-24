@@ -151,8 +151,21 @@ void Sokoban::load(const std::string &path) {
 	// Accès aux différentes valeurs du fichier JSON
 	int rows = root["size"]["x"].asInt();
 	int cols = root["size"]["y"].asInt();
-	std::string str_map = root["matrix"].asString();
+
+	Json::Value matrix = root["matrix"];
+	std::string str_map = Json::FastWriter().write(matrix);	
+
+	str_map.erase(str_map.begin());
+	str_map.erase(str_map.end()-2);
+	
+	while (str_map.find(",") != std::string::npos) {
+		str_map.replace(str_map.find(","), 1, "\n");
+	}
+	str_map.erase(std::remove(str_map.begin(), str_map.end(), '\"'), str_map.end());
+
 	this->board.loadMap(rows, cols, str_map);
+
+	this->board.loadBoxes(root["boxes"]);
 
 	int player_pos_x = root["player_pos"]["x"].asInt();
 	int player_pos_y = root["player_pos"]["y"].asInt();

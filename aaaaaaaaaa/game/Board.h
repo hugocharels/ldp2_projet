@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <json/json.h>
 
 #include "Matrix.h"
 #include "../cell/include.h"
@@ -36,7 +37,7 @@ public:
 
 	// LOAD
 	void loadMap(int rows, int cols, std::string &str_map);
-	void loadBoxes(auto &boxes_info);
+	void loadBoxes(Json::Value &boxes_info);
 	void loadPlayer(Point pos) { this->player = Player{pos}; }
 
 

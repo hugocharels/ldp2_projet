@@ -4,6 +4,7 @@
 #include <tuple>
 #include <memory>
 #include <array>
+#include <json/json.h>
 
 #include "Board.h"
 #include "../configs.h"
@@ -120,11 +121,11 @@ void Board::loadMap(int rows, int cols, std::string &str_map) {
 }
 
 
-void Board::loadBoxes(auto &boxes_info) {
+void Board::loadBoxes(Json::Value &boxes_info) {
 	this->boxes.clear();
     for (unsigned int i = 0; i < boxes_info.size(); ++i) {
-        int x = boxes_info[i]["position"]["x"].asInt();
-        int y = boxes_info[i]["position"]["y"].asInt();
+        int x = boxes_info[i]["pos"]["x"].asInt();
+        int y = boxes_info[i]["pos"]["y"].asInt();
         int color = boxes_info[i]["color"].asInt();
 		this->boxes.push_back(Box{Point{x, y}, intToColor(color)});
 	}

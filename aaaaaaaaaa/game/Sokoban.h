@@ -15,7 +15,7 @@ class Sokoban {
 
 public:
 
-	Sokoban() {this->load(LEVEL1); this->board.print();}
+	Sokoban() { this->restart(LEVEL1); }
 	~Sokoban()=default;
  	
 	void start();	// only in terminal
