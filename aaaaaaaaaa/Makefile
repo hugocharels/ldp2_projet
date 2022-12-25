@@ -2,8 +2,8 @@ CXX = g++
 CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic -lfltk -lfltk_images -ljsoncpp
 
 
-main: main.cpp Sokoban.o draw_map.o draw_menu.o DisplaySokoban.o menu_element.o Board.o configs.o 
-	${CXX} -o sokoban main.cpp Sokoban.o draw_map.o draw_menu.o DisplaySokoban.o menu_element.o Board.o configs.o ${CXXFLAGS}
+main: main.cpp Sokoban.o draw_map.o draw_menu.o DisplaySokoban.o menu_element.o Board.o Levels.o configs.o 
+	${CXX} -o sokoban main.cpp Sokoban.o draw_map.o draw_menu.o DisplaySokoban.o menu_element.o Board.o Levels.o configs.o ${CXXFLAGS}
 	make clean
 
 Sokoban.o: game/Sokoban.cpp game/Sokoban.h
@@ -23,6 +23,9 @@ menu_element.o: interface/menu_element.cpp interface/menu_element.h
 
 Board.o: game/Board.cpp game/Board.h
 	${CXX} -c game/Board.cpp ${CXXFLAGS}
+
+Levels.o: game/Levels.cpp game/Levels.h
+	${CXX} -c game/Levels.cpp ${CXXFLAGS}
 
 configs.o: configs.cpp configs.h
 	${CXX} -c configs.cpp ${CXXFLAGS}

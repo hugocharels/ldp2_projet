@@ -6,7 +6,7 @@
 
 class Levels {
 
-	std::vector<const std::string> files;
+	std::vector<std::string> files;
 
 public:
 

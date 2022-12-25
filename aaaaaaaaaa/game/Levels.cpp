@@ -12,11 +12,13 @@ void Levels::loadFiles() {
 
 	DIR *d;
 	struct dirent *dir;
-	d = opendir("../levels");
+	d = opendir("levels");
 	if (not d) { return; }
 
 	while ((dir = readdir(d)) != NULL) {
-		this->files.push_back(std::string(dir->d_name));
+		std::string tmp = dir->d_name;
+		if (tmp[0] == '.') { continue; }
+		this->files.push_back(tmp);
 	}
 
 	closedir(d);
@@ -28,7 +30,8 @@ void Levels::createBoard(int idx, Board &board, int &best_score, int &step_limit
 	// Chargement du fichier JSON
 	Json::Value root;
 	Json::Reader reader;
-	std::ifstream file(this->files[idx]);
+	std::ifstream file("levels/" + this->files[idx]);
+	std::cout << this->files[idx] << std::endl;
 	if (not reader.parse(file, root)) {
 		// Erreur de parsing
 		std::cerr << "Error parsing file" << std::endl;
@@ -65,11 +68,11 @@ void Levels::createBoard(int idx, Board &board, int &best_score, int &step_limit
 void Levels::saveBoard(Board &board) {
 
 	// POUR L'EDITEUR DE NIVEAU OWO
-
+	std::cout << &board << std::endl;
 }
 
 
-void updateBestScore(int idx, int new_best_score) {
+void Levels::updateBestScore(int idx, int new_best_score) {
 
 	// Chargement du fichier JSON
 	Json::Value root;

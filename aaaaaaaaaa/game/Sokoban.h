@@ -2,6 +2,7 @@
 #define _SOKOBAN_H
 
 #include "Board.h"
+#include "Levels.h"
 
 #include <string>
 
@@ -9,7 +10,7 @@
 class Sokoban {
 
 	Board board;
-	std::string level;
+	Levels levels; 
 	int step_limit;
 	int best_score;
 	std::string status = "You are playing level n";
@@ -18,14 +19,14 @@ class Sokoban {
 
 public:
 
-	Sokoban() { this->restart(LEVEL1); }
+	Sokoban() { this->restart(5); }
 	~Sokoban()=default;
  	
 	void start();	// only in terminal
 
  	void inputPlayer(MOVE move);
  	
- 	void restart(const std::string &level) { this->load(level); this->board.print();}
+	void restart(int idx) { levels.createBoard(idx, this->board, this->best_score, this->step_limit); }
 
  	bool win() { return board.win(); }
  	
@@ -36,10 +37,6 @@ public:
  	void canMovePlayerTo(std::vector<MOVE>& moves, Point pos);
 
  	void movePlayer(std::vector<MOVE>& moves);
-
-
-	void load(const std::string &path);
-
 
 
  	Player* getPlayerPTR() { return board.getPlayerPTR(); }
