@@ -12,6 +12,9 @@ class Sokoban {
 	std::string level;
 	int step_limit;
 	int best_score;
+	std::string status = "You are playing level n";
+
+	void setStatus(int code);
 
 public:
 
@@ -26,7 +29,9 @@ public:
 
  	bool win() { return board.win(); }
  	
- 	bool loose() { return board.loose() or step_limit <= board.getPlayerPTR()->getSteps(); }
+ 	bool loose() { return board.loose(); }
+
+ 	bool looseNoMoreStep() { return step_limit <= board.getPlayerPTR()->getSteps(); }
 
  	void canMovePlayerTo(std::vector<MOVE>& moves, Point pos);
 
@@ -46,6 +51,10 @@ public:
 	int getBestScore() { return best_score; }
 
 	int getStepLimit() { return step_limit; }
+
+	std::string getStatus() { return status; }
+
+	//void setStatus(int code);
 
 };
 

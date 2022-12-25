@@ -42,11 +42,18 @@ void Sokoban::inputPlayer(MOVE move)  {
 	this->board.play(move);
 	//this->board.print();
 	if (this->win()) {
+		this->setStatus(0);
 		std::cout << "gg" << std::endl;
-		exit(0);
-	} else if (this->loose()) {
-		std::cout << "rip" << std::endl;
-		exit(0);
+		//exit(0);
+	} 
+	else if (this->loose()) {
+		this->setStatus(2);
+		std::cout << "ripun" << std::endl;
+		//exit(0);
+	}
+	else if (this->looseNoMoreStep()){
+		this->setStatus(3);
+		std::cout << "ripeu" << std::endl;
 	}
 }
 
@@ -173,4 +180,38 @@ void Sokoban::load(const std::string &path) {
 
 	this->best_score = root["best_score"].asInt();
 	this->step_limit = root["step_limit"].asInt();
+
+	//this->setStatus(4);
+}
+
+
+
+void Sokoban::setStatus(int code){
+	/*
+	0 = win
+	1 = new best score
+	2 = loose bc all boxes are blocked
+	3 = loose bc no more steps left
+	*/
+	switch(code) {
+		case 0:
+			status = "You win !";
+			break;
+		case 1:
+			status = "New best score !";
+			break;
+
+		case 2:
+			status = "You lose ! (all boxes are blocked)";
+			break;
+		case 3:
+			status = "You lose ! (no more steps left)";
+			break;
+
+		/* default ?
+		case 4:
+			status = "You are playing level n"; (getCurrentLevel)
+			break;*/
+	}
+
 }

@@ -9,7 +9,7 @@ const std::string LEVEL2 = "levels/board3.txt";
 const std::string LEVEL1 = "levels/level1.json";
 
 
-constexpr int    windowWidth      = 1000;
+constexpr int    windowWidth      = 900;
 constexpr int    windowHeight     = 600;
 constexpr int 	 cellSize         = 50; 
 constexpr double refreshPerSecond = 30;

@@ -35,5 +35,5 @@ void DisplaySokoban::drawLevelSelector(){
 }
 
 void DisplaySokoban::drawStatus(){
-	menu_elem.push_back(std::make_shared<TextRectangle>(Point{150,550}, 500, 35, "Statut"));
+	menu_elem.push_back(std::make_shared<TextRectangle>(Point{300,550}, 500, 35, sokoban->getStatus()));
 }
