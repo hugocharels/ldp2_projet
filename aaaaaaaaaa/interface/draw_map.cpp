@@ -140,3 +140,9 @@ void DisplaySokoban::drawACell(Point display_pos, Cell* cell){
 	}
 }
 
+
+void DisplaySokoban::drawWelcome() {
+	Fl_Image* image_ptr = Fl_PNG_Image(WELCOME).copy(windowWidth, windowHeight);
+	image_ptr->draw(0, 0);
+	delete image_ptr;
+}

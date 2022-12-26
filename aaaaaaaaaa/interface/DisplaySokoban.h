@@ -16,6 +16,8 @@ class DisplaySokoban {
 	std::vector<std::shared_ptr<Printable>> menu_elem;
 	int textSize=20;
 
+	int aaaa=0;
+
 	Point modelPosToDisplayPos(Point model_pos) { return Point{cellSize+(cellSize*model_pos.y), cellSize+(cellSize*model_pos.x)}; }
 	
 	void drawMap();
@@ -33,6 +35,8 @@ class DisplaySokoban {
 	void drawLimitStep();
 	void drawLevelSelector();
 	void drawStatus();
+
+	void drawWelcome();
 
 
 public:

@@ -36,10 +36,12 @@ void DisplaySokoban::drawMenu(){
 }
 
 
-
 void DisplaySokoban::draw(){
-	drawMap();
-	drawMenu();
-
+	if (aaaa++ <= refreshPerSecond*5) {
+		drawWelcome();
+	} else {
+		drawMap();
+		drawMenu();
+	}
 }
 
