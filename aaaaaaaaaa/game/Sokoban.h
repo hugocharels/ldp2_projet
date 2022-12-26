@@ -19,7 +19,7 @@ class Sokoban {
 
 public:
 
-	Sokoban() { this->restart(5); }
+	Sokoban() { this->restart(0); }
 	~Sokoban()=default;
  	
 	void start();	// only in terminal

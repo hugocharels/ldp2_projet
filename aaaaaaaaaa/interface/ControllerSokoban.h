@@ -38,7 +38,7 @@ public:
 				move = RIGHT;
 				break;
 			case ' ':
-				this->sokoban->restart(5);
+				this->sokoban->restart(0);
 		}
 		this->sokoban->inputPlayer(move);
 	}
