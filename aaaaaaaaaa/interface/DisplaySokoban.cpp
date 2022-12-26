@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "DisplaySokoban.h"
+static const char* WELCOME = "dessin_temp/soko_mainpage.png";
 
 
 void DisplaySokoban::drawMap(){
@@ -33,6 +34,12 @@ void DisplaySokoban::drawMenu(){
 	for(auto &elem : menu_elem){
 		elem->print();
 	}
+}
+
+void DisplaySokoban::drawWelcome() {
+	Fl_Image* image_ptr = Fl_PNG_Image(WELCOME).copy(windowWidth, windowHeight);
+	image_ptr->draw(0, 0);
+	delete image_ptr;
 }
 
 

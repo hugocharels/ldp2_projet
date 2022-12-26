@@ -7,6 +7,8 @@
 #include "Levels.h"
 
 
+
+
 void Levels::loadFiles() {
 	this->files.clear();
 
@@ -22,6 +24,7 @@ void Levels::loadFiles() {
 	}
 
 	closedir(d);
+	std::sort(this->files.begin(), this->files.end());
 }
 
 
