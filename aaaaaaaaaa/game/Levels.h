@@ -2,7 +2,7 @@
 #include <string>
 
 #include "Board.h"
-
+#include <iostream>
 
 class Levels {
 
@@ -22,5 +22,7 @@ public:
 	void updateBestScore(int idx, int new_best_score);
 
 	const std::string& getFile(int idx) const { return this->files[idx]; }
+
+	int getSize() { std::cout<<sizeof(files) <<std::endl;return sizeof(files); }
 
 };

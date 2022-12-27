@@ -30,7 +30,7 @@ void DisplaySokoban::drawLimitStep(){
 
 void DisplaySokoban::drawLevelSelector(){
 	menu_elem.push_back(std::make_shared<Text>("Select level:", Point{650,370}, textSize));
-	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,400}, 110, 35, "Level " + std::to_string(sokoban->getCurrentIdx())));
+	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,400}, 110, 35, "Level " + std::to_string(sokoban->getSelectIdx())));
 	//Controller
 	menu_elem.push_back(MENU_BUTTONS[1]);
 	menu_elem.push_back(MENU_BUTTONS[2]);

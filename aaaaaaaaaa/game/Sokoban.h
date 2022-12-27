@@ -4,6 +4,8 @@
 #include "Board.h"
 #include "Levels.h"
 
+#include <iostream>
+
 #include <string>
 
 
@@ -13,7 +15,8 @@ class Sokoban {
 	Levels levels; 
 	int step_limit;
 	int best_score;
-	int current_idx = 0;
+	int current_idx = 0; //current level
+	int select_idx = 0;
 	std::string status;
 
 	void setStatus(int code);
@@ -53,6 +56,12 @@ public:
 	std::string getStatus() { return status; }
 
 	int getCurrentIdx() { return current_idx; }
+
+	int getSelectIdx() { return select_idx; }
+
+	void setSelectIdx(int inc) { select_idx = (select_idx+inc)%levels.getSize(); std::cout<<select_idx<<std::endl;}
+
+	Levels getLvl() { return levels; }
 
 	//void setStatus(int code);
 

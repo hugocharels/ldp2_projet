@@ -62,7 +62,24 @@ public:
 			take action !!!
 		puis pour tous les boutons lo 
 		*/
-		if (MENU_BUTTONS[0]->contains(mouse_loc)) {std::cout<<"yo"<<std::endl;}
+		if (MENU_BUTTONS[0]->contains(mouse_loc)) {
+			std::cout<<"reset"<<std::endl;
+			sokoban->getLvl().updateBestScore(sokoban->getCurrentIdx(),0); //erreur parsing
+		}
+		
+		if (MENU_BUTTONS[1]->contains(mouse_loc)) {
+			std::cout<<"<<"<<std::endl;}
+			sokoban->setSelectIdx(-1);
+
+		if (MENU_BUTTONS[2]->contains(mouse_loc)) {
+			std::cout<<">>"<<std::endl;}
+			sokoban->setSelectIdx(1);
+
+		if (MENU_BUTTONS[3]->contains(mouse_loc)) {
+			std::cout<<"Load"<<std::endl;}
+
+		if (MENU_BUTTONS[4]->contains(mouse_loc)) {
+			std::cout<<"Create"<<std::endl;}		
 
 	}
 };

@@ -76,7 +76,8 @@ void Levels::saveBoard(Board &board) {
 
 
 void Levels::updateBestScore(int idx, int new_best_score) {
-
+	std::cout<<"in maj bestscore"<<std::endl;
+	std::cout<<this->files[idx]<<std::endl;
 	// Chargement du fichier JSON
 	Json::Value root;
 	Json::Reader reader;
