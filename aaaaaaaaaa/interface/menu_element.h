@@ -1,3 +1,6 @@
+#ifndef _MENU_ELEMENT_H
+#define _MENU_ELEMENT_H
+
 #include <FL/Fl.H>
 #include <FL/Fl_Box.H>
 #include <FL/fl_draw.H>
@@ -96,3 +99,5 @@ class TextRectangle : public Text, public Rectangle {
     update();
   }
 };*/
+
+#endif

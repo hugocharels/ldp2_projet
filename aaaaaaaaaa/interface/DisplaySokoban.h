@@ -9,8 +9,6 @@
 #include "menu_element.h"
 
 
-
-
 class DisplaySokoban {
 
 	Fl_Window* fltkWindow;

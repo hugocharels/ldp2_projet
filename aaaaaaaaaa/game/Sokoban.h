@@ -14,7 +14,7 @@ class Sokoban {
 	int step_limit;
 	int best_score;
 	int current_idx = 0;
-	std::string status = "You are playing level " + std::to_string(current_idx);
+	std::string status;
 
 	void setStatus(int code);
 
@@ -27,7 +27,7 @@ public:
 
  	void inputPlayer(MOVE move);
  	
-	void restart(int idx) { current_idx= idx; levels.createBoard(idx, this->board, this->best_score, this->step_limit); }
+	void restart(int idx);
 
  	bool win() { return board.win(); }
  	

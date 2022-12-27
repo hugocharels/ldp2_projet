@@ -3,8 +3,12 @@
 
 #include <FL/Fl.H>
 
+#include <iostream>
+
 #include "../game/Sokoban.h"
 #include "../configs.h"
+#include "menu_element.h"
+#include "../configs_buttons.h"
 
 
 class ControllerSokoban {
@@ -52,6 +56,14 @@ public:
 			this->sokoban->movePlayer(moves);
 		}
 		this->sokoban->inputPlayer(INVALID);
+
+		/*
+		if contains ce bouton mouselock (les points)
+			take action !!!
+		puis pour tous les boutons lo 
+		*/
+		if (MENU_BUTTONS[0]->contains(mouse_loc)) {std::cout<<"yo"<<std::endl;}
+
 	}
 };
 

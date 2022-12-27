@@ -2,11 +2,7 @@
 #define _CONFIGS_H
 
 #include <string>
-//#include <vector>
-
-const std::string LEVEL3 = "levels/board4.txt";
-const std::string LEVEL2 = "levels/board3.txt";
-const std::string LEVEL1 = "levels/level1.json";
+#include <array>
 
 
 constexpr int    windowWidth      = 900;

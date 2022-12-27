@@ -143,6 +143,12 @@ void Sokoban::movePlayer(std::vector<MOVE>& moves) {
 }
 
 
+void Sokoban::restart(int idx) { 
+	current_idx= idx; 
+	levels.createBoard(idx, this->board, this->best_score, this->step_limit); 
+	status = "You are playing level " + std::to_string(current_idx); 
+}
+
 
 void Sokoban::setStatus(int code){
 	/*

@@ -7,12 +7,13 @@
 #include <string>
 
 #include "DisplaySokoban.h"
-//#include "menu_element.h"
 #include "../configs.h" //pour struct point
+#include "../configs_buttons.h"
 
 void DisplaySokoban::drawBestScore(){
 	menu_elem.push_back(std::make_shared<Text>("Best score:", Point{650, 60}, textSize));
 	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,90}, 125, 35, std::to_string(sokoban->getBestScore())));
+	menu_elem.push_back(MENU_BUTTONS[0]);
 }
 
 void DisplaySokoban::drawStepCounter(){
@@ -30,10 +31,11 @@ void DisplaySokoban::drawLimitStep(){
 void DisplaySokoban::drawLevelSelector(){
 	menu_elem.push_back(std::make_shared<Text>("Select level:", Point{650,370}, textSize));
 	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,400}, 110, 35, "Level " + std::to_string(sokoban->getCurrentIdx())));
-	menu_elem.push_back(std::make_shared<TextRectangle>(Point{600,400}, 15, 15, "<"));
-	menu_elem.push_back(std::make_shared<TextRectangle>(Point{720,400}, 15, 15, ">"));
-	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,440}, 110, 35, "Load"));
-	menu_elem.push_back(std::make_shared<TextRectangle>(Point{650,480}, 110, 35, "Create"));
+	//Controller
+	menu_elem.push_back(MENU_BUTTONS[1]);
+	menu_elem.push_back(MENU_BUTTONS[2]);
+	menu_elem.push_back(MENU_BUTTONS[3]);
+	menu_elem.push_back(MENU_BUTTONS[4]);
 	
 }
 
