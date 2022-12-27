@@ -42,19 +42,19 @@ public:
 				move = RIGHT;
 				break;
 			case ' ':
-				this->sokoban->restart(0);
+				this->sokoban->restart(this->sokoban->getCurrentIdx());
 		}
 		this->sokoban->inputPlayer(move);
 	}
 
 	void mouseClick(Point mouse_loc) {
+
+		
 		this->sokoban->inputPlayer(INVALID);	
 		Point pos = this->displayPosToBoardPos(mouse_loc);
 		std::vector<MOVE> moves;
 		this->sokoban->canMovePlayerTo(moves, pos);
-		if (not moves.empty()) {
-			this->sokoban->movePlayer(moves);
-		}
+		if (not moves.empty()) { this->sokoban->movePlayer(moves); }
 		this->sokoban->inputPlayer(INVALID);
 
 		/*
@@ -68,19 +68,23 @@ public:
 		}
 		
 		if (MENU_BUTTONS[1]->contains(mouse_loc)) {
-			std::cout<<"<<"<<std::endl;}
+			std::cout<<"<<"<<std::endl;
 			sokoban->setSelectIdx(-1);
+		}
 
 		if (MENU_BUTTONS[2]->contains(mouse_loc)) {
-			std::cout<<">>"<<std::endl;}
+			std::cout<<">>"<<std::endl;
 			sokoban->setSelectIdx(1);
+		}
 
 		if (MENU_BUTTONS[3]->contains(mouse_loc)) {
-			std::cout<<"Load"<<std::endl;}
+			std::cout<<"Load"<<std::endl;
+			this->sokoban->restart(this->sokoban->getSelectIdx());
+		}
 
 		if (MENU_BUTTONS[4]->contains(mouse_loc)) {
-			std::cout<<"Create"<<std::endl;}		
-
+			std::cout<<"Create"<<std::endl;
+		}
 	}
 };
 

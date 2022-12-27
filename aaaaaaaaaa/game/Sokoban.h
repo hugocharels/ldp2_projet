@@ -1,12 +1,12 @@
 #ifndef _SOKOBAN_H
 #define _SOKOBAN_H
 
+#include <iostream>
+#include <string>
+
 #include "Board.h"
 #include "Levels.h"
-
-#include <iostream>
-
-#include <string>
+#include "../configs.h"
 
 
 class Sokoban {
@@ -59,9 +59,9 @@ public:
 
 	int getSelectIdx() { return select_idx; }
 
-	void setSelectIdx(int inc) { select_idx = (select_idx+inc)%levels.getSize(); std::cout<<select_idx<<std::endl;}
+	void setSelectIdx(int inc) { select_idx = mod(select_idx+inc, levels.getSize()) ; std::cout<<select_idx<<std::endl;}
 
-	Levels getLvl() { return levels; }
+	Levels& getLvl() { return levels; }
 
 	//void setStatus(int code);
 

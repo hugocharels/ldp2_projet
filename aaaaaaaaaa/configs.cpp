@@ -22,3 +22,9 @@ COLOR intToColor(int x) {
 	else if (x == 8) { return COLOR::PINK; }
 	return COLOR::NONE;
 }
+
+int mod(int x, int y) {
+	int res = x%y;
+	if (res < 0) { res = y+res; }
+	return res;
+}

@@ -26,5 +26,6 @@ enum class COLOR { NONE = 1, RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK };
 
 COLOR charToColor(char x);
 COLOR intToColor(int x);
+int mod(int x, int y);
 
 #endif

@@ -34,7 +34,6 @@ void Levels::createBoard(int idx, Board &board, int &best_score, int &step_limit
 	Json::Value root;
 	Json::Reader reader;
 	std::ifstream file("levels/" + this->files[idx]);
-	std::cout << this->files[idx] << std::endl;
 	if (not reader.parse(file, root)) {
 		// Erreur de parsing
 		std::cerr << "Error parsing file" << std::endl;
@@ -76,12 +75,10 @@ void Levels::saveBoard(Board &board) {
 
 
 void Levels::updateBestScore(int idx, int new_best_score) {
-	std::cout<<"in maj bestscore"<<std::endl;
-	std::cout<<this->files[idx]<<std::endl;
 	// Chargement du fichier JSON
 	Json::Value root;
 	Json::Reader reader;
-	std::ifstream file(this->files[idx]);
+	std::ifstream file("levels/" + this->files[idx]);
 	if (not reader.parse(file, root)) {
 		// Erreur de parsing
 		std::cerr << "Error parsing file" << std::endl;

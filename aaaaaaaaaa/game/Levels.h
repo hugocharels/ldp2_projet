@@ -23,6 +23,6 @@ public:
 
 	const std::string& getFile(int idx) const { return this->files[idx]; }
 
-	int getSize() { std::cout<<sizeof(files) <<std::endl;return sizeof(files); }
+	int getSize() { return this->files.size(); }
 
 };

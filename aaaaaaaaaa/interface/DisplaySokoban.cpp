@@ -5,7 +5,8 @@
 #include <iostream>
 
 #include "DisplaySokoban.h"
-static const char* WELCOME = "dessin_temp/soko_mainpage.png";
+
+const char* WELCOME = "dessin_temp/soko_mainpage.png";
 
 
 void DisplaySokoban::drawMap(){
@@ -49,6 +50,7 @@ void DisplaySokoban::draw(){
 	} else {
 		drawMap();
 		drawMenu();
+		this->menu_elem.clear();
 	}
 }
 
