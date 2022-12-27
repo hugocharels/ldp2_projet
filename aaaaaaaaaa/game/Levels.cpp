@@ -92,6 +92,6 @@ void Levels::updateBestScore(int idx, int new_best_score) {
 	std::string json_str = Json::StyledWriter().write(root);
 
 	// Écrivez la chaîne de caractères dans le fichier JSON
-	std::ofstream out("file.json");
+	std::ofstream out("levels/" + this->files[idx]);
 	out.write(json_str.c_str(), json_str.size());
 }

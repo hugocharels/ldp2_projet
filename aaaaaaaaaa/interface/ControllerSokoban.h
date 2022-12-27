@@ -64,7 +64,7 @@ public:
 		*/
 		if (MENU_BUTTONS[0]->contains(mouse_loc)) {
 			std::cout<<"reset"<<std::endl;
-			sokoban->getLvl().updateBestScore(sokoban->getCurrentIdx(),0); //erreur parsing
+			sokoban->resetBestScore();
 		}
 		
 		if (MENU_BUTTONS[1]->contains(mouse_loc)) {
