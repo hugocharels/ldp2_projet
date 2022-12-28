@@ -2,10 +2,10 @@
 #define _EDITOR_CONTROLLER_HPP
 
 #include "../configs.hpp"
-#include "Controller.hpp"
+#include "AbstractController.hpp"
 
 
-class EditorController: public Controller {
+class EditorController: public AbstractController {
 
 public:
 

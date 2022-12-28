@@ -11,7 +11,7 @@ class Game {
     Sokoban model;
     MainDisplay display{&model};
     MainController controller{&model};
-    MainWindow window;
+    MainWindow window{&display, &controller};
 
 public:
 
@@ -20,7 +20,7 @@ public:
     
     void start(int argc, char *argv[]) { window.show(argc, argv); }
 
-}
+};
 
 
 #endif

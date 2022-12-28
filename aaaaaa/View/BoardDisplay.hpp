@@ -1,12 +1,12 @@
 #ifndef _BOARD_DISPLAY_HPP
 #define _BOARD_DISPLAY_HPP
 
-#include "Display.hpp"
+#include "AbstractDisplay.hpp"
 
 #include "../Model/Sokoban.hpp"
 
 
-class BoardDisplay: public Display {
+class BoardDisplay: public AbstractDisplay {
 
 	Sokoban* model;
 

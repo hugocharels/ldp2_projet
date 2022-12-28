@@ -1,10 +1,10 @@
 #ifndef _EDITOR_DISPLAY_HPP
 #define _EDITOR_DISPLAY_HPP
 
-#include "Display.hpp"
+#include "AbstractDisplay.hpp"
 
 
-class EditorDisplay: public Display {
+class EditorDisplay: public AbstractDisplay {
 
 public:
 

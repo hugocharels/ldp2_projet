@@ -1,10 +1,10 @@
 #ifndef _MENU_DISPLAY_HPP
 #define _MENU_DISPLAY_HPP
 
-#include "Display.hpp"
+#include "AbstractDisplay.hpp"
 
 
-class MenuDisplay: public Display {
+class MenuDisplay: public AbstractDisplay {
 
 public:
 

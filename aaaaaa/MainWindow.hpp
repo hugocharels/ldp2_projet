@@ -15,29 +15,31 @@
 
 class MainWindow : public Fl_Double_Window {
 	
-    MainController* controller;
     MainDisplay* display;
+    MainController* controller;
+
+	GAME_STATE state = GAME_STATE::PLAY;
 
 public:
 
-	MainWindow(Sokoban* model, MainController* controller, MainDisplay* display):
+	MainWindow(MainDisplay* display, MainController* controller):
             Fl_Double_Window(500, 200, windowWidth, windowHeight, "Sokoban"), 
-            controller{controller}, display{display} {
+            display{display}, controller{controller} {
 		Fl::add_timeout(1.0 / refreshPerSecond, Timer_CB, this);
 	}
 
 	void draw() {
 		Fl_Window::draw();
-		display.draw();
+		display->draw(state);
 	}
 
 	int handle(int event) override {
 		switch (event) {
 			case FL_PUSH:
-				controller.mouseClick(Point{Fl::event_x(), Fl::event_y()});
+				controller->mouseClick(Point{Fl::event_x(), Fl::event_y()}, state);
 				return 1;
 			case FL_KEYDOWN:
-				controller.keyPressed(Fl::event_key());
+				controller->keyPressed(Fl::event_key(), state);
 				return 1;
 			default:
 				return 0;

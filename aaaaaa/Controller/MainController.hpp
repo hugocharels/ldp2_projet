@@ -15,6 +15,8 @@ class MainController {
 
 public:
 
+	MainController(Sokoban* model) { board.setModel(model); }
+
 	void keyPressed(int key_code, GAME_STATE state);
 	void mouseClick(Point mous_loc, GAME_STATE state);
 

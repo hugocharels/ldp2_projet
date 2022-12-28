@@ -2,10 +2,10 @@
 #define _MENU_CONTROLLER_HPP
 
 #include "../configs.hpp"
-#include "Controller.hpp"
+#include "AbstractController.hpp"
 
 
-class MenuController: public Controller {
+class MenuController: public AbstractController {
 
 public:
 

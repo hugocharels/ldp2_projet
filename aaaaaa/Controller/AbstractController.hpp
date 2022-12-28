@@ -1,10 +1,10 @@
-#ifndef _CONTROLLER_HPP
-#define _CONTROLLER_HPP
+#ifndef _ABSTRACT_CONTROLLER_HPP
+#define _ABSTRACT_CONTROLLER_HPP
 
 #include "../configs.hpp"
 
 
-class Controller {
+class AbstractController {
 
 public:
 
