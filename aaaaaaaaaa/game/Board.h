@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <json/json.h>
 
 #include "Matrix.h"
 #include "../cell/include.h"
@@ -15,9 +16,6 @@ class Board {
 	Matrix<std::unique_ptr<Cell>> map;
 	Player player;
 	std::vector<Box> boxes;
-
-	// LOAD
-	void loadBoxes(auto &file);
 
 
 	bool inMap(int x, int y) const ;
@@ -37,7 +35,11 @@ public:
 	Board() {}
 	~Board();
 
-	void load(const std::string &file_path);
+	// LOAD
+	void loadMap(int rows, int cols, std::string &str_map);
+	void loadBoxes(Json::Value &boxes_info);
+	void loadPlayer(Point pos) { this->player = Player{pos}; }
+
 
 	void print();		// only in terminal
 

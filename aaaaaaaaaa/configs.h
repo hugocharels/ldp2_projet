@@ -2,14 +2,14 @@
 #define _CONFIGS_H
 
 #include <string>
+#include <array>
 
-const std::string LEVEL1 = "levels/board4.txt";
-const std::string LEVEL2 = "levels/board3.txt";
 
-constexpr int    windowWidth      = 1000;
+constexpr int    windowWidth      = 900;
 constexpr int    windowHeight     = 600;
 constexpr int 	 cellSize         = 50; 
 constexpr double refreshPerSecond = 30;
+
 
 struct Point {
 	int x, y;
@@ -25,5 +25,7 @@ typedef enum { EMPTY = '-', WALL = '#', TARGET = '@', TP = '%', PLAYER = '$', BO
 enum class COLOR { NONE = 1, RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK };
 
 COLOR charToColor(char x);
+COLOR intToColor(int x);
+int mod(int x, int y);
 
 #endif

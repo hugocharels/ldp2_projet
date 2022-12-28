@@ -3,8 +3,12 @@
 
 #include <FL/Fl.H>
 
+#include <iostream>
+
 #include "../game/Sokoban.h"
 #include "../configs.h"
+#include "menu_element.h"
+#include "../configs_buttons.h"
 
 
 class ControllerSokoban {
@@ -38,17 +42,48 @@ public:
 				move = RIGHT;
 				break;
 			case ' ':
-				this->sokoban->restart(LEVEL1);
+				this->sokoban->restart(this->sokoban->getCurrentIdx());
 		}
 		this->sokoban->inputPlayer(move);
 	}
 
 	void mouseClick(Point mouse_loc) {
+
+		
+		this->sokoban->inputPlayer(INVALID);	
 		Point pos = this->displayPosToBoardPos(mouse_loc);
 		std::vector<MOVE> moves;
 		this->sokoban->canMovePlayerTo(moves, pos);
-		if (not moves.empty()) {
-			this->sokoban->movePlayer(moves);
+		if (not moves.empty()) { this->sokoban->movePlayer(moves); }
+		this->sokoban->inputPlayer(INVALID);
+
+		/*
+		if contains ce bouton mouselock (les points)
+			take action !!!
+		puis pour tous les boutons lo 
+		*/
+		if (MENU_BUTTONS[0]->contains(mouse_loc)) {
+			std::cout<<"reset"<<std::endl;
+			sokoban->resetBestScore();
+		}
+		
+		if (MENU_BUTTONS[1]->contains(mouse_loc)) {
+			std::cout<<"<<"<<std::endl;
+			sokoban->setSelectIdx(-1);
+		}
+
+		if (MENU_BUTTONS[2]->contains(mouse_loc)) {
+			std::cout<<">>"<<std::endl;
+			sokoban->setSelectIdx(1);
+		}
+
+		if (MENU_BUTTONS[3]->contains(mouse_loc)) {
+			std::cout<<"Load"<<std::endl;
+			this->sokoban->restart(this->sokoban->getSelectIdx());
+		}
+
+		if (MENU_BUTTONS[4]->contains(mouse_loc)) {
+			std::cout<<"Create"<<std::endl;
 		}
 	}
 };

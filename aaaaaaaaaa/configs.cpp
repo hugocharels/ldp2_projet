@@ -11,3 +11,20 @@ COLOR charToColor(char x) {
 	else if (x == '8' or x == 'H') { return COLOR::PINK; }
 	return COLOR::NONE;
 }
+
+COLOR intToColor(int x) {
+	if (x == 2) { return COLOR::RED; }
+	else if (x == 3) { return COLOR::YELLOW; }
+	else if (x == 4) { return COLOR::BLUE; }
+	else if (x == 5) { return COLOR::ORANGE; }
+	else if (x == 6) { return COLOR::GREEN; }
+	else if (x == 7) { return COLOR::PURPLE; }
+	else if (x == 8) { return COLOR::PINK; }
+	return COLOR::NONE;
+}
+
+int mod(int x, int y) {
+	int res = x%y;
+	if (res < 0) { res = y+res; }
+	return res;
+}
