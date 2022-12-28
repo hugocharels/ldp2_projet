@@ -32,12 +32,12 @@ void MenuDisplay::drawStepCounter() {
 void MenuDisplay::drawLimitStep() {
 	Text{"Left steps:", Point{650,260}, textSize}.print();
 	int step_remaining = model->getStepLimit() - model->getPlayerPTR()->getSteps();
-	TextRectangle{Point{650,290}, 125, 35, std::to_string(step_remaining)};
+	TextRectangle{Point{650,290}, 125, 35, std::to_string(step_remaining)}.print();
 }
 
 void MenuDisplay::drawLevelSelector() {
 	Text{"Select level:", Point{650,370}, textSize}.print();
-	TextRectangle{Point{650,400}, 110, 35, "Level " + std::to_string(model->getSelectIdx())};
+	TextRectangle{Point{650,400}, 110, 35, "Level " + std::to_string(model->getSelectIdx())}.print();
 }
 
 void MenuDisplay::drawStatus() {
