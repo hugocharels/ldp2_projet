@@ -1,0 +1,4 @@
+#ifndef _EDITOR_DISPLAY_HPP
+#define _EDITOR_DISPLAY_HPP
+
+#endif
