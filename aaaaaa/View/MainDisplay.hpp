@@ -6,6 +6,8 @@
 #include "EditorDisplay.hpp"
 #include "MenuDisplay.hpp"
 
+#include "../Model/Sokoban.hpp"
+
 
 class MainDisplay {
 
@@ -14,6 +16,8 @@ class MainDisplay {
 	MenuDisplay   menu;
 
 public:
+
+	MainDisplay(Sokoban* model) { board.setModel(model); }
 
 	void draw(GAME_STATE state);
 
