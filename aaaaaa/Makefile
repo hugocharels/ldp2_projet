@@ -4,6 +4,7 @@ CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic -lfltk -lfltk_images -l
 main: main.cpp
 	make View -B || make clean
 	make Controller -B || make clean
+	make Model -B || make clean
 	make clean
 	${CXX} ${CXXFLAGS} -o sokoban main.cpp View/obj.o Controller/obj.o || make rm
 
@@ -21,6 +22,12 @@ Controller: Controller/MainController.cpp Controller/MainController.hpp Controll
 	${CXX} ${CXXFLAGS} -c Controller/EditorController.cpp
 	${CXX} ${CXXFLAGS} -c Controller/MenuController.cpp
 	ld -o Controller/obj.o -r MainController.o BoardController.o EditorController.o MenuController.o
+
+Model: Model/Sokoban.cpp Model/Sokoban.hpp Model/Levels.cpp Model/Levels.hpp Model/Board.cpp Model/Board.hpp
+	${CXX} ${CXXFLAGS} -c Model/Sokoban.cpp
+	${CXX} ${CXXFLAGS} -c Model/Levels.cpp
+	${CXX} ${CXXFLAGS} -c Model/Board.cpp
+	ld -o Model/obj.o -r Sokoban.o Levels.o Board.o
 
 
 clean:
