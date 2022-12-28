@@ -1,8 +1,8 @@
-#ifndef _TELEPORTER_H
-#define _TELEPORTER_H
+#ifndef _TELEPORTER_HPP
+#define _TELEPORTER_HPP
 
-#include "ColorCell.h"
-#include "../configs.h"
+#include "ColorCell.hpp"
+#include "../../configs.hpp"
 
 
 class Teleporter: public ColorCell {

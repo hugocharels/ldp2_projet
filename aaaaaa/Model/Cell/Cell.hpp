@@ -1,7 +1,7 @@
 #ifndef _CELL_H
 #define _CELL_H
 
-#include "../configs.h"
+#include "../../configs.hpp"
 
 
 class Cell {

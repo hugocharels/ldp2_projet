@@ -1,9 +1,9 @@
-#ifndef _BOX_H
-#define _BOX_H
+#ifndef _BOX_HPP
+#define _BOX_HPP
 
-#include "MoveableCell.h"
-#include "ColorCell.h"
-#include "../configs.h"
+#include "MoveableCell.hpp"
+#include "ColorCell.hpp"
+#include "../../configs.hpp"
 
 
 class Box: public MoveableCell, public ColorCell {

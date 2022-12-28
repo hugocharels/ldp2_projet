@@ -1,12 +1,12 @@
-#ifndef _INCLUDE_H
-#define _INCLUDE_H
+#ifndef _INCLUDE_HPP
+#define _INCLUDE_HPP
 
-#include "Box.h"
-#include "Cell.h"
-#include "ColorCell.h"
-#include "MoveableCell.h"
-#include "Player.h"
-#include "Target.h"
-#include "Teleporter.h"
+#include "Box.hpp"
+#include "Cell.hpp"
+#include "ColorCell.hpp"
+#include "MoveableCell.hpp"
+#include "Player.hpp"
+#include "Target.hpp"
+#include "Teleporter.hpp"
 
 #endif

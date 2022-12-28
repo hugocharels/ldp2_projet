@@ -1,8 +1,8 @@
-#ifndef _TARGET_H
-#define _TARGET_H
+#ifndef _TARGET_HPP
+#define _TARGET_HPP
 
-#include "ColorCell.h"
-#include "../configs.h"
+#include "ColorCell.hpp"
+#include "../../configs.hpp"
 
 
 class Target: public ColorCell {

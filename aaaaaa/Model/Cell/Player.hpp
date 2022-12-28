@@ -1,8 +1,8 @@
-#ifndef _PLAYER_H
-#define _PLAYER_H
+#ifndef _PLAYER_HPP
+#define _PLAYER_HPP
 
-#include "MoveableCell.h"
-#include "../configs.h"
+#include "MoveableCell.hpp"
+#include "../../configs.hpp"
 
 
 class Player: public MoveableCell {

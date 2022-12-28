@@ -1,8 +1,8 @@
-#ifndef _COLOR_CELL_H
-#define _COLOR_CELL_H
+#ifndef _COLOR_CELL_HPP
+#define _COLOR_CELL_HPP
 
-#include "Cell.h"
-#include "../configs.h"
+#include "Cell.hpp"
+#include "../../configs.hpp"
 
 
 class ColorCell: public virtual Cell {

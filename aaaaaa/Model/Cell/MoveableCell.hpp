@@ -1,8 +1,8 @@
-#ifndef _MOVEABLE_CELL_H
-#define _MOVEABLE_CELL_H
+#ifndef _MOVEABLE_CELL_HPP
+#define _MOVEABLE_CELL_HPP
 
-#include "Cell.h"
-#include "../configs.h"
+#include "Cell.hpp"
+#include "../../configs.hpp"
 
 
 class MoveableCell: public virtual Cell {
