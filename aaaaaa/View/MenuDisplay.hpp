@@ -3,20 +3,29 @@
 
 #include "../include.hpp"
 #include "AbstractDisplay.hpp"
+#include "../Model/Sokoban.hpp"
 #include "../Elements/MenuElement.hpp"
 
 
 class MenuDisplay: public AbstractDisplay {
 
-	std::vector<std::shared_ptr<Printable>> elements;
+	Sokoban* model;
+
 	int textSize=20;
 
 	void drawButtons();
+	void drawBestScore();
+	void drawStepCounter();
+	void drawLimitStep();
+	void drawLevelSelector();
+	void drawStatus();
 
 public:
 
 	void draw() override;
 
+	void setModel(Sokoban* m) { this->model = m; }
+	
 };
 
 
