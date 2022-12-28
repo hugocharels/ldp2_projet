@@ -6,8 +6,8 @@ main: main.cpp
 	make View -B
 	make Controller -B
 	make Model -B
+	make clean
 	make configs.o
-	#clear
 	${CXX} ${CXXFLAGS} -o sokoban main.cpp Model/obj.o View/obj.o Controller/obj.o configs.o  ${CXXLIBS} || make rm
 	make clean
 	make rm
@@ -44,4 +44,8 @@ rm:
 	rm View/obj.o || echo -n ""
 	rm Controller/obj.o || echo -n ""
 	rm Model/obj.o || echo -n ""
+	
+clean_all:
+	make clean
+	make rm
 	rm sokoban ||echo -n ""

@@ -20,7 +20,7 @@ public:
     Game()=default;
     ~Game()=default;
     
-    void start(int argc, char *argv[]) { window.show(argc, argv); }
+    int start(int argc, char *argv[]) { window.show(argc, argv); return Fl::run(); }
 
 };
 
