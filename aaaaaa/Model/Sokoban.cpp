@@ -1,10 +1,4 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <queue>
-#include <fstream>
-
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "Sokoban.hpp"
 
 

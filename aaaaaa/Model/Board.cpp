@@ -1,14 +1,5 @@
-#include <iostream>
-#include <fstream>
-#include <string.h>
-#include <tuple>
-#include <memory>
-#include <array>
-#include <json/json.h>
-
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "Board.hpp"
-
 
 
 Point getNextPos(MoveableCell &obj, MOVE move) {

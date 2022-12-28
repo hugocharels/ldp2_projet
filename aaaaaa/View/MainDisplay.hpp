@@ -1,11 +1,10 @@
 #ifndef _MAIN_DISPLAY_HPP
 #define _MAIN_DISPLAY_HPP
 
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "BoardDisplay.hpp"
 #include "EditorDisplay.hpp"
 #include "MenuDisplay.hpp"
-
 #include "../Model/Sokoban.hpp"
 
 

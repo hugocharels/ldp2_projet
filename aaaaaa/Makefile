@@ -2,13 +2,13 @@ CXX = g++
 CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic -lfltk -lfltk_images -ljsoncpp
 
 main: main.cpp
-	make View -B || make clean
-	make Controller -B || make clean
-	make Model -B || make clean
+	make View -B
+	make Controller -B
+	make Model -B
 	make clean
 	make configs.o
 	clear
-	${CXX} ${CXXFLAGS} -o sokoban main.cpp View/obj.o Controller/obj.o Model/obj.o configs.o || make rm
+	${CXX} ${CXXFLAGS} -o sokoban main.cpp Model/obj.o View/obj.o Controller/obj.o configs.o || make rm
 	make clean
 
 

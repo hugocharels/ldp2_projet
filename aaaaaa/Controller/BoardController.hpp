@@ -1,7 +1,7 @@
 #ifndef _BOARD_CONTROLLER_HPP
 #define _BOARD_CONTROLLER_HPP
 
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "AbstractController.hpp"
 #include "../Model/Sokoban.hpp"
 

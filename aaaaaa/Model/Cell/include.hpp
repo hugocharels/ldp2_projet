@@ -1,5 +1,5 @@
-#ifndef _INCLUDE_HPP
-#define _INCLUDE_HPP
+#ifndef _INCLUDE_CELL_HPP
+#define _INCLUDE_CELL_HPP
 
 #include "Box.hpp"
 #include "Cell.hpp"

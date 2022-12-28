@@ -1,10 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <json/json.h>
-#include <dirent.h>
-#include <algorithm>
-
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "Board.hpp"
 #include "Levels.hpp"
 

@@ -1,6 +1,4 @@
-#include <iostream>
-
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "BoardController.hpp"
 
 

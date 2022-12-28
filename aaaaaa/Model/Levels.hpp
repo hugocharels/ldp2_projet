@@ -1,11 +1,7 @@
 #ifndef _LEVELS_HPP
 #define _LEVELS_HPP
 
-#include <iostream>
-#include <vector>
-#include <string>
-
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "Board.hpp"
 
 

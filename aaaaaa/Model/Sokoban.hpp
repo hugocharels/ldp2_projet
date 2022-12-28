@@ -1,10 +1,7 @@
 #ifndef _SOKOBAN_H
 #define _SOKOBAN_H
 
-#include <iostream>
-#include <string>
-
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "Board.hpp"
 #include "Levels.hpp"
 

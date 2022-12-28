@@ -1,7 +1,7 @@
 #ifndef _ABSTRACT_CONTROLLER_HPP
 #define _ABSTRACT_CONTROLLER_HPP
 
-#include "../configs.hpp"
+#include "../include.hpp"
 
 
 class AbstractController {

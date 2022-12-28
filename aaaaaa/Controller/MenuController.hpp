@@ -1,7 +1,7 @@
 #ifndef _MENU_CONTROLLER_HPP
 #define _MENU_CONTROLLER_HPP
 
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "AbstractController.hpp"
 
 

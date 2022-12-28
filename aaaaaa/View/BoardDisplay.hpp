@@ -1,9 +1,8 @@
 #ifndef _BOARD_DISPLAY_HPP
 #define _BOARD_DISPLAY_HPP
 
+#include "../include.hpp"
 #include "AbstractDisplay.hpp"
-
-#include "../configs.hpp"
 #include "../Model/Sokoban.hpp"
 #include "../Model/Cell/include.hpp"
 

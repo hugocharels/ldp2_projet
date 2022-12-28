@@ -1,8 +1,7 @@
 #ifndef _MENU_DISPLAY_HPP
 #define _MENU_DISPLAY_HPP
 
-#include <vector>
-#include <memory>
+#include "../include.hpp"
 #include "AbstractDisplay.hpp"
 
 

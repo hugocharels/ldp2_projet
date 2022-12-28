@@ -1,7 +1,7 @@
 #ifndef _EDITOR_CONTROLLER_HPP
 #define _EDITOR_CONTROLLER_HPP
 
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "AbstractController.hpp"
 
 

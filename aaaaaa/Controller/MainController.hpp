@@ -1,7 +1,7 @@
 #ifndef _MAIN_CONTROLLER_HPP
 #define _MAIN_CONTROLLER_HPP
 
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "BoardController.hpp"
 #include "EditorController.hpp"
 #include "MenuController.hpp"

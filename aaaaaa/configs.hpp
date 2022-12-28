@@ -1,9 +1,7 @@
 #ifndef _CONFIGS_HPP
 #define _CONFIGS_HPP
 
-#include <string>
-#include <array>
-
+#include "include.hpp"
 
 constexpr int    windowWidth      = 900;
 constexpr int    windowHeight     = 600;

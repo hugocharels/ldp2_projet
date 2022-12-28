@@ -1,12 +1,7 @@
 #ifndef _BOARD_HPP
 #define _BOARD_HPP
 
-#include <string>
-#include <vector>
-#include <memory>
-#include <json/json.h>
-
-#include "../configs.hpp"
+#include "../include.hpp"
 #include "Matrix.hpp"
 #include "Cell/include.hpp"
 

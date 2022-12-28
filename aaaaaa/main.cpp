@@ -1,8 +1,4 @@
-#include <FL/Fl.H>
-#include <FL/Fl_Box.H>
-#include <FL/Fl_Double_Window.H>
-#include <FL/fl_draw.H>
-
+#include "include.hpp"
 #include "Game.hpp"
 
 
