@@ -2,6 +2,7 @@
 #include <fstream>
 #include <json/json.h>
 #include <dirent.h>
+#include <algorithm>
 
 #include "../configs.hpp"
 #include "Board.hpp"

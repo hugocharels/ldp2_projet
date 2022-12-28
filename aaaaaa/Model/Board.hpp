@@ -32,8 +32,8 @@ class Board {
 
 public:
 
-	Board() {}
-	~Board();
+	Board()=default;
+	~Board()=default;
 
 	// LOAD
 	void loadMap(int rows, int cols, std::string &str_map);

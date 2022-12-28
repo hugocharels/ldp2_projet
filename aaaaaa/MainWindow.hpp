@@ -1,11 +1,13 @@
 #ifndef _MAIN_WINDOW_HPP
 #define _MAIN_WINDOW_HPP
 
-
 #include <iostream>
+#include <FL/Fl.H>
+#include <FL/Fl_Box.H>
+#include <FL/Fl_Double_Window.H>
+#include <FL/fl_draw.H>
 
 #include "configs.hpp"
-#include "Model/Sokoban.hpp"
 #include "View/MainDisplay.hpp"
 #include "Controller/MainController.hpp"
 

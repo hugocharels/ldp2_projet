@@ -1,5 +1,5 @@
-#ifndef _CELL_H
-#define _CELL_H
+#ifndef _CELL_HPP
+#define _CELL_HPP
 
 #include "../../configs.hpp"
 

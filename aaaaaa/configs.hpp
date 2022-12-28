@@ -4,13 +4,6 @@
 #include <string>
 #include <array>
 
-#include <FL/Fl.H>
-#include <FL/Fl_Box.H>
-#include <FL/Fl_Double_Window.H>
-#include <FL/fl_draw.H>
-
-#include <json/json.h>
-
 
 constexpr int    windowWidth      = 900;
 constexpr int    windowHeight     = 600;
@@ -36,5 +29,6 @@ enum class GAME_STATE { PLAY, EDITOR };
 COLOR charToColor(char x);
 COLOR intToColor(int x);
 int mod(int x, int y);
+
 
 #endif

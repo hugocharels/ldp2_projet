@@ -3,7 +3,6 @@
 #include <vector>
 #include <queue>
 #include <fstream>
-#include <json/json.h>
 
 #include "../configs.hpp"
 #include "Sokoban.hpp"
@@ -171,11 +170,5 @@ void Sokoban::setStatus(int code){
 		case 3:
 			status = "You lose ! (no more steps left)";
 			break;
-
-		/* default ?
-		case 4:
-			status = "You are playing level n"; (getCurrentLevel)
-			break;*/
 	}
-
 }

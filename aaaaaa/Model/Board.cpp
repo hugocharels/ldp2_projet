@@ -24,15 +24,6 @@ Point getNextPos(MoveableCell &obj, MOVE move) {
 
 // public 
 
-Board::~Board() {
-	for (int i=0; i<this->map.getRows(); i++) {
-	    for (int j=0; j<this->map.getCols(); j++) {
-	    	delete this->map.at(i, j).get();
-	    }
-	}
-}
-
-
 
 //print verifie pour chaque case de la matrice MAP, si il n'y aurait pas un objet moveable (box ou player)
 //si c'est le cas, un caractère correspondant est mis là

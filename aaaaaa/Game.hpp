@@ -1,7 +1,6 @@
 #ifndef _GAME_HPP
 #define _GAME_HPP
 
-#include "configs.hpp"
 #include "Model/Sokoban.hpp"
 #include "View/MainDisplay.hpp"
 #include "Controller/MainController.hpp"
