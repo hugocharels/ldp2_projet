@@ -1,5 +1,4 @@
-#include <FL/Fl.H>
-
+#include "configs.hpp"
 #include "Game.hpp"
 
 

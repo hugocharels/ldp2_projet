@@ -1,10 +1,7 @@
 #ifndef _MAIN_WINDOW_HPP
 #define _MAIN_WINDOW_HPP
 
-#include <FL/Fl.H>
-#include <FL/Fl_Box.H>
-#include <FL/Fl_Double_Window.H>
-#include <FL/fl_draw.H>
+
 #include <iostream>
 
 #include "configs.hpp"

@@ -102,7 +102,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 		if (p.pos.x - 1 >= 0 and not visited.at(p.pos.x - 1, p.pos.y)) {
 			std::vector<MOVE> tmp = p.moves;
 			tmp.push_back(UP);
-			q.push(CellPosMove(Point{p.pos.x - 1, p.pos.y}, tmp));
+			q.push(CellPosMove{Point{p.pos.x - 1, p.pos.y}, tmp});
 			visited.at(p.pos.x - 1, p.pos.y) = 1;
 		}
 
@@ -110,7 +110,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 		if (p.pos.x + 1 < map->getRows() and not visited.at(p.pos.x + 1, p.pos.y)) {
 			std::vector<MOVE> tmp = p.moves;
 			tmp.push_back(DOWN);
-			q.push(CellPosMove(Point{p.pos.x + 1, p.pos.y}, tmp));
+			q.push(CellPosMove{Point{p.pos.x + 1, p.pos.y}, tmp});
 			visited.at(p.pos.x + 1, p.pos.y) = 1;
 		}
 
@@ -118,7 +118,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 		if (p.pos.y - 1 >= 0 and not visited.at(p.pos.x, p.pos.y - 1)) {
 			std::vector<MOVE> tmp = p.moves;
 			tmp.push_back(LEFT);
-			q.push(CellPosMove(Point{p.pos.x, p.pos.y - 1}, tmp));
+			q.push(CellPosMove{Point{p.pos.x, p.pos.y - 1}, tmp});
 			visited.at(p.pos.x, p.pos.y - 1) = 1;
 		}
 
@@ -126,7 +126,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 		if (p.pos.y + 1 < map->getCols() and not visited.at(p.pos.x, p.pos.y + 1)) {
 			std::vector<MOVE> tmp = p.moves;
 			tmp.push_back(RIGHT);
-			q.push(CellPosMove(Point{p.pos.x, p.pos.y + 1}, tmp));
+			q.push(CellPosMove{Point{p.pos.x, p.pos.y + 1}, tmp});
 			visited.at(p.pos.x, p.pos.y + 1) = 1;
 		}
 	}
