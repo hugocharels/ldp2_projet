@@ -6,8 +6,8 @@
 #include <array>
 #include <json/json.h>
 
-#include "Board.h"
-#include "../configs.h"
+#include "Board.hpp"
+#include "../configs.hpp"
 
 
 

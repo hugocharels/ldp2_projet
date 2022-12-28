@@ -3,8 +3,8 @@
 #include <json/json.h>
 #include <dirent.h>
 
-#include "Board.h"
-#include "Levels.h"
+#include "Board.hpp"
+#include "Levels.hpp"
 
 
 

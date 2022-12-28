@@ -5,8 +5,8 @@
 #include <fstream>
 #include <json/json.h>
 
-#include "Sokoban.h"
-#include "../configs.h"
+#include "Sokoban.hpp"
+#include "../configs.hpp"
 
 
 MOVE strToMOVE(std::string str) {

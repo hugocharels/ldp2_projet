@@ -1,14 +1,14 @@
-#ifndef _BOARD_H
-#define _BOARD_H
+#ifndef _BOARD_HPP
+#define _BOARD_HPP
 
 #include <string>
 #include <vector>
 #include <memory>
 #include <json/json.h>
 
-#include "Matrix.h"
-#include "../cell/include.h"
-#include "../configs.h"
+#include "Matrix.hpp"
+#include "Cell/include.hpp"
+#include "../configs.hpp"
 
 
 class Board {

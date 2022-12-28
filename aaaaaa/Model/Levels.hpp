@@ -1,8 +1,12 @@
+#ifndef _LEVELS_HPP
+#define _LEVELS_HPP
+
+#include <iostream>
 #include <vector>
 #include <string>
 
-#include "Board.h"
-#include <iostream>
+#include "Board.hpp"
+
 
 class Levels {
 
@@ -26,3 +30,5 @@ public:
 	int getSize() { return this->files.size(); }
 
 };
+
+#endif

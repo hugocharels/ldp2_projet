@@ -4,9 +4,9 @@
 #include <iostream>
 #include <string>
 
-#include "Board.h"
-#include "Levels.h"
-#include "../configs.h"
+#include "Board.hpp"
+#include "Levels.hpp"
+#include "../configs.hpp"
 
 
 class Sokoban {
