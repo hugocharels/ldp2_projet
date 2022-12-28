@@ -24,6 +24,8 @@ typedef enum { EMPTY = '-', WALL = '#', TARGET = '@', TP = '%', PLAYER = '$', BO
 
 enum class COLOR { NONE = 1, RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK };
 
+enum class GAME_STATE { PLAY, EDITOR };
+
 COLOR charToColor(char x);
 COLOR intToColor(int x);
 int mod(int x, int y);
