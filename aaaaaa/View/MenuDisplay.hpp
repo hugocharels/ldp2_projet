@@ -1,10 +1,15 @@
 #ifndef _MENU_DISPLAY_HPP
 #define _MENU_DISPLAY_HPP
 
+#include <vector>
+#include <memory>
 #include "AbstractDisplay.hpp"
 
 
 class MenuDisplay: public AbstractDisplay {
+
+	//std::vector<std::shared_ptr<Printable>> menu_elem;
+	int textSize=20;
 
 public:
 
