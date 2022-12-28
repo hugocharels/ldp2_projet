@@ -8,13 +8,18 @@ main: main.cpp
 	make Model -B
 	make clean
 	make configs.o
-	${CXX} ${CXXFLAGS} -o sokoban main.cpp Model/obj.o View/obj.o Controller/obj.o configs.o  ${CXXLIBS} || make rm
+	make MenuElement.o
+	${CXX} ${CXXFLAGS} -o sokoban main.cpp Model/obj.o View/obj.o Controller/obj.o configs.o MenuElement.o ${CXXLIBS} || make rm
 	make clean
 	make rm
 
 
 configs.o: configs.cpp configs.hpp
 	${CXX} ${CXXFLAGS} -c configs.cpp  ${CXXLIBS}
+
+MenuElement.o: Elements/MenuElement.cpp Elements/MenuElement.hpp
+	${CXX} ${CXXFLAGS} -c Elements/MenuElement.cpp  ${CXXLIBS}
+
 
 View: View/MainDisplay.cpp View/MainDisplay.hpp View/BoardDisplay.cpp View/BoardDisplay.hpp View/EditorDisplay.cpp View/EditorDisplay.hpp View/MenuDisplay.cpp View/MenuDisplay.hpp
 	${CXX} ${CXXFLAGS} -c View/MainDisplay.cpp  ${CXXLIBS}

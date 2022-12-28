@@ -3,12 +3,15 @@
 
 #include "../include.hpp"
 #include "AbstractDisplay.hpp"
+#include "../Elements/MenuElement.hpp"
 
 
 class MenuDisplay: public AbstractDisplay {
 
-	//std::vector<std::shared_ptr<Printable>> menu_elem;
+	std::vector<std::shared_ptr<Printable>> elements;
 	int textSize=20;
+
+	void drawButtons();
 
 public:
 

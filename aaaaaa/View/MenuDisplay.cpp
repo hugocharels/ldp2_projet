@@ -1,7 +1,14 @@
 #include "../include.hpp"
 #include "MenuDisplay.hpp"
+#include "../Elements/Buttons.hpp"
 
 
 void MenuDisplay::draw() {
-    std::cout << "in menu" << std::endl;
+    this->drawButtons();
+}
+
+void MenuDisplay::drawButtons() {
+    for (auto& button : MENU_BUTTONS) {
+        button->print();
+    }
 }
