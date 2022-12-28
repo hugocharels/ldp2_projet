@@ -3,6 +3,7 @@
 
 #include "../configs.hpp"
 #include "AbstractController.hpp"
+#include "../Model/Sokoban.hpp"
 
 
 class BoardController: public AbstractController {
@@ -12,7 +13,7 @@ class BoardController: public AbstractController {
 public:
 
 	void keyPressed(int key_code) override;
-	void mouseClick(Point mous_loc) override;
+	void mouseClick(Point mouse_loc) override;
 
 	void setModel(Sokoban* m) { this->model = m; }
 

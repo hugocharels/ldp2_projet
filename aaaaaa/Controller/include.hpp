@@ -2,7 +2,7 @@
 #define CONTROLLER_INCLUDE_HPP
 
 
-#include "Controller.hpp"
+#include "AbstractController.hpp"
 #include "BoardController.hpp"
 #include "EditorController.hpp"
 #include "MenuController.hpp"

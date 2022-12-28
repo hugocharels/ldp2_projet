@@ -1,4 +1,5 @@
 #include "MainDisplay.hpp"
+#include "../configs.hpp"
 
 
 void MainDisplay::draw(GAME_STATE state) {
