@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic -lfltk -lfltk_images -ljsoncpp
+CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic
 CXXLIBS += -lfltk -lfltk_images -ljsoncpp
 
 main: main.cpp
@@ -7,9 +7,9 @@ main: main.cpp
 	make Controller -B
 	make Model -B
 	make configs.o
-	make clean
-	clear
+	#clear
 	${CXX} ${CXXFLAGS} -o sokoban main.cpp Model/obj.o View/obj.o Controller/obj.o configs.o  ${CXXLIBS} || make rm
+	make clean
 	make rm
 
 
