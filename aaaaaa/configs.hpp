@@ -22,7 +22,7 @@ struct Point {
 typedef enum { UP, DOWN, LEFT, RIGHT, INVALID } MOVE;
 typedef enum { EMPTY = '-', WALL = '#', TARGET = '@', TP = '%', PLAYER = '$', BOX = '&' } CELL;
 enum class COLOR { NONE = 1, RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK };
-enum class GAME_STATE { PLAY, EDITOR };
+enum class GAME_STATE { WELCOME, PLAY, EDITOR };
 
 
 // FUNCTIONS
