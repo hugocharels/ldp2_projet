@@ -3,6 +3,7 @@
 
 #include "AbstractDisplay.hpp"
 
+#include "../configs.hpp"
 #include "../Model/Sokoban.hpp"
 
 

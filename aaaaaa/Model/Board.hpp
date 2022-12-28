@@ -6,9 +6,9 @@
 #include <memory>
 #include <json/json.h>
 
+#include "../configs.hpp"
 #include "Matrix.hpp"
 #include "Cell/include.hpp"
-#include "../configs.hpp"
 
 
 class Board {

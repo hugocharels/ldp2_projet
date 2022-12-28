@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 
+#include "../configs.hpp"
 #include "Board.hpp"
 
 

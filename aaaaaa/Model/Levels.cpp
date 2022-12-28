@@ -3,10 +3,9 @@
 #include <json/json.h>
 #include <dirent.h>
 
+#include "../configs.hpp"
 #include "Board.hpp"
 #include "Levels.hpp"
-
-
 
 
 void Levels::loadFiles() {

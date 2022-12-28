@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "MainController.hpp"
 #include "../configs.hpp"
+#include "MainController.hpp"
 
 
 void MainController::keyPressed(int key_code, GAME_STATE state) {
