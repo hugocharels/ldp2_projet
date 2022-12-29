@@ -12,7 +12,7 @@ class MainWindow : public Fl_Double_Window {
     MainController* controller;
 
 	int time_in_welcome = refreshPerSecond * 2;
-	GAME_STATE state = GAME_STATE::PLAY;
+	GAME_STATE state = GAME_STATE::WELCOME;
 
 public:
 
