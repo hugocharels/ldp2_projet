@@ -2,6 +2,8 @@
 #include "MenuDisplay.hpp"
 #include "../Elements/Buttons.hpp"
 
+const char* WELCOME = "images/soko_mainpage.png";
+
 
 void MenuDisplay::draw() {
     this->drawButtons();
@@ -11,6 +13,13 @@ void MenuDisplay::draw() {
     this->drawLevelSelector();
     this->drawStatus();
 }
+
+void MenuDisplay::drawWelcome() {
+	Fl_Image* image_ptr = Fl_PNG_Image(WELCOME).copy(windowWidth, windowHeight);
+	image_ptr->draw(0, 0);
+	delete image_ptr;
+}
+
 
 void MenuDisplay::drawButtons() {
     for (auto& button : MENU_BUTTONS) {

@@ -11,6 +11,7 @@ class MainWindow : public Fl_Double_Window {
     MainDisplay* display;
     MainController* controller;
 
+	int time_in_welcome = refreshPerSecond * 2;
 	GAME_STATE state = GAME_STATE::PLAY;
 
 public:
@@ -23,6 +24,10 @@ public:
 
 	void draw() {
 		Fl_Window::draw();
+		if (state == GAME_STATE::WELCOME) {
+			if (this->time_in_welcome <= 0) { state = GAME_STATE::PLAY; }
+			else { this->time_in_welcome--; }
+		}
 		display->draw(state);
 	}
 

@@ -10,6 +10,7 @@ void MainDisplay::draw(GAME_STATE state) {
 	switch(state) {
 
 		case GAME_STATE::WELCOME:
+			menu.drawWelcome();
 			break;
 
 		case GAME_STATE::PLAY:

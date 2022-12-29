@@ -24,6 +24,8 @@ public:
 
 	void draw() override;
 
+	void drawWelcome();
+
 	void setModel(Sokoban* m) { this->model = m; }
 	
 };
