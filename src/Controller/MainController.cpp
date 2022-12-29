@@ -47,6 +47,7 @@ void MainController::mouseClick(Point mouse_loc, GAME_STATE &state) {
 		case GAME_STATE::WON:
 		case GAME_STATE::LOST:
 			menu.mouseClick(mouse_loc);
+			state = menu.getNewState();
 			break;
 			
 		case GAME_STATE::EDITOR:
