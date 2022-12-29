@@ -2,8 +2,13 @@
 #include "MainController.hpp"
 
 
-void MainController::keyPressed(int key_code, GAME_STATE state) {
+void MainController::keyPressed(int key_code, GAME_STATE &state) {
+
 	switch(state) {
+
+		case GAME_STATE::WELCOME:
+			state = GAME_STATE::PLAY;
+			break;
 
 		case GAME_STATE::PLAY:
 			board.keyPressed(key_code);
@@ -16,8 +21,13 @@ void MainController::keyPressed(int key_code, GAME_STATE state) {
 }
 
 
-void MainController::mouseClick(Point mouse_loc, GAME_STATE state) {
+void MainController::mouseClick(Point mouse_loc, GAME_STATE &state) {
+
 	switch(state) {
+
+		case GAME_STATE::WELCOME:
+			state = GAME_STATE::PLAY;
+			break;
 
 		case GAME_STATE::PLAY:
 			board.mouseClick(mouse_loc);
