@@ -25,7 +25,7 @@ public:
  	
 	void start();	// only in terminal
 
- 	void inputPlayer(MOVE move);
+ 	GAME_STATE inputPlayer(MOVE move);
  	
 	void restart(int idx);
 

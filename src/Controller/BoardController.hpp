@@ -9,6 +9,7 @@
 class BoardController: public AbstractController {
 	
 	Sokoban* model;
+	GAME_STATE state;
 
 	inline Point displayPosToBoardPos(Point display_pos) { return Point{(display_pos.y / cellSize) - 1, (display_pos.x / cellSize) - 1}; }
 	
@@ -18,6 +19,8 @@ public:
 	void mouseClick(Point mouse_loc) override;
 
 	void setModel(Sokoban* m) { this->model = m; }
+
+	GAME_STATE getNewState() const { return state; }
 
 };
 

@@ -14,9 +14,15 @@ void MainController::keyPressed(int key_code, GAME_STATE &state) {
 			board.keyPressed(key_code);
 			break;
 
+		case GAME_STATE::WON:
+		case GAME_STATE::LOST:
+			menu.keyPressed(key_code);
+			break;
+
 		case GAME_STATE::EDITOR:
 			editor.keyPressed(key_code);
 			break;
+		
 	}
 }
 
@@ -30,10 +36,16 @@ void MainController::mouseClick(Point mouse_loc, GAME_STATE &state) {
 			break;
 
 		case GAME_STATE::PLAY:
-			board.mouseClick(mouse_loc);
 			menu.mouseClick(mouse_loc);
+			board.mouseClick(mouse_loc);
+			state = board.getNewState();
 			break;
 
+		case GAME_STATE::WON:
+		case GAME_STATE::LOST:
+			menu.mouseClick(mouse_loc);
+			break;
+			
 		case GAME_STATE::EDITOR:
 			editor.mouseClick(mouse_loc);
 			break;

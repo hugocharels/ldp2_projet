@@ -4,7 +4,9 @@
 
 
 void MenuController::keyPressed(int key_code) {
-	std::cout << key_code << std::endl;
+	if (key_code == ' ') {
+		this->model->restart(this->model->getCurrentIdx());
+	}
 }
 
 

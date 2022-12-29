@@ -31,23 +31,23 @@ void Sokoban::start() {
 }
 
 
-void Sokoban::inputPlayer(MOVE move)  {
+GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 	this->board.play(move);
 	//this->board.print();
 	if (this->win()) {
 		this->setStatus(0);
-		std::cout << "gg" << std::endl;
-		//exit(0);
+		return GAME_STATE::WON;
 	} 
 	else if (this->loose()) {
 		this->setStatus(2);
 		std::cout << "ripun" << std::endl;
-		//exit(0);
+		return GAME_STATE::LOST;
 	}
 	else if (this->looseNoMoreStep()){
 		this->setStatus(3);
-		std::cout << "ripeu" << std::endl;
+		return GAME_STATE::LOST;
 	}
+	return GAME_STATE::PLAY;
 }
 
 
