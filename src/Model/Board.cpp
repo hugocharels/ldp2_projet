@@ -61,7 +61,7 @@ bool Board::loose() {
 	for (const auto &box : this->boxes) {
 		if (not box.onTarget() and this->blockedBox(box)) { 
 			num_blocked_box++;
-			if ( num_blocked_box > this->target_nb - this->boxes.size() ) {
+			if ( this->boxes.size() - num_blocked_box < this->target_nb ) {
 				return true;
 			}
 		}
@@ -75,6 +75,7 @@ bool Board::loose() {
 void Board::loadMap(int rows, int cols, std::string &str_map) {
 
 	std::vector<std::tuple<int, int, char, Teleporter*>> tp_vector;
+	this->target_nb = 0;
 
 	this->map.resize(rows, cols);
 	int i = 0, j = 0;		//actual pos
