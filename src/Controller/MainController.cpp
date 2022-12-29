@@ -19,6 +19,7 @@ void MainController::keyPressed(int key_code, GAME_STATE &state) {
 		case GAME_STATE::WON:
 		case GAME_STATE::LOST:
 			menu.keyPressed(key_code);
+			//state = menu.getNewState();
 			break;
 
 		case GAME_STATE::EDITOR:
