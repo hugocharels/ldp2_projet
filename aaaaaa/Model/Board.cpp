@@ -55,9 +55,16 @@ bool Board::win() const {
 }
 
 
+// si num of blocked box > num target - num box
 bool Board::loose() {
+	unsigned short num_blocked_box = 0;
 	for (const auto &box : this->boxes) {
-		if (not box.onTarget() and this->blockedBox(box)) { return true; }
+		if (not box.onTarget() and this->blockedBox(box)) { 
+			num_blocked_box++;
+			if ( num_blocked_box > this->target_nb - this->boxes.size() ) {
+				return true;
+			}
+		}
 	} return false;
 }
 
@@ -73,14 +80,14 @@ void Board::loadMap(int rows, int cols, std::string &str_map) {
 	int i = 0, j = 0;		//actual pos
 	for (auto c : str_map) {
 		if (c == '\n') { ++i; j=0; continue; }
-		if (c == WALL) { this->map.at(i, j) = std::make_unique<Cell>(Cell{WALL}); }
-		else if (c == EMPTY) { this->map.at(i, j) = std::make_unique<Cell>(Cell{EMPTY}); }
-		else if (isdigit(c)) { this->map.at(i, j) = std::make_unique<Target>(Target{charToColor(c)}); }
+		if (c == WALL) { this->map.at(i, j) = std::make_unique<Cell>(WALL); }
+		else if (c == EMPTY) { this->map.at(i, j) = std::make_unique<Cell>(EMPTY); }
+		else if (isdigit(c)) { this->map.at(i, j) = std::make_unique<Target>(charToColor(c)); this->target_nb++; }
 		else { 
-			this->map.at(i, j) = std::make_unique<Teleporter>(Teleporter{charToColor(c)});
+			this->map.at(i, j) = std::make_unique<Teleporter>(charToColor(c));
 			auto tp_info = std::make_tuple(i, j, c, dynamic_cast<Teleporter*>(this->map.at(i, j).get()));
 			tp_vector.push_back(tp_info);
-		} //teleporter chiant (dico ou constructeur desti à nulle)
+		}
 		++j;
 	}
 

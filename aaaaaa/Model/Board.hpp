@@ -11,7 +11,7 @@ class Board {
 	Matrix<std::unique_ptr<Cell>> map;
 	Player player;
 	std::vector<Box> boxes;
-
+	unsigned short target_nb;
 
 	bool inMap(int x, int y) const ;
 
