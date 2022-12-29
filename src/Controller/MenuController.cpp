@@ -7,6 +7,8 @@ void MenuController::keyPressed(int key_code) {
 	if (key_code == ' ') {
 		this->model->restart(this->model->getCurrentIdx());
 		this->state = GAME_STATE::PLAY;
+	} else {
+		this->state = GAME_STATE::LOST;
 	}
 }
 
