@@ -1,4 +1,5 @@
-#include "configs.h"
+#include "include.hpp"
+#include "configs.hpp"
 
 
 COLOR charToColor(char x) {
