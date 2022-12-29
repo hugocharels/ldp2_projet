@@ -13,6 +13,7 @@ void MainController::keyPressed(int key_code, GAME_STATE &state) {
 		case GAME_STATE::PLAY:
 			board.keyPressed(key_code);
 			menu.keyPressed(key_code);
+			state = board.getNewState();
 			break;
 
 		case GAME_STATE::WON:
