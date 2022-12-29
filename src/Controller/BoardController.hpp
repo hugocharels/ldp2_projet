@@ -20,7 +20,7 @@ public:
 
 	void setModel(Sokoban* m) { this->model = m; }
 
-	GAME_STATE getNewState() { GAME_STATE tmp = state; state = GAME_STATE::PLAY ; return tmp; }
+	GAME_STATE getNewState() const { return state; }
 
 };
 

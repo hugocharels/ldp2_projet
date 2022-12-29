@@ -9,7 +9,8 @@
 class MenuController: public AbstractController {
 
 	Sokoban* model;
-
+	GAME_STATE state;
+	
 public:
 
 	void keyPressed(int key_code) override;
@@ -17,6 +18,8 @@ public:
 
 	void setModel(Sokoban* m) { this->model = m; }
 	
+	GAME_STATE getNewState() const { return state; }
+
 };
 
 
