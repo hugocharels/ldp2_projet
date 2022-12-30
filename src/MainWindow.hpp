@@ -20,6 +20,7 @@ public:
             Fl_Double_Window(500, 200, windowWidth, windowHeight, "Sokoban"), 
             display{display}, controller{controller} {
 		Fl::add_timeout(1.0 / refreshPerSecond, Timer_CB, this);
+		color(fl_rgb_color(112,146,191));
 	}
 
 	void draw() {
