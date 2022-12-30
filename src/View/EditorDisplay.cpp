@@ -1,7 +1,8 @@
 #include "../include.hpp"
 #include "EditorDisplay.hpp"
+#include "../Elements/MenuElement.hpp"
 
 
 void EditorDisplay::draw() {
-    std::cout << "in editor" << std::endl;
+    Text{"Hello editor", Point{500, 60}, 20}.print();
 }

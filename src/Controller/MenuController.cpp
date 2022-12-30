@@ -28,5 +28,5 @@ void MenuController::mouseClick(Point mouse_loc) {
 	if (MENU_BUTTONS[3]->contains(mouse_loc)) { this->model->restart(this->model->getSelectIdx());	this->state = GAME_STATE::PLAY; }
 	
 	// CREATE LEVEL
-	if (MENU_BUTTONS[4]->contains(mouse_loc)) { std::cout<<"Create"<<std::endl; }
+	if (MENU_BUTTONS[4]->contains(mouse_loc)) { this->state = GAME_STATE::EDITOR; }
 }

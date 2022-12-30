@@ -42,6 +42,7 @@ void MainController::mouseClick(Point mouse_loc, GAME_STATE &state) {
 			menu.mouseClick(mouse_loc);
 			board.mouseClick(mouse_loc);
 			state = board.getNewState();
+			if (menu.getNewState() == GAME_STATE::EDITOR) { state = GAME_STATE::EDITOR; }
 			break;
 
 		case GAME_STATE::WON:
