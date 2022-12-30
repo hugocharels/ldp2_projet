@@ -31,7 +31,7 @@ public:
 
  	bool win() { return board.win(); }
  	bool loose() { return board.loose(); }
- 	bool looseNoMoreStep() { return step_limit < board.getPlayerPTR()->getSteps(); }
+ 	bool looseNoMoreStep() { return step_limit <= board.getPlayerPTR()->getSteps(); }
 
  	void canMovePlayerTo(std::vector<MOVE>& moves, Point pos);
  	void movePlayer(std::vector<MOVE>& moves);

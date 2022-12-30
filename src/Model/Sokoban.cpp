@@ -34,6 +34,7 @@ void Sokoban::start() {
 GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 	this->board.play(move);
 	//this->board.print();
+
 	if (this->win()) {
 		int win_step = board.getPlayerPTR()->getSteps();
 		if (this->best_score==0 or win_step<best_score){
@@ -53,9 +54,9 @@ GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 		return GAME_STATE::LOST;
 
 	}
-	else if (this->step_limit<0){
-		if (this->looseNoMoreStep())
-		{
+
+	else if (this->step_limit>1){
+		if (this->looseNoMoreStep()){
 			this->setStatus(3);
 			return GAME_STATE::LOST;			
 		}
