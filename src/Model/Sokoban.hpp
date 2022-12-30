@@ -51,7 +51,7 @@ public:
 
 	void setSelectIdx(int inc) { select_idx = mod(select_idx+inc, levels.getSize()) ; std::cout<<select_idx<<std::endl;}
 
-	void resetBestScore() { this->levels.updateBestScore(this->current_idx, 0); }
+	void resetBestScore() { best_score=0; this->levels.updateBestScore(this->current_idx, 0); }
 
 };
 

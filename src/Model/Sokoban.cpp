@@ -53,10 +53,12 @@ GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 		return GAME_STATE::LOST;
 
 	}
-	else if (this->looseNoMoreStep()){
-		this->setStatus(3);
-		return GAME_STATE::LOST;
-
+	else if (this->step_limit<0){
+		if (this->looseNoMoreStep())
+		{
+			this->setStatus(3);
+			return GAME_STATE::LOST;			
+		}
 	}
 	return GAME_STATE::PLAY;
 }
@@ -168,7 +170,7 @@ void Sokoban::setStatus(int code){
 			status = "You win !";
 			break;
 		case 1:
-			status = "New best score !";
+			status = "You win and new best score !";
 			break;
 
 		case 2:
