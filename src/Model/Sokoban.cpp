@@ -35,17 +35,28 @@ GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 	this->board.play(move);
 	//this->board.print();
 	if (this->win()) {
-		this->setStatus(0);
-		return GAME_STATE::WON;
+		int win_step = board.getPlayerPTR()->getSteps();
+		if (this->best_score==0 or win_step<best_score){
+			levels.updateBestScore(this->current_idx, win_step);
+			this->best_score=win_step;
+			this->setStatus(1);
+			return GAME_STATE::WON;
+		}
+		else{
+			this->setStatus(0);
+			return GAME_STATE::WON;
+		}
 	} 
 	else if (this->loose()) {
 		this->setStatus(2);
 		std::cout << "ripun" << std::endl;
 		return GAME_STATE::LOST;
+
 	}
 	else if (this->looseNoMoreStep()){
 		this->setStatus(3);
 		return GAME_STATE::LOST;
+
 	}
 	return GAME_STATE::PLAY;
 }
@@ -143,6 +154,8 @@ void Sokoban::restart(int idx) {
 }
 
 
+
+
 void Sokoban::setStatus(int code){
 	/*
 	0 = win
@@ -159,7 +172,7 @@ void Sokoban::setStatus(int code){
 			break;
 
 		case 2:
-			status = "You lose ! (all boxes are blocked)";
+			status = "You lose ! (too much blocked boxes)";
 			break;
 		case 3:
 			status = "You lose ! (no more steps left)";
