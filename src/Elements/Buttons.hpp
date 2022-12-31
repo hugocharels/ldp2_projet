@@ -13,8 +13,8 @@ const std::array<std::shared_ptr<TextRectangle>, 5> MENU_BUTTONS{
 
 //EDITOR
 const std::array<std::shared_ptr<TextRectangle>, 7> EDIT_ELEM_BUTTONS{
-		std::make_shared<TextRectangle>(Point{620,90}, 15, 15, "<"),		//box
-		std::make_shared<TextRectangle>(Point{690,90}, 15, 15, ">"),
+		std::make_shared<TextRectangle>(Point{620,100}, 15, 15, "<"),		//box
+		std::make_shared<TextRectangle>(Point{690,100}, 15, 15, ">"),
 
 		std::make_shared<TextRectangle>(Point{770,90}, 15, 15, "<"),		//target
 		std::make_shared<TextRectangle>(Point{850,90}, 15, 15, ">"),

@@ -2,10 +2,12 @@
 #define _EDITOR_DISPLAY_HPP
 
 #include "../include.hpp"
+//#include "../Model/Editor.hpp"
 #include "AbstractDisplay.hpp"
 
 
 class EditorDisplay: public AbstractDisplay {
+	Editor* model;
 	int textSize=20;
 
 public:
