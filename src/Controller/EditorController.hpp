@@ -11,6 +11,7 @@ public:
 
 	void keyPressed(int key_code) override;
 	void mouseClick(Point mous_loc) override;
+	void clickSelect(Point mouse_loc);
 
 };
 

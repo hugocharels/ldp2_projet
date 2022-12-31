@@ -7,7 +7,7 @@
 
 
 class EditorDisplay: public AbstractDisplay {
-	Editor* model;
+	//Editor* model;
 	int textSize=20;
 
 public:
