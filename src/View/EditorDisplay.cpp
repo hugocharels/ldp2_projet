@@ -24,6 +24,7 @@ void EditorDisplay::drawButtons(){ //la meme que dans menu display sauf button
 void EditorDisplay::drawBox(){
     Text{"Box", Point{655, 60}, textSize}.print();
     Fl_Image* image_ptr;
+    //model->getBoxImage()
     image_ptr = Fl_PNG_Image(&model->getBoxImage()[0]).copy(cellSize, cellSize);
     image_ptr->draw(630, 80);
     delete image_ptr;

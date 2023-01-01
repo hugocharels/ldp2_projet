@@ -9,8 +9,8 @@ void EditorController::keyPressed(int key_code) {
 
 
 void EditorController::mouseClick(Point mouse_loc) {
-	if (EDIT_ELEM_BUTTONS[0]->contains(mouse_loc)) { model->setIdx(model->getBoxIdx(),-1, N_BOX); }
-	if (EDIT_ELEM_BUTTONS[1]->contains(mouse_loc)) { model->setIdx(model->getBoxIdx(), 1, N_BOX); }
+	if (EDIT_ELEM_BUTTONS[0]->contains(mouse_loc)) { model->setIdx(-1); }
+	if (EDIT_ELEM_BUTTONS[1]->contains(mouse_loc)) { model->setIdx(1); }
 }
 
 
