@@ -3,6 +3,7 @@
 
 #include "include.hpp"
 #include "Model/Sokoban.hpp"
+#include "Model/Editor.hpp"
 #include "View/MainDisplay.hpp"
 #include "Controller/MainController.hpp"
 #include "MainWindow.hpp"
@@ -11,8 +12,9 @@
 class Game {
 
     Sokoban model;
-    MainDisplay display{&model};
-    MainController controller{&model};
+    Editor edit_model;
+    MainDisplay display{&model, &edit_model};
+    MainController controller{&model, &edit_model};
     MainWindow window{&display, &controller};
 
 public:

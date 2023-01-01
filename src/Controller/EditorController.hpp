@@ -3,15 +3,22 @@
 
 #include "../include.hpp"
 #include "AbstractController.hpp"
+#include "../Model/Editor.hpp"
 
 
 class EditorController: public AbstractController {
+	Editor* model;
+	GAME_STATE state;
 
 public:
 
 	void keyPressed(int key_code) override;
 	void mouseClick(Point mous_loc) override;
-	void clickSelect(Point mouse_loc);
+	//void clickSelect(Point mouse_loc);
+
+	void setModel(Editor* m) { this->model = m; }
+	
+	GAME_STATE getNewState() const { return state; }
 
 };
 

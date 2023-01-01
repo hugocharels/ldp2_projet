@@ -1,6 +1,10 @@
 #ifndef _IMAGES_HPP
 #define _IMAGES_HPP
 
+const int N_BOX = 7;
+const int N_TARGET = 7;
+const int N_TP = 3;
+
 const std::string IM_WALL       = "images/wall.png";
 const std::string FLOOR         = "images/floor.png";
 const std::string IM_PLAYER     = "images/playerew.png";
