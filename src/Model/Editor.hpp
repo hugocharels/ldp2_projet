@@ -13,15 +13,20 @@ class Editor {
 	int tp_idx = 0;
 
 public:
+	//CHOOSE ELEM
 	std::string getBoxImage() {return this->box_list[this->box_idx];};
 	std::string getTargetImage() {return this->target_list[this->target_idx];};
 	std::string getTeleporterImage() {return this->tp_list[this->tp_idx];};
-	int getBoxIdx() {return box_idx;}
+/*	int getBoxIdx() {return box_idx;}
 	int getTargetIdx() {return target_idx;}
-	int getTPIdx() {return tp_idx;}
+	int getTPIdx() {return tp_idx;}*/
+	//pê pas besoin des get, à voir
 	void setBoxIdx(int inc) { this->box_idx = mod(this->box_idx+inc, N_TARGET); }
 	void setTargetIdx(int inc){ this->target_idx = mod(this->target_idx+inc, N_TARGET); }
 	void setTeleporterIdx(int inc){ this->tp_idx = mod(this->tp_idx+inc, N_TP); }
+
+	//PLACE ELEM
+	void placeElem(std::string elem_im) { std::cout<<elem_im<<std::endl; }
 };
 
 //std::cout<<this->box_list[this->box_idx] <<std::endl;

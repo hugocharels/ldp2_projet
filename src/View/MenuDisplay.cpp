@@ -11,7 +11,7 @@ void MenuDisplay::draw() {
     this->drawStepCounter();
     this->drawLimitStep();
     this->drawLevelSelector();
-    this->drawStatus();
+
 }
 
 void MenuDisplay::drawWelcome() {
@@ -55,6 +55,3 @@ void MenuDisplay::drawLevelSelector() {
 	TextRectangle{Point{650,400}, 110, 35, "Level " + std::to_string(model->getSelectIdx())}.print();
 }
 
-void MenuDisplay::drawStatus() {
-	TextRectangle{Point{300,550}, 500, 35, model->getStatus()}.print();
-}

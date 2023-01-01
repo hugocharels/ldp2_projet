@@ -18,6 +18,7 @@ void BoardDisplay::draw() {
 	drawCell(modelPosToDisplayPos(player->getPos()), player);
 	// box
 	for (auto& box: *boxes){ drawCell(modelPosToDisplayPos(box.getPos()), &box);}
+    this->drawStatus();
 
 }
 
@@ -152,3 +153,6 @@ void BoardDisplay::drawBox(Point display_pos, COLOR color) {
 	delete image_ptr;
 }
 
+void BoardDisplay::drawStatus() {
+	TextRectangle{Point{300,550}, 500, 35, model->getStatus()}.print();
+}

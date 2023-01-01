@@ -16,27 +16,22 @@ const std::array<std::shared_ptr<TextRectangle>, 7> EDIT_ELEM_BUTTONS{
 		std::make_shared<TextRectangle>(Point{620,100}, 15, 15, "<"),		//box
 		std::make_shared<TextRectangle>(Point{690,100}, 15, 15, ">"),
 
-		std::make_shared<TextRectangle>(Point{770,90}, 15, 15, "<"),		//target
-		std::make_shared<TextRectangle>(Point{850,90}, 15, 15, ">"),
+		std::make_shared<TextRectangle>(Point{620,225}, 15, 15, "<"),		//target
+		std::make_shared<TextRectangle>(Point{690,225}, 15, 15, ">"),
 
-		std::make_shared<TextRectangle>(Point{620,210}, 15, 15, "<"),		//tp 
-		std::make_shared<TextRectangle>(Point{690,210}, 15, 15, ">"),
+		std::make_shared<TextRectangle>(Point{770,225}, 15, 15, "<"),		//tp
+		std::make_shared<TextRectangle>(Point{850,225}, 15, 15, ">"),
 
 		std::make_shared<TextRectangle>(Point{740,440}, 125, 35, "Finish"),
 };
 
-/*const std::array<std::shared_ptr<Fl_Image*>, 7> EDIT_BOX_BUTTONS{
+const std::array<std::shared_ptr<TextRectangle>, 6> SELECT_ELEM_BUTTONS{
+		std::make_shared<TextRectangle>(Point{655,150}, 30, 15, "-"),		//box
+		std::make_shared<TextRectangle>(Point{810,150}, 30, 15, "-"),		//player
+		std::make_shared<TextRectangle>(Point{655,260}, 30, 15, "-"),		//target
+		std::make_shared<TextRectangle>(Point{810,260}, 30, 15, "-"),		//tp
+		std::make_shared<TextRectangle>(Point{655,390}, 30, 15, "-"),		//wall
+		std::make_shared<TextRectangle>(Point{810,390}, 30, 15, "-"),		//empty
 
 };
 
-const std::array<std::shared_ptr<Fl_Image*>, 7> EDIT_TARGET_BUTTONS{
-
-};
-
-const std::array<std::shared_ptr<Fl_Image*>, 3> EDIT_TELEPORTER_BUTTONS{
-
-};
-
-const std::array<std::shared_ptr<Fl_Image*>, 3> EDIT_ELEM_BUTTONS{
-
-};*/

@@ -5,6 +5,7 @@
 #include "AbstractDisplay.hpp"
 #include "../Model/Sokoban.hpp"
 #include "../Model/Cell/include.hpp"
+#include "../Elements/MenuElement.hpp"
 
 
 class BoardDisplay: public AbstractDisplay {
@@ -21,6 +22,7 @@ class BoardDisplay: public AbstractDisplay {
 	void drawTp(Point display_pos, COLOR color);
 	void drawTarget(Point display_pos, COLOR color);
 	void drawBox(Point display_pos, COLOR color);
+	void drawStatus();
 
 public:
 

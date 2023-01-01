@@ -19,50 +19,52 @@ void EditorDisplay::drawButtons(){ //la meme que dans menu display sauf button
     for (auto& button : EDIT_ELEM_BUTTONS) {
         button->print();
     }
+    for (auto& button : SELECT_ELEM_BUTTONS) {
+        button->print();
+    }
 }
 
 void EditorDisplay::drawBox(){
     Text{"Box", Point{655, 60}, textSize}.print();
     Fl_Image* image_ptr;
-    //model->getBoxImage()
     image_ptr = Fl_PNG_Image(&model->getBoxImage()[0]).copy(cellSize, cellSize);
     image_ptr->draw(630, 80);
     delete image_ptr;
 }
 
-void EditorDisplay::drawTarget(){
-    Text{"Target", Point{810, 60}, textSize}.print();
-    Fl_Image* image_ptr;
-    image_ptr = Fl_PNG_Image(&model->getTargetImage()[0]).copy(cellSize, cellSize);
+void EditorDisplay::drawPlayer(){
+    Text{"Player", Point{810, 60}, textSize}.print();
+    Fl_Image* image_ptr = Fl_PNG_Image(&IM_PLAYER[0]).copy(cellSize, cellSize);
     image_ptr->draw(785, 70);
     delete image_ptr;
 }
 
-void EditorDisplay::drawTeleporter(){
-    Text{"Teleporter", Point{660, 180}, textSize}.print();
+void EditorDisplay::drawTarget(){
+    Text{"Target", Point{660, 195}, textSize}.print();
     Fl_Image* image_ptr;
-    image_ptr = Fl_PNG_Image(&model->getTeleporterImage()[0]).copy(cellSize, cellSize);
-    image_ptr->draw(640, 200);
+    image_ptr = Fl_PNG_Image(&model->getTargetImage()[0]).copy(cellSize, cellSize);
+    image_ptr->draw(630, 200);
     delete image_ptr;
 }
 
-void EditorDisplay::drawPlayer(){
-    Text{"Player", Point{810, 180}, textSize}.print();
-    Fl_Image* image_ptr = Fl_PNG_Image(&IM_PLAYER[0]).copy(cellSize, cellSize);
-    image_ptr->draw(790, 220);
+void EditorDisplay::drawTeleporter(){
+    Text{"Teleporter", Point{810, 195}, textSize}.print();
+    Fl_Image* image_ptr;
+    image_ptr = Fl_PNG_Image(&model->getTeleporterImage()[0]).copy(cellSize, cellSize);
+    image_ptr->draw(785, 200);
     delete image_ptr;
 }
 
 void EditorDisplay::drawWall(){
-    Text{"Wall", Point{650, 300}, textSize}.print();
-    Fl_Image* image_ptr = Fl_PNG_Image(&FLOOR[0]).copy(cellSize, cellSize);
-    image_ptr->draw(615, 315);
+    Text{"Wall", Point{655, 300}, textSize}.print();
+    Fl_Image* image_ptr = Fl_PNG_Image(&IM_WALL[0]).copy(cellSize, cellSize);
+    image_ptr->draw(630, 320);
     delete image_ptr;
 }
 
 void EditorDisplay::drawEmpty(){
     Text{"Empty", Point{810, 300}, textSize}.print();
-    Fl_Image* image_ptr = Fl_PNG_Image(&IM_WALL[0]).copy(cellSize, cellSize);
-    image_ptr->draw(780,320 );
+    Fl_Image* image_ptr = Fl_PNG_Image(&FLOOR[0]).copy(cellSize, cellSize);
+    image_ptr->draw(785,320 );
     delete image_ptr;
 }

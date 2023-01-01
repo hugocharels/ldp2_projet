@@ -53,6 +53,7 @@ void MainController::mouseClick(Point mouse_loc, GAME_STATE &state) {
 			
 		case GAME_STATE::EDITOR:
 			editor.mouseClick(mouse_loc);
+			if (editor.getNewState() == GAME_STATE::PLAY) { state = GAME_STATE::PLAY; }
 			break;
 	}
 }
