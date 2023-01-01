@@ -14,11 +14,14 @@ class Editor {
 
 public:
 	std::string getBoxImage() {return this->box_list[this->box_idx];};
+	std::string getTargetImage() {return this->target_list[this->target_idx];};
+	std::string getTeleporterImage() {return this->tp_list[this->tp_idx];};
 	int getBoxIdx() {return box_idx;}
 	int getTargetIdx() {return target_idx;}
 	int getTPIdx() {return tp_idx;}
-	void setIdx(int inc) { this->box_idx = mod(this->box_idx+inc, N_TARGET); }
+	void setBoxIdx(int inc) { this->box_idx = mod(this->box_idx+inc, N_TARGET); }
 	void setTargetIdx(int inc){ this->target_idx = mod(this->target_idx+inc, N_TARGET); }
+	void setTeleporterIdx(int inc){ this->tp_idx = mod(this->tp_idx+inc, N_TP); }
 };
 
 //std::cout<<this->box_list[this->box_idx] <<std::endl;

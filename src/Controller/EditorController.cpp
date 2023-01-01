@@ -9,8 +9,15 @@ void EditorController::keyPressed(int key_code) {
 
 
 void EditorController::mouseClick(Point mouse_loc) {
-	if (EDIT_ELEM_BUTTONS[0]->contains(mouse_loc)) { model->setIdx(-1); }
-	if (EDIT_ELEM_BUTTONS[1]->contains(mouse_loc)) { model->setIdx(1); }
+	//séparer plus tard le mouse click entre la partie board et celle select 
+	if (EDIT_ELEM_BUTTONS[0]->contains(mouse_loc)) { model->setBoxIdx(-1); }
+	if (EDIT_ELEM_BUTTONS[1]->contains(mouse_loc)) { model->setBoxIdx(1); }
+
+	if (EDIT_ELEM_BUTTONS[3]->contains(mouse_loc)) { model->setTargetIdx(-1); }
+	if (EDIT_ELEM_BUTTONS[4]->contains(mouse_loc)) { model->setTargetIdx(1); }
+
+	if (EDIT_ELEM_BUTTONS[5]->contains(mouse_loc)) { model->setTeleporterIdx(-1); }
+	if (EDIT_ELEM_BUTTONS[6]->contains(mouse_loc)) { model->setTeleporterIdx(1); }
 }
 
 

@@ -33,7 +33,7 @@ void EditorDisplay::drawBox(){
 void EditorDisplay::drawTarget(){
     Text{"Target", Point{810, 60}, textSize}.print();
     Fl_Image* image_ptr;
-    image_ptr = Fl_PNG_Image(&NONE_TARGET[0]).copy(cellSize, cellSize);
+    image_ptr = Fl_PNG_Image(&model->getTargetImage()[0]).copy(cellSize, cellSize);
     image_ptr->draw(785, 70);
     delete image_ptr;
 }
@@ -41,7 +41,7 @@ void EditorDisplay::drawTarget(){
 void EditorDisplay::drawTeleporter(){
     Text{"Teleporter", Point{660, 180}, textSize}.print();
     Fl_Image* image_ptr;
-    image_ptr = Fl_PNG_Image(&NONE_TARGET[0]).copy(cellSize, cellSize);
+    image_ptr = Fl_PNG_Image(&model->getTeleporterImage()[0]).copy(cellSize, cellSize);
     image_ptr->draw(640, 200);
     delete image_ptr;
 }
