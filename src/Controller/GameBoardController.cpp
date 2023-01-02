@@ -1,8 +1,8 @@
 #include "../include.hpp"
-#include "BoardController.hpp"
+#include "GameBoardController.hpp"
 
 
-void BoardController::keyPressed(int key_code) {
+void GameBoardController::keyPressed(int key_code) {
 	MOVE move = INVALID;
 	switch(key_code) {
 		case 65362:
@@ -26,7 +26,7 @@ void BoardController::keyPressed(int key_code) {
 }
 
 
-void BoardController::mouseClick(Point mouse_loc) {
+void GameBoardController::mouseClick(Point mouse_loc) {
 	this->state = this->model->inputPlayer(INVALID);	
 	Point pos = this->displayPosToBoardPos(mouse_loc);
 	std::vector<MOVE> moves;

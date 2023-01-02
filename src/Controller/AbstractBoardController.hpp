@@ -1,26 +1,25 @@
-#ifndef _BOARD_CONTROLLER_HPP
-#define _BOARD_CONTROLLER_HPP
+#ifndef _ABSTRACT_BOARD_CONTROLLER_HPP
+#define _ABSTRACT_BOARD_CONTROLLER_HPP
 
 #include "../include.hpp"
 #include "AbstractController.hpp"
 #include "../Model/Sokoban.hpp"
 
 
-class BoardController: public AbstractController {
-	
+class AbstractBoardController: public AbstractController {
+
+protected:
+
 	Sokoban* model;
-	GAME_STATE state;
 
 	inline Point displayPosToBoardPos(Point display_pos) { return Point{(display_pos.y / cellSize) - 1, (display_pos.x / cellSize) - 1}; }
 	
 public:
 
-	void keyPressed(int key_code) override;
-	void mouseClick(Point mouse_loc) override;
+	virtual void keyPressed(int key_code)=0;
+	virtual void mouseClick(Point mouse_loc)=0;
 
 	void setModel(Sokoban* m) { this->model = m; }
-
-	GAME_STATE getNewState() const { return state; }
 
 };
 
