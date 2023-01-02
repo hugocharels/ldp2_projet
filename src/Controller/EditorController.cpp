@@ -21,7 +21,10 @@ void EditorController::mouseClick(Point mouse_loc) {
 	if (EDIT_ELEM_BUTTONS[4]->contains(mouse_loc)) { model->setTeleporterIdx(-1); }
 	if (EDIT_ELEM_BUTTONS[5]->contains(mouse_loc)) { model->setTeleporterIdx(1); }
 
-	if (EDIT_ELEM_BUTTONS[6]->contains(mouse_loc)) {std::cout<<"finish"<<std::endl;}
+	if (EDIT_ELEM_BUTTONS[6]->contains(mouse_loc)) { model->setStepLimit(-1); }
+	if (EDIT_ELEM_BUTTONS[7]->contains(mouse_loc)) { model->setStepLimit(1); }
+
+	if (EDIT_ELEM_BUTTONS[8]->contains(mouse_loc)) {std::cout<<"finish"<<std::endl;}
 	//this->state = GAME_STATE::PLAY;
 	//faudra save le level et retourner nouveau niveau ? check la terminaison du précédent
 

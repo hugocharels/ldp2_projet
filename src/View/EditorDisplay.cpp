@@ -13,6 +13,7 @@ void EditorDisplay::draw() {
     this->drawPlayer();
     this->drawWall();
     this->drawEmpty();
+    this->drawStepLimit();
 }
 
 void EditorDisplay::drawButtons(){ //la meme que dans menu display sauf button
@@ -67,4 +68,14 @@ void EditorDisplay::drawEmpty(){
     Fl_Image* image_ptr = Fl_PNG_Image(&FLOOR[0]).copy(cellSize, cellSize);
     image_ptr->draw(785,320 );
     delete image_ptr;
+}
+
+void EditorDisplay::drawStepLimit(){
+    Text{"Step limit", Point{700, 440}, textSize}.print();
+    if (model->getStepLimit()==0) {
+        Text{"-", Point{810, 440}, textSize}.print();
+    }
+    else {
+        Text{std::to_string(model->getStepLimit()), Point{810, 440}, textSize}.print();
+    }
 }

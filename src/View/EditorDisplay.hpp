@@ -22,6 +22,7 @@ class EditorDisplay: public AbstractDisplay {
 	void drawPlayer();
 	void drawWall();
 	void drawEmpty();
+	void drawStepLimit();
 
 public:
 
