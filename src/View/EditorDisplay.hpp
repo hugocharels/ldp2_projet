@@ -7,6 +7,11 @@
 
 
 class EditorDisplay: public AbstractDisplay {
+
+	const std::array<const std::string, N_BOX> box_list{NONE_BOX, RED_BOX, ORANGE_BOX, YELLOW_BOX, GREEN_BOX, BLUE_BOX, PURPLE_BOX };
+	const std::array<const std::string, N_TARGET> target_list{NONE_TARGET, RED_TARGET, ORANGE_TARGET, YELLOW_TARGET, GREEN_TARGET, BLUE_TARGET, PURPLE_TARGET };
+	const std::array<const std::string, N_TP> tp_list{GREEN_TP, PINK_TP, PURPLE_TP};
+
 	Editor* model;
 	int textSize=20;
 

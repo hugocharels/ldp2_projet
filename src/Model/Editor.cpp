@@ -1,7 +1,8 @@
 #include "../include.hpp"
-#include "Editor.cpp"
+#include "Editor.hpp"
 
-/*void Editor::getBoxImage(){
-	this->box_list[this->box_idx];
+void Editor::placeElem() {
 
-}*/
+	
+
+}

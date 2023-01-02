@@ -3,14 +3,11 @@
 
 #include "../include.hpp"
 #include "AbstractController.hpp"
-#include "../Model/Sokoban.hpp"
 
 
 class AbstractBoardController: public AbstractController {
 
 protected:
-
-	Sokoban* model;
 
 	inline Point displayPosToBoardPos(Point display_pos) { return Point{(display_pos.y / cellSize) - 1, (display_pos.x / cellSize) - 1}; }
 	
@@ -18,8 +15,6 @@ public:
 
 	virtual void keyPressed(int key_code)=0;
 	virtual void mouseClick(Point mouse_loc)=0;
-
-	void setModel(Sokoban* m) { this->model = m; }
 
 };
 

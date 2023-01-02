@@ -26,10 +26,10 @@ void EditorController::mouseClick(Point mouse_loc) {
 	//faudra save le level et retourner nouveau niveau ? check la terminaison du précédent
 
 	//select
-	if (SELECT_ELEM_BUTTONS[0]->contains(mouse_loc)) { model->placeElem(model->getBoxImage());}
-	if (SELECT_ELEM_BUTTONS[1]->contains(mouse_loc)) { model->placeElem(IM_PLAYER); }
-	if (SELECT_ELEM_BUTTONS[2]->contains(mouse_loc)) { model->placeElem(model->getTargetImage());}
-	if (SELECT_ELEM_BUTTONS[3]->contains(mouse_loc)) { model->placeElem(model->getTeleporterImage());}
-	if (SELECT_ELEM_BUTTONS[4]->contains(mouse_loc)) { model->placeElem(IM_WALL);}
-	if (SELECT_ELEM_BUTTONS[5]->contains(mouse_loc)) { model->placeElem(FLOOR);}
+	if (SELECT_ELEM_BUTTONS[0]->contains(mouse_loc)) { model->placeElem(); }
+	if (SELECT_ELEM_BUTTONS[1]->contains(mouse_loc)) { model->placeElem(); }
+	if (SELECT_ELEM_BUTTONS[2]->contains(mouse_loc)) { model->placeElem(); }
+	if (SELECT_ELEM_BUTTONS[3]->contains(mouse_loc)) { model->placeElem(); }
+	if (SELECT_ELEM_BUTTONS[4]->contains(mouse_loc)) { model->placeElem(); }
+	if (SELECT_ELEM_BUTTONS[5]->contains(mouse_loc)) { model->placeElem(); }
 }

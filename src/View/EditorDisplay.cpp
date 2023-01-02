@@ -27,7 +27,7 @@ void EditorDisplay::drawButtons(){ //la meme que dans menu display sauf button
 void EditorDisplay::drawBox(){
     Text{"Box", Point{655, 60}, textSize}.print();
     Fl_Image* image_ptr;
-    image_ptr = Fl_PNG_Image(&model->getBoxImage()[0]).copy(cellSize, cellSize);
+    image_ptr = Fl_PNG_Image(&(box_list[model->getBoxIdx()])[0]).copy(cellSize, cellSize);
     image_ptr->draw(630, 80);
     delete image_ptr;
 }
@@ -42,7 +42,7 @@ void EditorDisplay::drawPlayer(){
 void EditorDisplay::drawTarget(){
     Text{"Target", Point{660, 195}, textSize}.print();
     Fl_Image* image_ptr;
-    image_ptr = Fl_PNG_Image(&model->getTargetImage()[0]).copy(cellSize, cellSize);
+    image_ptr = Fl_PNG_Image(&(target_list[model->getTargetIdx()])[0]).copy(cellSize, cellSize);
     image_ptr->draw(630, 200);
     delete image_ptr;
 }
@@ -50,7 +50,7 @@ void EditorDisplay::drawTarget(){
 void EditorDisplay::drawTeleporter(){
     Text{"Teleporter", Point{810, 195}, textSize}.print();
     Fl_Image* image_ptr;
-    image_ptr = Fl_PNG_Image(&model->getTeleporterImage()[0]).copy(cellSize, cellSize);
+    image_ptr = Fl_PNG_Image(&(tp_list[model->getTeleporterIdx()])[0]).copy(cellSize, cellSize);
     image_ptr->draw(785, 200);
     delete image_ptr;
 }
