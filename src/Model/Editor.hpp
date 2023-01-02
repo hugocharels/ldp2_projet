@@ -10,6 +10,9 @@ class Editor {
 	int target_idx = 0;
 	int tp_idx = 0;
 
+	bool is_selected=false;
+	CELL selected=EMPTY;
+
 public:
 	//CHOOSE ELEM
 	int getBoxIdx() { return this->box_idx; }
@@ -22,7 +25,9 @@ public:
 	void setTeleporterIdx(int inc){ this->tp_idx = mod(this->tp_idx+inc, N_TP); }
 
 	//PLACE ELEM
-	void placeElem();
+	void selectElem(CELL cell);
+	void placeElem(Point pos);
+
 };
 
 #endif
