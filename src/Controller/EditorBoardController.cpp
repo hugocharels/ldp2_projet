@@ -8,7 +8,5 @@ void EditorBoardController::keyPressed(int key_code) {
 
 
 void EditorBoardController::mouseClick(Point mouse_loc) {
-    
-    std::cout << mouse_loc.x << "/" << mouse_loc.y << std::endl;
-
+    this->model->placeElem(displayPosToBoardPos(mouse_loc));
 }
