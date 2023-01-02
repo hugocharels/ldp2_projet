@@ -3,8 +3,12 @@
 
 #include "../include.hpp"
 #include "../images.hpp"
+#include "Sokoban.hpp"
+
 
 class Editor {
+
+	Sokoban* model;
 
 	int box_idx = 0;
 	int target_idx = 0;
@@ -15,6 +19,9 @@ class Editor {
 	CELL selected=EMPTY;
 
 public:
+
+	Editor(Sokoban* model): model{model} {}
+
 	//CHOOSE ELEM
 	int getBoxIdx() { return this->box_idx; }
 	int getTargetIdx() { return this->target_idx; }

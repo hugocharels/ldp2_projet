@@ -12,7 +12,7 @@
 class Game {
 
     Sokoban model;
-    Editor edit_model;
+    Editor edit_model{&model};
     MainDisplay display{&model, &edit_model};
     MainController controller{&model, &edit_model};
     MainWindow window{&display, &controller};
