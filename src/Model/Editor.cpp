@@ -93,7 +93,7 @@ COLOR Editor::getTargetColor() const {
 
 
 COLOR Editor::getTeleporterColor() const {
-	switch(this->box_idx) {
+	switch(this->tp_idx) {
 		case 0: return COLOR::GREEN;
 		case 1: return COLOR::PINK;
 		case 2: return COLOR::PURPLE;
