@@ -15,16 +15,12 @@ void Editor::selectElem(CELL cell) {
 
 void Editor::placeElem(Point pos) {
 	if (not is_selected) { return; }
-
 	Board* board = this->model->getBoard();
-
 	if (not board->inMap(pos.x, pos.y)) { return; }
 
 	auto* boxes = board->getTouBoxDeg();
 	auto* player = board->getPlayerPTR();
 	auto* map = board->getToutDeg();
-
-	std::cout << boxes << map << std::endl;
 
 	switch(this->selected) {
 
@@ -41,15 +37,12 @@ void Editor::placeElem(Point pos) {
 			break;
 		
 		case TARGET:
-			// pareil qu'au dessus mais get la color
 			board->removeIfBox(pos);
 			if (player->getPos() == pos) { break; }
 			map->at(pos.x, pos.y) = std::make_unique<Target>(this->getTargetColor());
 			break;
 
-
 		case TP:
-			// pareil que target
 			board->removeIfBox(pos);
 			if (player->getPos() == pos) { break; }
 			map->at(pos.x, pos.y) = std::make_unique<Teleporter>(this->getTeleporterColor());
@@ -70,9 +63,6 @@ void Editor::placeElem(Point pos) {
 			}
 			break;
 	}
-
-	std::cout << (char)selected << " : " << pos.x << "/" << pos.y << std::endl;
-
 }
 
 
