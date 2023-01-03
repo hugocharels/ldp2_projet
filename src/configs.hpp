@@ -13,7 +13,7 @@ constexpr double refreshPerSecond = 30;
 
 // POINT
 struct Point {
-	int x, y;
+	int x=0, y=0;
 	bool operator==(Point other) { return x == other.x and y == other.y; }
 };
 
