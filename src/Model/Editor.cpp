@@ -30,23 +30,25 @@ void Editor::placeElem(Point pos) {
 
 		case EMPTY:
 			board->removeIfBox(pos);
-			if (player->getPos() == pos) { return; }
+			if (player->getPos() == pos) { break; }
 			map->at(pos.x, pos.y) = std::make_unique<Cell>(EMPTY);
 			break;
 		
 		case WALL:
 			board->removeIfBox(pos);
-			if (player->getPos() == pos) { return; }
+			if (player->getPos() == pos) { break; }
 			map->at(pos.x, pos.y) = std::make_unique<Cell>(WALL);
 			break;
 		
 		case TARGET:
 			// pareil qu'au dessus mais get la color
+			if (board->boxHere(pos)) { break; }
 			break;
 
 
 		case TP:
 			// pareil que target
+			if (board->boxHere(pos)) { break; }
 			break;
 
 		case PLAYER:
@@ -59,10 +61,24 @@ void Editor::placeElem(Point pos) {
 
 		case BOX:
 			// verif sur quoi tu la met + si y'en a déjà une la
+			if (board->boxHere(pos)) { break; }
+			boxes->push_back(Box{pos, this->getBoxColor()});
 			break;
-			
 	}
 
 	std::cout << (char)selected << " : " << pos.x << "/" << pos.y << std::endl;
 
 }
+
+
+COLOR Editor::getBoxColor() const {
+	switch(this->box_idx) {
+		case 1: return COLOR::RED;
+		case 2: return COLOR::ORANGE;
+		case 3: return COLOR::YELLOW;
+		case 4: return COLOR::GREEN;
+		case 5: return COLOR::BLUE;
+		case 6: return COLOR::PURPLE;
+	} return COLOR::NONE;
+}
+

@@ -18,6 +18,8 @@ class Editor {
 	bool is_selected=false;
 	CELL selected=EMPTY;
 
+	COLOR getBoxColor() const ;
+
 public:
 
 	Editor(Sokoban* model): model{model} {}
