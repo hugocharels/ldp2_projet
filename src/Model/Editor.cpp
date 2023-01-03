@@ -22,9 +22,9 @@ void Editor::placeElem(Point pos) {
 
 	auto* boxes = board->getTouBoxDeg();
 	auto* player = board->getPlayerPTR();
-	auto* matrix = board->getToutDeg();
+	auto* map = board->getToutDeg();
 
-	std::cout << boxes << matrix << std::endl;
+	std::cout << boxes << map << std::endl;
 
 	switch(this->selected) {
 
@@ -41,7 +41,11 @@ void Editor::placeElem(Point pos) {
 			break;
 
 		case PLAYER:
-			*player = Player{pos};
+			if (board->boxHere(pos)) { break; }
+			if (*map->at(pos.x, pos.y) == EMPTY) {
+				std::cout << "player has been moved to " << pos.x << "/" << pos.y << std::endl;
+				*player = Player{pos};
+			}
 			break;
 
 		case BOX:
