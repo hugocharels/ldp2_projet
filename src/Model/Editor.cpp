@@ -88,9 +88,15 @@ COLOR Editor::getBoxColor() const {
 }
 
 COLOR Editor::getTargetColor() const {
-	return this->getBoxColor();
+	switch(this->target_idx) {
+		case 1: return COLOR::RED;
+		case 2: return COLOR::ORANGE;
+		case 3: return COLOR::YELLOW;
+		case 4: return COLOR::GREEN;
+		case 5: return COLOR::BLUE;
+		case 6: return COLOR::PURPLE;
+	} return COLOR::NONE;
 }
-
 
 COLOR Editor::getTeleporterColor() const {
 	switch(this->tp_idx) {
