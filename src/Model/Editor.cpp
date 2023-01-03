@@ -53,7 +53,7 @@ void Editor::placeElem(Point pos) {
 
 		case PLAYER:
 			if (board->boxHere(pos)) { break; }
-			if (*map->at(pos.x, pos.y) == EMPTY) {	// peut que placé sur du vide atm
+			if (map->at(pos.x, pos.y)->walkable()) {
 				std::cout << "player has been moved to " << pos.x << "/" << pos.y << std::endl;
 				*player = Player{pos};
 			}
@@ -61,8 +61,10 @@ void Editor::placeElem(Point pos) {
 
 		case BOX:
 			// verif sur quoi tu la met + si y'en a déjà une la
-			if (board->boxHere(pos)) { break; }
-			boxes->push_back(Box{pos, this->getBoxColor()});
+			if (map->at(pos.x, pos.y)->walkable()) {
+				board->removeIfBox(pos);
+				boxes->push_back(Box{pos, this->getBoxColor()});
+			}
 			break;
 	}
 
