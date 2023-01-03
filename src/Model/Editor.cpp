@@ -29,18 +29,24 @@ void Editor::placeElem(Point pos) {
 	switch(this->selected) {
 
 		case EMPTY:
-			//board->removeBox(pos)
+			//board->removeIfBox(pos)
 			if (player->getPos() == pos) { return; }
 			map->at(pos.x, pos.y) = std::make_unique<Cell>(EMPTY);
 			break;
 		
 		case WALL:
+			//board->removeIfBox(pos)
+			if (player->getPos() == pos) { return; }
+			map->at(pos.x, pos.y) = std::make_unique<Cell>(WALL);
 			break;
 		
 		case TARGET:
+			// pareil qu'au dessus mais get la color
 			break;
 
+
 		case TP:
+			// pareil que target
 			break;
 
 		case PLAYER:
@@ -52,6 +58,7 @@ void Editor::placeElem(Point pos) {
 			break;
 
 		case BOX:
+			// verif sur quoi tu la met + si y'en a déjà une la
 			break;
 			
 	}
