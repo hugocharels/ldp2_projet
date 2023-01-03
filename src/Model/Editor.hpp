@@ -19,6 +19,8 @@ class Editor {
 	CELL selected=EMPTY;
 
 	COLOR getBoxColor() const ;
+	COLOR getTargetColor() const ;
+	COLOR getTeleporterColor() const ;
 
 public:
 

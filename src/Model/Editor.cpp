@@ -42,17 +42,21 @@ void Editor::placeElem(Point pos) {
 		
 		case TARGET:
 			// pareil qu'au dessus mais get la color
-			if (board->boxHere(pos)) { break; }
+			board->removeIfBox(pos);
+			if (player->getPos() == pos) { break; }
+			map->at(pos.x, pos.y) = std::make_unique<Target>(this->getTargetColor());
 			break;
 
 
 		case TP:
 			// pareil que target
-			if (board->boxHere(pos)) { break; }
+			board->removeIfBox(pos);
+			if (player->getPos() == pos) { break; }
+			map->at(pos.x, pos.y) = std::make_unique<Teleporter>(this->getTeleporterColor());
 			break;
 
 		case PLAYER:
-			if (board->boxHere(pos)) { break; }
+			board->removeIfBox(pos);
 			if (map->at(pos.x, pos.y)->walkable()) {
 				std::cout << "player has been moved to " << pos.x << "/" << pos.y << std::endl;
 				*player = Player{pos};
@@ -60,7 +64,6 @@ void Editor::placeElem(Point pos) {
 			break;
 
 		case BOX:
-			// verif sur quoi tu la met + si y'en a déjà une la
 			if (map->at(pos.x, pos.y)->walkable()) {
 				board->removeIfBox(pos);
 				boxes->push_back(Box{pos, this->getBoxColor()});
@@ -84,3 +87,15 @@ COLOR Editor::getBoxColor() const {
 	} return COLOR::NONE;
 }
 
+COLOR Editor::getTargetColor() const {
+	return this->getBoxColor();
+}
+
+
+COLOR Editor::getTeleporterColor() const {
+	switch(this->box_idx) {
+		case 0: return COLOR::GREEN;
+		case 1: return COLOR::PINK;
+		case 2: return COLOR::PURPLE;
+	} return COLOR::NONE;
+}
