@@ -15,10 +15,16 @@ void Editor::selectElem(CELL cell) {
 
 void Editor::placeElem(Point pos) {
 	if (not is_selected) { return; }
-	
-	auto* boxes = this->model->getTouBoxDeg();
-	auto* player = this->model->getPlayerPTR();
-	auto* matrix = this->model->getToutDeg();
+
+	Board* board = this->model->getBoard();
+
+	if (not board->inMap(pos.x, pos.y)) { return; }
+
+	auto* boxes = board->getTouBoxDeg();
+	auto* player = board->getPlayerPTR();
+	auto* matrix = board->getToutDeg();
+
+	std::cout << boxes << matrix << std::endl;
 
 	switch(this->selected) {
 
@@ -35,6 +41,7 @@ void Editor::placeElem(Point pos) {
 			break;
 
 		case PLAYER:
+			*player = Player{pos};
 			break;
 
 		case BOX:

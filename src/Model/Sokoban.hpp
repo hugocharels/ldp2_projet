@@ -40,6 +40,7 @@ public:
  	Player* getPlayerPTR() { return board.getPlayerPTR(); }
 	auto* getToutDeg() { return board.getToutDeg(); } 
 	auto* getTouBoxDeg() { return board.getTouBoxDeg(); }
+	Board* getBoard() { return &board; }
 
 	int getBestScore() { return best_score; }
 	int getStepLimit() { return step_limit; }
