@@ -34,6 +34,7 @@ public:
 	void loadPlayer(Point pos) { this->player = Player{pos}; }
 
 	bool inMap(int x, int y) const ;
+	void removeIfBox(Point pos);
 
 	void print();		// only in terminal
 
