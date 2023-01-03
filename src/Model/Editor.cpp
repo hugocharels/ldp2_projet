@@ -29,6 +29,9 @@ void Editor::placeElem(Point pos) {
 	switch(this->selected) {
 
 		case EMPTY:
+			//board->removeBox(pos)
+			if (player->getPos() == pos) { return; }
+			map->at(pos.x, pos.y) = std::make_unique<Cell>(EMPTY);
 			break;
 		
 		case WALL:
@@ -42,7 +45,7 @@ void Editor::placeElem(Point pos) {
 
 		case PLAYER:
 			if (board->boxHere(pos)) { break; }
-			if (*map->at(pos.x, pos.y) == EMPTY) {
+			if (*map->at(pos.x, pos.y) == EMPTY) {	// peut que placé sur du vide atm
 				std::cout << "player has been moved to " << pos.x << "/" << pos.y << std::endl;
 				*player = Player{pos};
 			}
