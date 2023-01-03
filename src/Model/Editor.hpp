@@ -26,6 +26,8 @@ public:
 
 	Editor(Sokoban* model): model{model} {}
 
+	void save();
+
 	//CHOOSE ELEM
 	int getBoxIdx() { return this->box_idx; }
 	int getTargetIdx() { return this->target_idx; }

@@ -3,6 +3,8 @@
 #include "Board.hpp"
 
 
+// PUBLIC
+
 void Editor::selectElem(CELL cell) { 
 	if (cell == selected) {
 		this->is_selected = not this->is_selected;
@@ -66,6 +68,16 @@ void Editor::placeElem(Point pos) {
 }
 
 
+
+void Editor::save() {
+	
+
+
+}
+
+
+// PRIVATE
+
 COLOR Editor::getBoxColor() const {
 	switch(this->box_idx) {
 		case 1: return COLOR::RED;
@@ -95,3 +107,5 @@ COLOR Editor::getTeleporterColor() const {
 		case 2: return COLOR::PURPLE;
 	} return COLOR::NONE;
 }
+
+
