@@ -68,42 +68,6 @@ void Editor::placeElem(Point pos) {
 }
 
 
-
-void Editor::save() {
-
-	Json::Value json;
-
-	int idx = 0;
-	for (const auto& box : *model->getTouBoxDeg()) {	
-		json["boxes"][idx]["color"] = (int)box.getColor();
-		json["boxes"][idx]["pos"]["x"] = box.getPos().x;
-		json["boxes"][idx]["pos"]["y"] = box.getPos().y;
-		idx++;
-	}
-
-	auto* map = model->getToutDeg();
-	std::string line = "";
-	for (int i = 0; i < map->getCols(); i++) {
-		for (int j = 0; j < map->getRows(); j++) {
-			line += (char)(map->at(i, j)->getType());
-		}
-		json["matrix"].append(line);
-		line = "";
-	}
-
-	json["player_pos"]["x"] = model->getPlayerPTR()->getPos().x;
-	json["player_pos"]["y"] = model->getPlayerPTR()->getPos().y;
-	json["size"]["x"] = map->getCols();
-	json["size"]["y"] = map->getRows();
-	json["step_limit"] = model->getStepLimit();
-	json["best_score"] = 0;
-
-	std::ofstream file("level3.json");
-	file << json;
-
-}
-
-
 // PRIVATE
 
 COLOR Editor::getBoxColor() const {

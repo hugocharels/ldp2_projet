@@ -61,10 +61,44 @@ void Levels::createBoard(int idx, Board &board, int &best_score, int &step_limit
 }
 
 
-void Levels::saveBoard(Board &board) {
+void Levels::saveBoard(Board &board, int step_limit) {
 
 	// POUR L'EDITEUR DE NIVEAU OWO
-	std::cout << &board << std::endl;
+
+	Json::Value root;
+
+	int idx = 0;
+	for (const auto& box : *board.getTouBoxDeg()) {	
+		root["boxes"][idx]["color"] = (int)box.getColor();
+		root["boxes"][idx]["pos"]["x"] = box.getPos().x;
+		root["boxes"][idx]["pos"]["y"] = box.getPos().y;
+		idx++;
+	}
+
+	auto* map = board.getToutDeg();
+	std::string line = "";
+	for (int i = 0; i < map->getCols(); i++) {
+		for (int j = 0; j < map->getRows(); j++) {
+			line += (char)(map->at(i, j)->getType());
+		}
+		root["matrix"].append(line);
+		line = "";
+	}
+
+	root["player_pos"]["x"] = board.getPlayerPTR()->getPos().x;
+	root["player_pos"]["y"] = board.getPlayerPTR()->getPos().y;
+	root["size"]["x"] = map->getCols();
+	root["size"]["y"] = map->getRows();
+	root["step_limit"] = step_limit;
+	root["best_score"] = 0;
+
+	std::string json_str = Json::StyledWriter().write(root);
+
+	// Écrivez la chaîne de caractères dans le fichier JSON
+	std::ofstream out("levels/" + this->files.size());
+	out.write(json_str.c_str(), json_str.size());
+
+	this->loadFiles();
 }
 
 
