@@ -88,10 +88,10 @@ void Levels::saveBoard(Board &board, int step_limit) {
 			}
 
 			if (map->at(i, j)->getType() == TARGET) {
-				line += ColorToLetter(dynamic_cast<Target*>(map->at(i, j).get())->getColor());
+				line += ColorToNum(dynamic_cast<Target*>(map->at(i, j).get())->getColor());
 			}
 			else if (map->at(i, j)->getType() == TP) {
-				line += ColorToNum(dynamic_cast<Teleporter*>(map->at(i, j).get())->getColor());
+				line += ColorToLetter(dynamic_cast<Teleporter*>(map->at(i, j).get())->getColor());
 			}
 			else { line += (char)(map->at(i, j)->getType()); }
 		}
