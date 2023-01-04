@@ -80,13 +80,14 @@ void Levels::saveBoard(Board &board, int step_limit) {
 	for (int i = 0; i < map->getCols(); i++) {
 		for (int j = 0; j < map->getRows(); j++) {
 
+/*
 			for ( const auto& box : *board.getTouBoxDeg() ) {
 				if ( box.getPos() == Point{i, j} ) {
 					line += ColorToNum(box.getColor());
 					continue;
 				}
 			}
-
+*/
 			if (map->at(i, j)->getType() == TARGET) {
 				line += ColorToNum(dynamic_cast<Target*>(map->at(i, j).get())->getColor());
 			}
