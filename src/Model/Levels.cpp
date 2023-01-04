@@ -82,9 +82,11 @@ void Levels::saveBoard(Board &board, int step_limit) {
 
 			if (map->at(i, j)->getType() == TARGET) {
 				line += ColorToNum(dynamic_cast<Target*>(map->at(i, j).get())->getColor());
+				std::cout << i << "/" << j << line[j] << std::endl;
 			}
 			else if (map->at(i, j)->getType() == TP) {
 				line += ColorToLetter(dynamic_cast<Teleporter*>(map->at(i, j).get())->getColor());
+				std::cout << i << "/" << j << line[j] << std::endl;
 			}
 			else { line += (char)(map->at(i, j)->getType()); }
 		}
