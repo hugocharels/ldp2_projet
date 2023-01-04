@@ -72,32 +72,30 @@ void Editor::placeElem(Point pos) {
 
 COLOR Editor::getBoxColor() const {
 	switch(this->box_idx) {
-		case 2: return COLOR::RED;
-		case 3: return COLOR::ORANGE;
-		case 4: return COLOR::YELLOW;
-		case 5: return COLOR::GREEN;
-		case 6: return COLOR::BLUE;
-		case 7: return COLOR::PURPLE;
+		case 1: return COLOR::RED;
+		case 2: return COLOR::ORANGE;
+		case 3: return COLOR::YELLOW;
+		case 4: return COLOR::GREEN;
+		case 5: return COLOR::BLUE;
+		case 6: return COLOR::PURPLE;
 	} return COLOR::NONE;
 }
 
 COLOR Editor::getTargetColor() const {
 	switch(this->target_idx) {
-		case 2: return COLOR::RED;
-		case 3: return COLOR::ORANGE;
-		case 4: return COLOR::YELLOW;
-		case 5: return COLOR::GREEN;
-		case 6: return COLOR::BLUE;
-		case 7: return COLOR::PURPLE;
+		case 1: return COLOR::RED;
+		case 2: return COLOR::ORANGE;
+		case 3: return COLOR::YELLOW;
+		case 4: return COLOR::GREEN;
+		case 5: return COLOR::BLUE;
+		case 6: return COLOR::PURPLE;
 	} return COLOR::NONE;
 }
 
 COLOR Editor::getTeleporterColor() const {
 	switch(this->tp_idx) {
-		case 1: return COLOR::GREEN;
-		case 2: return COLOR::PINK;
-		case 3: return COLOR::PURPLE;
+		case 0: return COLOR::GREEN;
+		case 1: return COLOR::PINK;
+		case 2: return COLOR::PURPLE;
 	} return COLOR::NONE;
 }
-
-
