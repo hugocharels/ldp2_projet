@@ -28,6 +28,9 @@ enum class GAME_STATE { WELCOME, PLAY, EDITOR, WON, LOST };
 // FUNCTIONS
 COLOR charToColor(char x);
 COLOR intToColor(int x);
+char ColorToNum(COLOR color);
+char ColorToLetter(COLOR color);
+
 int mod(int x, int y);
 
 

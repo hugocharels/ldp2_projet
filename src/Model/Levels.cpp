@@ -79,7 +79,13 @@ void Levels::saveBoard(Board &board, int step_limit) {
 	std::string line = "";
 	for (int i = 0; i < map->getCols(); i++) {
 		for (int j = 0; j < map->getRows(); j++) {
-			line += (char)(map->at(i, j)->getType());
+			if (map->at(i, j)->getType() == TARGET) {
+				line += ColorToLetter(dynamic_cast<Target*>(map->at(i, j).get())->getColor());
+			}
+			else if (map->at(i, j)->getType() == TP) {
+				line += ColorToNum(dynamic_cast<Teleporter*>(map->at(i, j).get())->getColor());
+			}
+			else { line += (char)(map->at(i, j)->getType()); }
 		}
 		root["matrix"].append(line);
 		line = "";
