@@ -95,7 +95,7 @@ void Levels::saveBoard(Board &board, int step_limit) {
 	std::string json_str = Json::StyledWriter().write(root);
 
 	// Écrivez la chaîne de caractères dans le fichier JSON
-	std::ofstream out("levels/" + this->files.size());
+	std::ofstream out("levels/level" + this->files.size());
 	out.write(json_str.c_str(), json_str.size());
 
 	this->loadFiles();
