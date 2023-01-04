@@ -54,7 +54,7 @@ public:
 
 	void resetBestScore() { best_score=0; this->levels.updateBestScore(this->current_idx, 0); }
 
-	void save() { levels.saveBoard(board, step_limit); }
+	void save() { levels.saveBoard(board, step_limit); this->restart(this->current_idx); }
 
 };
 
