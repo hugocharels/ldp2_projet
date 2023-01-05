@@ -101,3 +101,15 @@ COLOR Editor::getTeleporterColor() const {
 		case 2: return COLOR::PURPLE;
 	} return COLOR::NONE;
 }
+
+
+int Editor::getElemIdx() {
+	switch(this->selected) {
+		case BOX: return 0;
+		case PLAYER: return 1;
+		case TARGET: return 2;
+		case TP: return 3;
+		case WALL: return 4;
+		case EMPTY: return 5;
+	} return 5;
+}

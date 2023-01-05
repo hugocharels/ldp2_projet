@@ -20,8 +20,15 @@ void EditorDisplay::drawButtons(){ //la meme que dans menu display sauf button
     for (auto& button : EDIT_ELEM_BUTTONS) {
         button->print();
     }
+
+    if (model->isSelected()) {
+        SELECT_ELEM_BUTTONS[model->getElemIdx()]->setFillColor(FL_RED);   
+    }
     for (auto& button : SELECT_ELEM_BUTTONS) {
         button->print();
+    }
+    if (model->isSelected()) {
+        SELECT_ELEM_BUTTONS[model->getElemIdx()]->setFillColor(FL_WHITE);   
     }
 }
 

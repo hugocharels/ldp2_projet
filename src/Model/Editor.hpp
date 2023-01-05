@@ -43,6 +43,9 @@ public:
 	void selectElem(CELL cell);
 	void placeElem(Point pos);
 
+	bool isSelected() { return is_selected; }
+	int getElemIdx();
+
 };
 
 #endif
