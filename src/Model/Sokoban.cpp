@@ -180,5 +180,8 @@ void Sokoban::setStatus(int code){
 		case 3:
 			status = "You lose ! (no more steps left)";
 			break;
+		case 4:
+			status = "You are in editing mode";
+			break;
 	}
 }

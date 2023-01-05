@@ -26,7 +26,7 @@ public:
 
 	Editor(Sokoban* model): model{model} {}
 
-	void save() { model->save(); }
+	void save() { model->save(step_limit); }
 
 	//CHOOSE ELEM
 	int getBoxIdx() { return this->box_idx; }

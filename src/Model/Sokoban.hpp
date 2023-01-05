@@ -16,7 +16,7 @@ class Sokoban {
 	int select_idx = 0;
 	std::string status;
 
-	void setStatus(int code);
+	
 
 public:
 
@@ -54,7 +54,9 @@ public:
 
 	void resetBestScore() { best_score=0; this->levels.updateBestScore(this->current_idx, 0); }
 
-	void save() { levels.saveBoard(board, step_limit); this->restart(this->current_idx); }
+	void save(int limit) { levels.saveBoard(board, limit); this->restart(this->current_idx); }
+
+	void setStatus(int code);
 
 };
 
