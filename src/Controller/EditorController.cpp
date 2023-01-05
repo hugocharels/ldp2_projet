@@ -31,10 +31,46 @@ void EditorController::mouseClick(Point mouse_loc) {
 	}
 
 	//select
-	if (SELECT_ELEM_BUTTONS[0]->contains(mouse_loc)) { model->selectElem(BOX); }
-	if (SELECT_ELEM_BUTTONS[1]->contains(mouse_loc)) { model->selectElem(PLAYER); }
-	if (SELECT_ELEM_BUTTONS[2]->contains(mouse_loc)) { model->selectElem(TARGET); }
-	if (SELECT_ELEM_BUTTONS[3]->contains(mouse_loc)) { model->selectElem(TP); }
-	if (SELECT_ELEM_BUTTONS[4]->contains(mouse_loc)) { model->selectElem(WALL); }
-	if (SELECT_ELEM_BUTTONS[5]->contains(mouse_loc)) { model->selectElem(EMPTY); }
+	if (SELECT_ELEM_BUTTONS[0]->contains(mouse_loc)) { 
+		//SELECT_ELEM_BUTTONS[this->current_select]->setFillColor(FL_WHITE);
+		//this->setCurrentSelect(0);
+		SELECT_ELEM_BUTTONS[0]->setFillColor(FL_RED);
+		SELECT_ELEM_BUTTONS[0]->setHeight(15);
+		model->selectElem(BOX);
+		 }
+	if (SELECT_ELEM_BUTTONS[1]->contains(mouse_loc)) { 
+		
+		//SELECT_ELEM_BUTTONS[this->current_select]->setFillColor(FL_WHITE);
+		//this->setCurrentSelect(1);
+		SELECT_ELEM_BUTTONS[1]->setFillColor(FL_RED);
+		model->selectElem(PLAYER);
+		 }
+	if (SELECT_ELEM_BUTTONS[2]->contains(mouse_loc)) { 
+		 
+		//SELECT_ELEM_BUTTONS[this->current_select]->setFillColor(FL_WHITE);
+		//this->setCurrentSelect(2);
+		SELECT_ELEM_BUTTONS[2]->setFillColor(FL_RED);
+		model->selectElem(TARGET);
+	}
+	if (SELECT_ELEM_BUTTONS[3]->contains(mouse_loc)) { 
+		
+		//SELECT_ELEM_BUTTONS[this->current_select]->setFillColor(FL_WHITE);
+		//this->setCurrentSelect(3);
+		SELECT_ELEM_BUTTONS[3]->setFillColor(FL_RED);
+		model->selectElem(TP);
+	}
+	if (SELECT_ELEM_BUTTONS[4]->contains(mouse_loc)) { 
+		
+		//SELECT_ELEM_BUTTONS[this->current_select]->setFillColor(FL_WHITE);
+		//this->setCurrentSelect(4);
+		SELECT_ELEM_BUTTONS[4]->setFillColor(FL_RED);
+		model->selectElem(WALL); 
+	}
+	if (SELECT_ELEM_BUTTONS[5]->contains(mouse_loc)) { 
+		 
+		//SELECT_ELEM_BUTTONS[this->current_select]->setFillColor(FL_WHITE);
+		//this->setCurrentSelect(5);
+		SELECT_ELEM_BUTTONS[5]->setFillColor(FL_RED);
+		model->selectElem(EMPTY);
+	}
 }

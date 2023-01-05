@@ -9,6 +9,9 @@
 class EditorController: public AbstractController {
 	Editor* model;
 	GAME_STATE state;
+	int current_select = 0;
+
+	void setCurrentSelect(int new_current) { current_select=new_current;}
 
 public:
 
