@@ -15,6 +15,9 @@ class BoardDisplay: public AbstractDisplay {
 	inline Point modelPosToDisplayPos(Point model_pos) { return Point{CELL_SIZE+(CELL_SIZE*model_pos.y), CELL_SIZE+(CELL_SIZE*model_pos.x)}; }
 	
 	// DRAW
+	void drawMap();
+	void drawPlayer();
+	void drawBoxes();
 	void drawStatus();
 
 public:

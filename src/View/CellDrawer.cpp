@@ -14,7 +14,7 @@ void CellDrawer::chooseImage() {
 		case CELL::TARGET: return this->chooseTarget();
 		case CELL::PLAYER: return this->choosePlayer();
 		case CELL::BOX:    return this->chooseBox();
-		default:     return;
+		default: return;
 	}
 }
 

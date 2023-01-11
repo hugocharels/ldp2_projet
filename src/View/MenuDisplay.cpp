@@ -32,28 +32,27 @@ void MenuDisplay::drawButtons() {
 
 void MenuDisplay::drawBestScore() {
     Text{"Best score:", Point{725, 60}, TEXT_SIZE}.print();
-    std::string score = (model->getBestScore() == 0) ? "No best score" : std::to_string(model->getBestScore());
+    const std::string score = (this->model->getBestScore() == 0) ? "No best score" : std::to_string(this->model->getBestScore());
 	TextRectangle{Point{725,90}, 125, 35, score}.print();
 }
 
 void MenuDisplay::drawStepCounter() {
 	Text{"Steps:", Point{725,160}, TEXT_SIZE}.print();
-	int count = model->getPlayer()->getSteps();
+	const int count = this->model->getPlayer()->getSteps();
     TextRectangle{Point{725,190}, 125, 35, std::to_string(count)}.print();
 }
 
 void MenuDisplay::drawLimitStep() {
 	Text{"Left steps:", Point{725,260}, TEXT_SIZE}.print();
-	if (model->getStepLimit() == 0){
+	if (this->model->getStepLimit() == 0){
 		TextRectangle{Point{725,290}, 125, 35, "No limit"}.print();
-	}
-	else {
-		int step_remaining = model->getStepLimit() - model->getPlayer()->getSteps();
+	} else {
+		const int step_remaining = this->model->getStepLimit() - this->model->getPlayer()->getSteps();
 		TextRectangle{Point{725,290}, 125, 35, std::to_string(step_remaining)}.print();
 	}
 }
 
 void MenuDisplay::drawLevelSelector() {
 	Text{"Select level:", Point{735,370}, TEXT_SIZE}.print();
-	TextRectangle{Point{725,400}, 110, 35, "Level " + std::to_string(model->getSelectIdx())}.print();
+	TextRectangle{Point{725,400}, 110, 35, "Level " + std::to_string(this->model->getSelectIdx())}.print();
 }
