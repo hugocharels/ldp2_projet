@@ -122,12 +122,22 @@ void Board::loadBoxes(Json::Value &boxes_info) {
 }
 
 
-
-// private
-
 bool Board::inMap(int x, int y) const {
 	return x > 0 and x < this->map.getRows()-1 and y > 0 and y < this->map.getCols()-1 ;
 }
+
+void Board::removeIfBox(Point pos) {
+	int idx = 0;
+	for (const auto &box : this->boxes) {
+		if (pos == box.getPos()) {
+			this->boxes.erase(this->boxes.begin() + idx);
+			return;
+		} idx++;
+	}
+}
+
+
+// private
 
 bool Board::boxHere(Point pos) const {
 	for (const auto &box : this->boxes) {

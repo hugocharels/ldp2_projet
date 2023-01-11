@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic
+CXXFLAGS += -std='c++2a' -Werror -Wall -Wextra -pedantic
 CXXLIBS += -lfltk -lfltk_images -ljsoncpp
 
 main: main.cpp
@@ -28,18 +28,20 @@ View: View/MainDisplay.cpp View/MainDisplay.hpp View/BoardDisplay.cpp View/Board
 	${CXX} ${CXXFLAGS} -c View/MenuDisplay.cpp  ${CXXLIBS}
 	ld -o View/obj.o -r MainDisplay.o BoardDisplay.o EditorDisplay.o MenuDisplay.o
 
-Controller: Controller/MainController.cpp Controller/MainController.hpp Controller/BoardController.cpp Controller/BoardController.hpp Controller/EditorController.cpp Controller/EditorController.hpp Controller/MenuController.cpp Controller/MenuController.hpp
+Controller: Controller/MainController.cpp Controller/MainController.hpp Controller/GameBoardController.cpp Controller/GameBoardController.hpp Controller/EditorBoardController.cpp Controller/EditorBoardController.hpp Controller/EditorController.cpp Controller/EditorController.hpp Controller/MenuController.cpp Controller/MenuController.hpp
 	${CXX} ${CXXFLAGS} -c Controller/MainController.cpp  ${CXXLIBS}
-	${CXX} ${CXXFLAGS} -c Controller/BoardController.cpp  ${CXXLIBS}
+	${CXX} ${CXXFLAGS} -c Controller/GameBoardController.cpp  ${CXXLIBS}
+	${CXX} ${CXXFLAGS} -c Controller/EditorBoardController.cpp  ${CXXLIBS}
 	${CXX} ${CXXFLAGS} -c Controller/EditorController.cpp  ${CXXLIBS}
 	${CXX} ${CXXFLAGS} -c Controller/MenuController.cpp  ${CXXLIBS}
-	ld -o Controller/obj.o -r MainController.o BoardController.o EditorController.o MenuController.o
+	ld -o Controller/obj.o -r MainController.o GameBoardController.o EditorBoardController.o EditorController.o MenuController.o
 
-Model: Model/Sokoban.cpp Model/Sokoban.hpp Model/Levels.cpp Model/Levels.hpp Model/Board.cpp Model/Board.hpp
+Model: Model/Sokoban.cpp Model/Sokoban.hpp Model/Levels.cpp Model/Levels.hpp Model/Board.cpp Model/Board.hpp Model/Editor.cpp Model/Editor.hpp
 	${CXX} ${CXXFLAGS} -c Model/Sokoban.cpp  ${CXXLIBS}
 	${CXX} ${CXXFLAGS} -c Model/Levels.cpp  ${CXXLIBS}
 	${CXX} ${CXXFLAGS} -c Model/Board.cpp  ${CXXLIBS}
-	ld -o Model/obj.o -r Sokoban.o Levels.o Board.o
+	${CXX} ${CXXFLAGS} -c Model/Editor.cpp  ${CXXLIBS}
+	ld -o Model/obj.o -r Sokoban.o Levels.o Board.o Editor.o
 
 
 clean:

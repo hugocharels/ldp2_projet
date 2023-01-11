@@ -11,7 +11,7 @@ void MenuDisplay::draw() {
     this->drawStepCounter();
     this->drawLimitStep();
     this->drawLevelSelector();
-    this->drawStatus();
+
 }
 
 void MenuDisplay::drawWelcome() {
@@ -28,33 +28,30 @@ void MenuDisplay::drawButtons() {
 }
 
 void MenuDisplay::drawBestScore() {
-    Text{"Best score:", Point{650, 60}, textSize}.print();
+    Text{"Best score:", Point{725, 60}, textSize}.print();
     std::string score = (model->getBestScore() == 0) ? "No best score" : std::to_string(model->getBestScore());
-	TextRectangle{Point{650,90}, 125, 35, score}.print();
+	TextRectangle{Point{725,90}, 125, 35, score}.print();
 }
 
 void MenuDisplay::drawStepCounter() {
-	Text{"Steps:", Point{650,160}, textSize}.print();
+	Text{"Steps:", Point{725,160}, textSize}.print();
 	int count = model->getPlayerPTR()->getSteps();
-    TextRectangle{Point{650,190}, 125, 35, std::to_string(count)}.print();
+    TextRectangle{Point{725,190}, 125, 35, std::to_string(count)}.print();
 }
 
 void MenuDisplay::drawLimitStep() {
-	Text{"Left steps:", Point{650,260}, textSize}.print();
+	Text{"Left steps:", Point{725,260}, textSize}.print();
 	if (model->getStepLimit() == 0){
-		TextRectangle{Point{650,290}, 125, 35, "No limit"}.print();
+		TextRectangle{Point{725,290}, 125, 35, "No limit"}.print();
 	}
 	else {
 		int step_remaining = model->getStepLimit() - model->getPlayerPTR()->getSteps();
-		TextRectangle{Point{650,290}, 125, 35, std::to_string(step_remaining)}.print();
+		TextRectangle{Point{725,290}, 125, 35, std::to_string(step_remaining)}.print();
 	}
 }
 
 void MenuDisplay::drawLevelSelector() {
-	Text{"Select level:", Point{660,370}, textSize}.print();
-	TextRectangle{Point{650,400}, 110, 35, "Level " + std::to_string(model->getSelectIdx())}.print();
+	Text{"Select level:", Point{735,370}, textSize}.print();
+	TextRectangle{Point{725,400}, 110, 35, "Level " + std::to_string(model->getSelectIdx())}.print();
 }
 
-void MenuDisplay::drawStatus() {
-	TextRectangle{Point{300,550}, 500, 35, model->getStatus()}.print();
-}

@@ -16,7 +16,7 @@ class Sokoban {
 	int select_idx = 0;
 	std::string status;
 
-	void setStatus(int code);
+	
 
 public:
 
@@ -40,6 +40,7 @@ public:
  	Player* getPlayerPTR() { return board.getPlayerPTR(); }
 	auto* getToutDeg() { return board.getToutDeg(); } 
 	auto* getTouBoxDeg() { return board.getTouBoxDeg(); }
+	Board* getBoard() { return &board; }
 
 	int getBestScore() { return best_score; }
 	int getStepLimit() { return step_limit; }
@@ -52,6 +53,10 @@ public:
 	void setSelectIdx(int inc) { select_idx = mod(select_idx+inc, levels.getSize()) ; std::cout<<select_idx<<std::endl;}
 
 	void resetBestScore() { best_score=0; this->levels.updateBestScore(this->current_idx, 0); }
+
+	void save(int limit) { levels.saveBoard(board, limit); this->restart(this->current_idx); }
+
+	void setStatus(int code);
 
 };
 

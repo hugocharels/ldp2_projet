@@ -18,7 +18,6 @@ class MenuDisplay: public AbstractDisplay {
 	void drawStepCounter();
 	void drawLimitStep();
 	void drawLevelSelector();
-	void drawStatus();
 
 public:
 

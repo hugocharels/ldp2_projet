@@ -55,7 +55,7 @@ void Rectangle::print() {
 }
 
 void Rectangle::setFillColor(Fl_Color newFillColor) {
-  fillColor = newFillColor;
+  this->fillColor = newFillColor;
 }
 
 void Rectangle::setFrameColor(Fl_Color newFrameColor) {

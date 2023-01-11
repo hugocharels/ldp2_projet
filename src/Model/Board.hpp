@@ -13,8 +13,6 @@ class Board {
 	std::vector<Box> boxes;
 	unsigned short target_nb;
 
-	bool inMap(int x, int y) const ;
-
 	bool moveBoxOnMove(MOVE move);
 
 	void movePlayerOnTp();
@@ -35,6 +33,8 @@ public:
 	void loadBoxes(Json::Value &boxes_info);
 	void loadPlayer(Point pos) { this->player = Player{pos}; }
 
+	bool inMap(int x, int y) const ;
+	void removeIfBox(Point pos);
 
 	void print();		// only in terminal
 

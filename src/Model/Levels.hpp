@@ -18,7 +18,7 @@ public:
 
 	void createBoard(int idx, Board &board, int &best_score, int &step_limit) const;
 
-	void saveBoard(Board &board);
+	void saveBoard(Board &board, int step_limit);
 
 	void updateBestScore(int idx, int new_best_score);
 

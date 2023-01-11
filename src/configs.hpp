@@ -13,7 +13,7 @@ constexpr double refreshPerSecond = 30;
 
 // POINT
 struct Point {
-	int x, y;
+	int x=0, y=0;
 	bool operator==(Point other) { return x == other.x and y == other.y; }
 };
 
@@ -28,6 +28,9 @@ enum class GAME_STATE { WELCOME, PLAY, EDITOR, WON, LOST };
 // FUNCTIONS
 COLOR charToColor(char x);
 COLOR intToColor(int x);
+char ColorToNum(COLOR color);
+char ColorToLetter(COLOR color);
+
 int mod(int x, int y);
 
 

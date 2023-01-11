@@ -21,6 +21,7 @@ void MainDisplay::draw(GAME_STATE state) {
 			break;
 
 		case GAME_STATE::EDITOR:
+			board.draw();
 			editor.draw();
 			break;
 			

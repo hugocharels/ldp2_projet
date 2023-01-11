@@ -14,6 +14,7 @@ void MenuController::keyPressed(int key_code) {
 
 
 void MenuController::mouseClick(Point mouse_loc) {
+	std::cout<<mouse_loc.x<<"/"<<mouse_loc.y<<std::endl;
 
 	// RESET LEVEL
 	if (MENU_BUTTONS[0]->contains(mouse_loc)) { model->resetBestScore(); }
@@ -28,5 +29,8 @@ void MenuController::mouseClick(Point mouse_loc) {
 	if (MENU_BUTTONS[3]->contains(mouse_loc)) { this->model->restart(this->model->getSelectIdx());	this->state = GAME_STATE::PLAY; }
 	
 	// CREATE LEVEL
-	if (MENU_BUTTONS[4]->contains(mouse_loc)) { std::cout<<"Create"<<std::endl; }
+	if (MENU_BUTTONS[4]->contains(mouse_loc)) { 
+		this->model->setStatus(4);
+		this->state = GAME_STATE::EDITOR; } 
+	else { this->state = GAME_STATE::PLAY; }
 }
