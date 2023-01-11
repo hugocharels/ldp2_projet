@@ -9,7 +9,7 @@ class AbstractBoardController: public AbstractController {
 
 protected:
 
-	inline Point displayPosToBoardPos(Point display_pos) { return Point{(display_pos.y / CELL_SIZE) - 1, (display_pos.x / CELL_SIZE) - 1}; }
+	static inline Point displayPosToBoardPos(Point display_pos) { return Point{(display_pos.y / CELL_SIZE) - 1, (display_pos.x / CELL_SIZE) - 1}; }
 	
 public:
 
@@ -18,6 +18,5 @@ public:
 	virtual void mouseClick(Point mouse_loc)=0;
 
 };
-
 
 #endif
