@@ -5,7 +5,7 @@
 #include "../Model/Cell/include.hpp"
 
 
-class DrawCell {
+class CellDrawer {
 
 	Point display_pos;
 	Cell* cell;
@@ -26,10 +26,9 @@ class DrawCell {
 
 public:
 
-	DrawCell(Point display_pos, Cell* cell=nullptr): display_pos{display_pos}, cell{cell} { this->chooseImage(); this->draw(); }
-	DrawCell(Point display_pos, const std::string image): display_pos{display_pos}, image_ptr{Fl_PNG_Image(&image[0]).copy(CELL_SIZE, CELL_SIZE)} { this->draw(); }
-
-	~DrawCell() { delete this->image_ptr; }
+	CellDrawer(Point display_pos, Cell* cell=nullptr): display_pos{display_pos}, cell{cell} { this->chooseImage(); this->draw(); }
+	CellDrawer(Point display_pos, const std::string image): display_pos{display_pos}, image_ptr{Fl_PNG_Image(&image[0]).copy(CELL_SIZE, CELL_SIZE)} { this->draw(); }
+	~CellDrawer() { delete this->image_ptr; }
 
 };
 

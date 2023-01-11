@@ -2,7 +2,7 @@
 #include "../Elements/Buttons.hpp"
 #include "../Elements/MenuElement.hpp"
 #include "../images.hpp"
-#include "DrawCell.hpp"
+#include "CellDrawer.hpp"
 #include "EditorDisplay.hpp"
 
 
@@ -40,32 +40,32 @@ void EditorDisplay::drawButtons(){ //la meme que dans menu display sauf button
 
 void EditorDisplay::drawBox(){
 	Text{"Box", Point{655, 60}, TEXT_SIZE}.print();
-	DrawCell{Point{630, 80}, box_list[model->getBoxIdx()]};
+	CellDrawer{Point{630, 80}, box_list[model->getBoxIdx()]};
 }
 
 void EditorDisplay::drawPlayer(){
 	Text{"Player", Point{810, 60}, TEXT_SIZE}.print();
-	DrawCell{Point{785, 70}, IM_PLAYER};
+	CellDrawer{Point{785, 70}, IM_PLAYER};
 }
 
 void EditorDisplay::drawTarget(){
 	Text{"Target", Point{660, 195}, TEXT_SIZE}.print();
-	DrawCell{Point{630, 200}, target_list[model->getTargetIdx()]};
+	CellDrawer{Point{630, 200}, target_list[model->getTargetIdx()]};
 }
 
 void EditorDisplay::drawTeleporter(){
 	Text{"Teleporter", Point{810, 195}, TEXT_SIZE}.print();
-	DrawCell{Point{785, 200}, tp_list[model->getTeleporterIdx()]};
+	CellDrawer{Point{785, 200}, tp_list[model->getTeleporterIdx()]};
 }
 
 void EditorDisplay::drawWall(){
 	Text{"Wall", Point{655, 300}, TEXT_SIZE}.print();
-	DrawCell{Point{630, 320}, IM_WALL};
+	CellDrawer{Point{630, 320}, IM_WALL};
 }
 
 void EditorDisplay::drawEmpty(){
 	Text{"Empty", Point{810, 300}, TEXT_SIZE}.print();
-	DrawCell{Point{785, 320}, FLOOR};
+	CellDrawer{Point{785, 320}, FLOOR};
 }
 
 void EditorDisplay::drawStepLimit(){

@@ -1,12 +1,12 @@
 #include "../include.hpp"
 #include "../Model/Cell/include.hpp"
 #include "../images.hpp"
-#include "DrawCell.hpp"
+#include "CellDrawer.hpp"
 
 
 // CHOOSE
 
-void DrawCell::chooseImage() {
+void CellDrawer::chooseImage() {
 	switch(cell->getType()) {
 		case CELL::EMPTY:  return this->chooseFloor();
 		case CELL::WALL:   return this->chooseWall();
@@ -18,20 +18,20 @@ void DrawCell::chooseImage() {
 	}
 }
 
-void DrawCell::chooseFloor() {
+void CellDrawer::chooseFloor() {
 	this->image_ptr = Fl_PNG_Image(&FLOOR[0]).copy(CELL_SIZE, CELL_SIZE);
 }
 
-void DrawCell::chooseWall() {
+void CellDrawer::chooseWall() {
 	this->image_ptr = Fl_PNG_Image(&IM_WALL[0]).copy(CELL_SIZE, CELL_SIZE);
 }
 
-void DrawCell::choosePlayer() {
+void CellDrawer::choosePlayer() {
 	this->image_ptr = Fl_PNG_Image(&IM_PLAYER[0]).copy(CELL_SIZE, CELL_SIZE);
 }
 
 
-void DrawCell::chooseTp() {
+void CellDrawer::chooseTp() {
 	this->drawFloor();
 	switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
 		case COLOR::GREEN:
@@ -48,7 +48,7 @@ void DrawCell::chooseTp() {
 	}
 }
 
-void DrawCell::chooseTarget() {
+void CellDrawer::chooseTarget() {
 	this->drawFloor();
 	switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
 		case COLOR::NONE:
@@ -77,7 +77,7 @@ void DrawCell::chooseTarget() {
 	}
 }
 
-void DrawCell::chooseBox() {
+void CellDrawer::chooseBox() {
 	switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
 		case COLOR::NONE:
 			image_ptr = Fl_PNG_Image(&NONE_BOX[0]).copy(CELL_SIZE, CELL_SIZE);
@@ -107,7 +107,7 @@ void DrawCell::chooseBox() {
 
 // DRAW
 
-void DrawCell::drawFloor() {
+void CellDrawer::drawFloor() {
 	Cell floor = Cell{CELL::EMPTY};
-	DrawCell(this->display_pos, &floor).draw();
+	CellDrawer(this->display_pos, &floor).draw();
 }
