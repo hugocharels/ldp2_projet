@@ -27,7 +27,7 @@ void EditorController::mouseClick(Point mouse_loc) {
 	// finish
 	if (EDIT_ELEM_BUTTONS[8]->contains(mouse_loc)) {
 		model->save();
-		this->state = GAME_STATE::PLAY;	
+		this->state = GAME_STATE::INGAME;	
 	}
 
 	//select

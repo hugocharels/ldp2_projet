@@ -21,27 +21,27 @@ GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 			levels.updateBestScore(this->current_idx, win_step);
 			this->best_score=win_step;
 			this->setStatus(1);
-			return GAME_STATE::WON;
+			return GAME_STATE::ENDGAME;
 		}
 		else{
 			this->setStatus(0);
-			return GAME_STATE::WON;
+			return GAME_STATE::ENDGAME;
 		}
 	} 
 	else if (this->loose()) {
 		this->setStatus(2);
 		std::cout << "ripun" << std::endl;
-		return GAME_STATE::LOST;
+		return GAME_STATE::ENDGAME;
 
 	}
 
 	else if (this->step_limit>1){
 		if (this->looseNoMoreStep()){
 			this->setStatus(3);
-			return GAME_STATE::LOST;			
+			return GAME_STATE::ENDGAME;			
 		}
 	}
-	return GAME_STATE::PLAY;
+	return GAME_STATE::INGAME;
 }
 
 

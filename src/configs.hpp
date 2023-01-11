@@ -23,7 +23,7 @@ struct Point {
 enum class MOVE { UP, DOWN, LEFT, RIGHT, INVALID };
 enum class CELL { EMPTY = '-', WALL = '#', TARGET = '@', TP = '%', PLAYER = '$', BOX = '&' };
 enum class COLOR { NONE = 1, RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK };
-enum class GAME_STATE { WELCOME, PLAY, EDITOR, WON, LOST };
+enum class GAME_STATE { WELCOME, EDITOR, INGAME, ENDGAME };
 
 
 // FUNCTIONS

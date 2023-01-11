@@ -26,7 +26,7 @@ public:
 	void draw() {
 		Fl_Window::draw();
 		if (state == GAME_STATE::WELCOME) {
-			if (this->time_in_welcome <= 0) { state = GAME_STATE::PLAY; }
+			if (this->time_in_welcome <= 0) { state = GAME_STATE::INGAME; }
 			else { this->time_in_welcome--; }
 		}
 		display->draw(state);
@@ -52,6 +52,5 @@ public:
 	}
 
 };
-
 
 #endif
