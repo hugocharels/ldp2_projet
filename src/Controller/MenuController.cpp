@@ -5,7 +5,7 @@
 
 void MenuController::keyPressed(int key_code) {
 	if (key_code == ' ') {
-		this->model->restart(this->model->getCurrentIdx());
+		this->model->start(this->model->getCurrentIdx());
 		this->state = GAME_STATE::INGAME;
 	} else {
 		this->state = GAME_STATE::ENDGAME;
@@ -28,7 +28,7 @@ void MenuController::mouseClick(Point mouse_loc) {
 	}
 	// LOAD LEVEL
 	if (MENU_BUTTONS[3]->contains(mouse_loc)) {
-		this->model->restart(this->model->getSelectIdx());
+		this->model->start(this->model->getSelectIdx());
 		this->state = GAME_STATE::INGAME;
 	}
 	// CREATE LEVEL

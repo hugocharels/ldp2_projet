@@ -37,7 +37,7 @@ public:
  	void movePlayer(std::vector<MOVE>& moves);
 
 	// FILES
-	void save(int limit) { levels.saveBoard(board, limit); this->restart(this->current_idx); }
+	void save(int limit) { levels.saveBoard(board, limit); this->start(this->current_idx); }
 	void resetBestScore() { best_score=0; this->levels.updateBestScore(this->current_idx, 0); }
 
 	// GETTERS
@@ -58,6 +58,5 @@ public:
 	void setStatus(int code);
 
 };
-
 
 #endif
