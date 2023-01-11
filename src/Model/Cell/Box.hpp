@@ -8,7 +8,7 @@
 
 class Box: public MoveableCell, public ColorCell {
 
-	bool on_target=false;
+	bool on_target = false;
 
 public:
 

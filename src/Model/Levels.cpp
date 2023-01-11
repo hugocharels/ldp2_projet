@@ -6,10 +6,10 @@
 void Levels::loadFiles() {
 	this->files.clear();
 
-	DIR *d;
+	DIR* d;
 	struct dirent *dir;
 	d = opendir("levels");
-	if (not d) { return; }
+	if (not d) { exit(1); }
 
 	while ((dir = readdir(d)) != NULL) {
 		std::string tmp = dir->d_name;

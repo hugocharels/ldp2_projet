@@ -17,10 +17,13 @@ public:
 	~MoveableCell()=default;
 
 	virtual void move(MOVE movement) {
-		if (movement == MOVE::UP) {position.x--;}
-		else if (movement == MOVE::DOWN) {position.x++;}
-		else if (movement == MOVE::LEFT) {position.y--;}
-		else if (movement == MOVE::RIGHT) {position.y++;}
+		switch (movement) { 
+			case MOVE::UP: position.x--; break;
+			case MOVE::DOWN: position.x++; break;
+			case MOVE::LEFT: position.y--; break;
+			case MOVE::RIGHT: position.y++; break;
+			default: break;
+		}
 	}
 
 	virtual bool walkable() override { return false; }

@@ -16,29 +16,9 @@ Point getNextPos(MoveableCell &obj, MOVE move) {
 }
 
 
-// public 
+// PUBLIC 
 
-
-//print verifie pour chaque case de la matrice MAP, si il n'y aurait pas un objet moveable (box ou player)
-//si c'est le cas, un caractère correspondant est mis là
-
-void Board::print() {
-	std::string to_print = "";
-	for (int i=0; i<this->map.getRows(); i++) {
-	    for (int j=0; j<this->map.getCols(); j++) {
-			if (this->player.getPos() == Point{i,j}) {
-				to_print += "P";
-			} else if (this->boxHere(Point{i,j})) {
-				to_print += "B";
-			} else {
-				to_print += (char)this->map.at(i, j)->getType();
-			}
-		}
-		to_print += "\n";
-	}
-	std::cout<<to_print<<std::endl;
-}
-
+// PLAY
 
 bool Board::play(MOVE move) {
 	if (move == MOVE::INVALID) { return false; }
@@ -56,7 +36,6 @@ bool Board::win() const {
 		if (not box.onTarget()) { return false; }
 	} return true;
 }
-
 
 // si num of blocked box > num target - num box
 bool Board::loose() {
@@ -125,6 +104,25 @@ void Board::loadBoxes(Json::Value &boxes_info) {
 }
 
 
+
+void Board::print() {
+	std::string to_print = "";
+	for (int i=0; i<this->map.getRows(); i++) {
+	    for (int j=0; j<this->map.getCols(); j++) {
+			if (this->player.getPos() == Point{i,j}) {
+				to_print += "P";
+			} else if (this->boxHere(Point{i,j})) {
+				to_print += "B";
+			} else {
+				to_print += (char)this->map.at(i, j)->getType();
+			}
+		}
+		to_print += "\n";
+	}
+	std::cout<<to_print<<std::endl;
+}
+
+
 bool Board::inMap(int x, int y) const {
 	return x > 0 and x < this->map.getRows()-1 and y > 0 and y < this->map.getCols()-1 ;
 }
@@ -139,9 +137,6 @@ void Board::removeIfBox(Point pos) {
 	}
 }
 
-
-// private
-
 bool Board::boxHere(Point pos) const {
 	for (const auto &box : this->boxes) {
 		if (pos == box.getPos()) {
@@ -151,6 +146,10 @@ bool Board::boxHere(Point pos) const {
 	return false;
 }
 
+
+// PRIVATE
+
+// CAN MOVE
 
 bool Board::canPlayerMove(MOVE move) {
 	Point next_pos = getNextPos(this->player, move);
@@ -167,6 +166,9 @@ bool Board::canBoxMove(Box &box, MOVE move) {
 	if (not this->inMap(x, y) or this->boxHere(Point{x, y})) { return false; }
 	return this->map.at(x, y)->walkable();
 }
+
+
+// MOVE
 
 bool Board::moveBoxOnMove(MOVE move) {
 	Point next_pos = getNextPos(this->player, move);
@@ -197,6 +199,7 @@ void Board::movePlayerOnTp() {
 		}
 	}
 }
+
 
 bool Board::blockedBox(const Box &box) {
 	int x, y;

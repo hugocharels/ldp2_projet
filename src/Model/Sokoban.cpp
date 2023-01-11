@@ -11,6 +11,15 @@ MOVE strToMOVE(std::string str) {
 }
 
 
+// PLAY
+
+void Sokoban::start(int idx) { 
+	current_idx= idx; 
+	levels.createBoard(idx, this->board, this->best_score, this->step_limit); 
+	status = "You are playing level " + std::to_string(current_idx); 
+}
+
+
 GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 	this->board.play(move);
 	//this->board.print();
@@ -45,6 +54,7 @@ GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 }
 
 
+// MOVE
 
 void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 
@@ -78,13 +88,11 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 	while (!q.empty()) {
 		CellPosMove p = q.front();
 		q.pop();
-
 		// Destination found;
 		if (p.pos == pos) {
 			moves = p.moves;
 			return;
 		}
-
 		// moving up
 		if (p.pos.x - 1 >= 0 and not visited.at(p.pos.x - 1, p.pos.y)) {
 			std::vector<MOVE> tmp = p.moves;
@@ -92,7 +100,6 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 			q.push(CellPosMove{Point{p.pos.x - 1, p.pos.y}, tmp});
 			visited.at(p.pos.x - 1, p.pos.y) = 1;
 		}
-
 		// moving down
 		if (p.pos.x + 1 < map->getRows() and not visited.at(p.pos.x + 1, p.pos.y)) {
 			std::vector<MOVE> tmp = p.moves;
@@ -100,7 +107,6 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 			q.push(CellPosMove{Point{p.pos.x + 1, p.pos.y}, tmp});
 			visited.at(p.pos.x + 1, p.pos.y) = 1;
 		}
-
 		// moving left
 		if (p.pos.y - 1 >= 0 and not visited.at(p.pos.x, p.pos.y - 1)) {
 			std::vector<MOVE> tmp = p.moves;
@@ -108,7 +114,6 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 			q.push(CellPosMove{Point{p.pos.x, p.pos.y - 1}, tmp});
 			visited.at(p.pos.x, p.pos.y - 1) = 1;
 		}
-
 		// moving right
 		if (p.pos.y + 1 < map->getCols() and not visited.at(p.pos.x, p.pos.y + 1)) {
 			std::vector<MOVE> tmp = p.moves;
@@ -120,8 +125,6 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 	moves = std::vector<MOVE>{};
 }
 
-
-
 void Sokoban::movePlayer(std::vector<MOVE>& moves) {
 	Player* p = board.getPlayer();
 	for (auto &move : moves) {
@@ -130,14 +133,7 @@ void Sokoban::movePlayer(std::vector<MOVE>& moves) {
 }
 
 
-void Sokoban::restart(int idx) { 
-	current_idx= idx; 
-	levels.createBoard(idx, this->board, this->best_score, this->step_limit); 
-	status = "You are playing level " + std::to_string(current_idx); 
-}
-
-
-
+// SETTTER
 
 void Sokoban::setStatus(int code){
 	/*

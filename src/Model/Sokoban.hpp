@@ -20,11 +20,11 @@ class Sokoban {
 
 public:
 
-	Sokoban() { this->restart(0); }
+	Sokoban() { this->start(0); }
 	~Sokoban()=default;
  	
 	// PLAY
-	void restart(int idx);
+	void start(int idx);
  	GAME_STATE inputPlayer(MOVE move);
  	
 	// GAME STATE
