@@ -6,6 +6,8 @@
 #include "EditorDisplay.hpp"
 
 
+// PUBLIC DRAW
+
 void EditorDisplay::draw() {
 	this->drawButtons();
 	this->drawBox();
@@ -16,6 +18,9 @@ void EditorDisplay::draw() {
 	this->drawEmpty();
 	this->drawStepLimit();
 }
+
+
+// PRIVATE DRAW
 
 void EditorDisplay::drawButtons(){ //la meme que dans menu display sauf button
 	for (auto& button : EDIT_ELEM_BUTTONS) {

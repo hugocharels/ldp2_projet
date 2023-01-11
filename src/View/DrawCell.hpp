@@ -11,8 +11,8 @@ class DrawCell {
 	Cell* cell;
 	Fl_Image* image_ptr;
 
+	// CHOOSE IMAGE
 	void chooseImage();
-
 	void chooseFloor();
 	void chooseWall();
 	void choosePlayer();
@@ -20,9 +20,9 @@ class DrawCell {
 	void chooseTarget();
 	void chooseBox();
 
-	void drawFloor();
-
+	// DRAW
 	void draw() { this->image_ptr->draw(display_pos.x, display_pos.y); }
+	void drawFloor();
 
 public:
 

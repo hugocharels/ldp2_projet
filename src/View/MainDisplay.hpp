@@ -18,6 +18,7 @@ public:
 
 	MainDisplay(Sokoban* model, Editor* edit_model ) { board.setModel(model); menu.setModel(model); editor.setModel(edit_model);}
 
+	// DRAW
 	void draw(GAME_STATE state);
 
 };

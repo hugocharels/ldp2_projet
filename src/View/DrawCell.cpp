@@ -4,6 +4,8 @@
 #include "DrawCell.hpp"
 
 
+// CHOOSE
+
 void DrawCell::chooseImage() {
 	switch(cell->getType()) {
 		case EMPTY:  return this->chooseFloor();
@@ -15,7 +17,6 @@ void DrawCell::chooseImage() {
 		default:     return;
 	}
 }
-
 
 void DrawCell::chooseFloor() {
 	this->image_ptr = Fl_PNG_Image(&FLOOR[0]).copy(cellSize, cellSize);
@@ -47,7 +48,6 @@ void DrawCell::chooseTp() {
 	}
 }
 
-
 void DrawCell::chooseTarget() {
 	this->drawFloor();
 	switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
@@ -77,7 +77,6 @@ void DrawCell::chooseTarget() {
 	}
 }
 
-
 void DrawCell::chooseBox() {
 	switch(dynamic_cast<ColorCell*>(cell)->getColor()) {
 		case COLOR::NONE:
@@ -106,6 +105,7 @@ void DrawCell::chooseBox() {
 	}
 }
 
+// DRAW
 
 void DrawCell::drawFloor() {
 	Cell floor = Cell{EMPTY};

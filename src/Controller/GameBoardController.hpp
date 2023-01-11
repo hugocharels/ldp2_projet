@@ -14,12 +14,15 @@ class GameBoardController: public AbstractBoardController {
 
 public:
 
+	// EVENTS
 	virtual void keyPressed(int key_code) override;
 	virtual void mouseClick(Point mouse_loc) override;
 
-	void setModel(Sokoban* m) { this->model = m; }
-
+	// GETTER
 	GAME_STATE getNewState() const { return state; }
+
+	// SETTER
+	void setModel(Sokoban* m) { this->model = m; }
 
 };
 

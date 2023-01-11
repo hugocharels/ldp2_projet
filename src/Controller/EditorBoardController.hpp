@@ -12,9 +12,11 @@ class EditorBoardController: public AbstractBoardController {
 
 public:
 
+	// EVENTS
 	void keyPressed(int key_code) override;
 	void mouseClick(Point mouse_loc) override;
 
+	// SETTER
 	void setModel(Editor* m) { this->model = m; }
 
 };

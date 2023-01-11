@@ -13,6 +13,7 @@ protected:
 	
 public:
 
+	// EVENTS
 	virtual void keyPressed(int key_code)=0;
 	virtual void mouseClick(Point mouse_loc)=0;
 

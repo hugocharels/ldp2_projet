@@ -8,12 +8,12 @@
 class MoveableCell: public virtual Cell {
 
 protected:
+
 	Point position;
 
 public:
 
 	MoveableCell(CELL cell, Point pos): Cell(cell), position{pos} {}
-	
 	~MoveableCell()=default;
 
 	virtual void move(MOVE movement) {
@@ -23,10 +23,11 @@ public:
 		else if (movement == RIGHT) {position.y++;}
 	}
 
+	virtual bool walkable() override { return false; }
+
+	// GETTER
 	Point getPos() const { return position; }
 
-	virtual bool walkable() override { return false; }
 };
-
 
 #endif

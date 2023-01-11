@@ -11,32 +11,12 @@ MOVE strToMOVE(std::string str) {
 }
 
 
-void Sokoban::start() {
-	std::string input;
-	this->board.print();
-	while (true) {
-		std::cout << "enter a move : ";
-		std::cin >> input;
-		if (this->board.play(strToMOVE(input))) {
-			this->board.print();
-			if (this->win()) {
-				std::cout << "gg" << std::endl;
-				break;
-			} else if (this->loose()) {
-				std::cout << "rip" << std::endl;
-				break;
-			}
-		}
-	}
-}
-
-
 GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 	this->board.play(move);
 	//this->board.print();
 
 	if (this->win()) {
-		int win_step = board.getPlayerPTR()->getSteps();
+		int win_step = board.getPlayer()->getSteps();
 		if (this->best_score==0 or win_step<best_score){
 			levels.updateBestScore(this->current_idx, win_step);
 			this->best_score=win_step;
@@ -75,9 +55,9 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 		std::vector<MOVE> moves;
 	};
 
-	CellPosMove source{board.getPlayerPTR()->getPos(), std::vector<MOVE>{}};
+	CellPosMove source{board.getPlayer()->getPos(), std::vector<MOVE>{}};
 
-	auto* map = this->getToutDeg();
+	auto* map = this->getMap();
 
 	Matrix<char> visited{map->getRows(), map->getCols()};
 
@@ -143,7 +123,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 
 
 void Sokoban::movePlayer(std::vector<MOVE>& moves) {
-	Player* p = board.getPlayerPTR();
+	Player* p = board.getPlayer();
 	for (auto &move : moves) {
 		p->move(move);
 	}

@@ -68,14 +68,14 @@ void Levels::saveBoard(Board &board, int step_limit) {
 	Json::Value root;
 
 	int idx = 0;
-	for (const auto& box : *board.getTouBoxDeg()) {	
+	for (const auto& box : *board.getBoxes()) {	
 		root["boxes"][idx]["color"] = (int)box.getColor();
 		root["boxes"][idx]["pos"]["x"] = box.getPos().x;
 		root["boxes"][idx]["pos"]["y"] = box.getPos().y;
 		idx++;
 	}
 
-	auto* map = board.getToutDeg();
+	auto* map = board.getMap();
 	std::string line = "";
 	for (int i = 0; i < map->getCols(); i++) {
 		for (int j = 0; j < map->getRows(); j++) {
@@ -94,8 +94,8 @@ void Levels::saveBoard(Board &board, int step_limit) {
 		line = "";
 	}
 
-	root["player_pos"]["x"] = board.getPlayerPTR()->getPos().x;
-	root["player_pos"]["y"] = board.getPlayerPTR()->getPos().y;
+	root["player_pos"]["x"] = board.getPlayer()->getPos().x;
+	root["player_pos"]["y"] = board.getPlayer()->getPos().y;
 	root["size"]["x"] = map->getCols();
 	root["size"]["y"] = map->getRows();
 	root["step_limit"] = step_limit;

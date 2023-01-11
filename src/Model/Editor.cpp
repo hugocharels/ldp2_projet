@@ -20,9 +20,9 @@ void Editor::placeElem(Point pos) {
 	Board* board = this->model->getBoard();
 	if (not board->inMap(pos.x, pos.y)) { return; }
 
-	auto* boxes = board->getTouBoxDeg();
-	auto* player = board->getPlayerPTR();
-	auto* map = board->getToutDeg();
+	auto* boxes = board->getBoxes();
+	auto* player = board->getPlayer();
+	auto* map = board->getMap();
 
 	switch(this->selected) {
 

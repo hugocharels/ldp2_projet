@@ -13,13 +13,13 @@ class Board {
 	std::vector<Box> boxes;
 	unsigned short target_nb;
 
-	bool moveBoxOnMove(MOVE move);
-
-	void movePlayerOnTp();
-
+	// CAN MOVE
 	bool canPlayerMove(MOVE move);
-
 	bool canBoxMove(Box &box, MOVE move);
+	
+	// MOVE
+	void movePlayerOnTp();
+	bool moveBoxOnMove(MOVE move);
 
 	bool blockedBox(const Box &box);
 
@@ -35,24 +35,21 @@ public:
 
 	bool inMap(int x, int y) const ;
 	void removeIfBox(Point pos);
-
-	void print();		// only in terminal
-
-	bool play(MOVE move);
-
-	bool win() const ;
-
-	bool loose();
-
 	bool boxHere(Point pos) const ;
 
-	Player* getPlayerPTR() { return &player; }
+	// PLAY
+	bool play(MOVE move);
+	bool win() const ;
+	bool loose();
 
-	auto* getToutDeg() { return &map; } 
+	// GETTERS
+	Player* getPlayer() { return &player; }
+	Matrix<std::unique_ptr<Cell>>* getMap() { return &map; } 
+	std::vector<Box>* getBoxes() { return &boxes; }
 
-	auto* getTouBoxDeg() { return &boxes; }
+	// PRINT IN TERMINAL
+	void print();
 
 };
-
 
 #endif

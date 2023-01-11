@@ -13,13 +13,16 @@ class BoardDisplay: public AbstractDisplay {
 	Sokoban* model;
 
 	inline Point modelPosToDisplayPos(Point model_pos) { return Point{cellSize+(cellSize*model_pos.y), cellSize+(cellSize*model_pos.x)}; }
-
+	
+	// DRAW
 	void drawStatus();
 
 public:
 
+	// DRAW
 	void draw() override;
 
+	// SETTER
 	void setModel(Sokoban* m) { this->model = m; }
 
 };

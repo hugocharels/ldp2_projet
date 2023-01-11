@@ -11,18 +11,15 @@
 
 class Game {
 
-    Sokoban model;
-    Editor edit_model{&model};
-    MainDisplay display{&model, &edit_model};
-    MainController controller{&model, &edit_model};
-    MainWindow window{&display, &controller};
+	Sokoban model;
+	Editor edit_model{&model};
+	MainDisplay display{&model, &edit_model};
+	MainController controller{&model, &edit_model};
+	MainWindow window{&display, &controller};
 
 public:
 
-    Game()=default;
-    ~Game()=default;
-    
-    int start(int argc, char *argv[]) { window.show(argc, argv); return Fl::run(); }
+	int start(int argc, char *argv[]) { window.show(argc, argv); return Fl::run(); }
 
 };
 

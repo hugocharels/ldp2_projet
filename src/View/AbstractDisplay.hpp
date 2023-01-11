@@ -8,6 +8,7 @@ class AbstractDisplay {
 
 public:
 
+	// DRAW
 	virtual void draw()=0;
 
 };

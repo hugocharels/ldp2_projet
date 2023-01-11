@@ -5,6 +5,8 @@
 const char* WELCOME = "images/soko_mainpage.png";
 
 
+// PUBLIC DRAW
+
 void MenuDisplay::draw() {
     this->drawButtons();
     this->drawBestScore();
@@ -21,6 +23,8 @@ void MenuDisplay::drawWelcome() {
 }
 
 
+// PRIVATE DRAW
+
 void MenuDisplay::drawButtons() {
     for (auto& button : MENU_BUTTONS) {
         button->print();
@@ -35,7 +39,7 @@ void MenuDisplay::drawBestScore() {
 
 void MenuDisplay::drawStepCounter() {
 	Text{"Steps:", Point{725,160}, textSize}.print();
-	int count = model->getPlayerPTR()->getSteps();
+	int count = model->getPlayer()->getSteps();
     TextRectangle{Point{725,190}, 125, 35, std::to_string(count)}.print();
 }
 
@@ -45,7 +49,7 @@ void MenuDisplay::drawLimitStep() {
 		TextRectangle{Point{725,290}, 125, 35, "No limit"}.print();
 	}
 	else {
-		int step_remaining = model->getStepLimit() - model->getPlayerPTR()->getSteps();
+		int step_remaining = model->getStepLimit() - model->getPlayer()->getSteps();
 		TextRectangle{Point{725,290}, 125, 35, std::to_string(step_remaining)}.print();
 	}
 }
@@ -54,4 +58,3 @@ void MenuDisplay::drawLevelSelector() {
 	Text{"Select level:", Point{735,370}, textSize}.print();
 	TextRectangle{Point{725,400}, 110, 35, "Level " + std::to_string(model->getSelectIdx())}.print();
 }
-
