@@ -34,26 +34,26 @@ void EditorController::mouseClick(Point mouse_loc) {
 	if (SELECT_ELEM_BUTTONS[0]->contains(mouse_loc)) { 
 		SELECT_ELEM_BUTTONS[0]->setFillColor(FL_RED);
 		SELECT_ELEM_BUTTONS[0]->setHeight(15);
-		model->selectElem(BOX);
+		model->selectElem(CELL::BOX);
 	}
 	if (SELECT_ELEM_BUTTONS[1]->contains(mouse_loc)) { 
 		SELECT_ELEM_BUTTONS[1]->setFillColor(FL_RED);
-		model->selectElem(PLAYER);
+		model->selectElem(CELL::PLAYER);
 	}
 	if (SELECT_ELEM_BUTTONS[2]->contains(mouse_loc)) { 
 		SELECT_ELEM_BUTTONS[2]->setFillColor(FL_RED);
-		model->selectElem(TARGET);
+		model->selectElem(CELL::TARGET);
 	}
 	if (SELECT_ELEM_BUTTONS[3]->contains(mouse_loc)) { 
 		SELECT_ELEM_BUTTONS[3]->setFillColor(FL_RED);
-		model->selectElem(TP);
+		model->selectElem(CELL::TP);
 	}
 	if (SELECT_ELEM_BUTTONS[4]->contains(mouse_loc)) { 
 		SELECT_ELEM_BUTTONS[4]->setFillColor(FL_RED);
-		model->selectElem(WALL); 
+		model->selectElem(CELL::WALL); 
 	}
 	if (SELECT_ELEM_BUTTONS[5]->contains(mouse_loc)) { 
 		SELECT_ELEM_BUTTONS[5]->setFillColor(FL_RED);
-		model->selectElem(EMPTY);
+		model->selectElem(CELL::EMPTY);
 	}
 }

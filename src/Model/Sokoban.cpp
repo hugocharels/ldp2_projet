@@ -3,11 +3,11 @@
 
 
 MOVE strToMOVE(std::string str) {
-	if (str == "z") return UP;
-	if (str == "s") return DOWN;
-	if (str == "q") return LEFT;
-	if (str == "d") return RIGHT;
-	return INVALID;
+	if (str == "z") return MOVE::UP;
+	if (str == "s") return MOVE::DOWN;
+	if (str == "q") return MOVE::LEFT;
+	if (str == "d") return MOVE::RIGHT;
+	return MOVE::INVALID;
 }
 
 
@@ -64,7 +64,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 	for (int i = 0; i < map->getRows(); i++) {
 		for (int j = 0; j < map->getCols(); j++) {
 
-			if ((map->at(i, j)->getType() == EMPTY or map->at(i, j)->getType() == TARGET) and not board.boxHere(Point{i, j})) { 
+			if ((map->at(i, j)->getType() == CELL::EMPTY or map->at(i, j)->getType() == CELL::TARGET) and not board.boxHere(Point{i, j})) { 
 				visited.at(i, j) = 0;
 			} else { 
 				visited.at(i, j) = 1; 
@@ -88,7 +88,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 		// moving up
 		if (p.pos.x - 1 >= 0 and not visited.at(p.pos.x - 1, p.pos.y)) {
 			std::vector<MOVE> tmp = p.moves;
-			tmp.push_back(UP);
+			tmp.push_back(MOVE::UP);
 			q.push(CellPosMove{Point{p.pos.x - 1, p.pos.y}, tmp});
 			visited.at(p.pos.x - 1, p.pos.y) = 1;
 		}
@@ -96,7 +96,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 		// moving down
 		if (p.pos.x + 1 < map->getRows() and not visited.at(p.pos.x + 1, p.pos.y)) {
 			std::vector<MOVE> tmp = p.moves;
-			tmp.push_back(DOWN);
+			tmp.push_back(MOVE::DOWN);
 			q.push(CellPosMove{Point{p.pos.x + 1, p.pos.y}, tmp});
 			visited.at(p.pos.x + 1, p.pos.y) = 1;
 		}
@@ -104,7 +104,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 		// moving left
 		if (p.pos.y - 1 >= 0 and not visited.at(p.pos.x, p.pos.y - 1)) {
 			std::vector<MOVE> tmp = p.moves;
-			tmp.push_back(LEFT);
+			tmp.push_back(MOVE::LEFT);
 			q.push(CellPosMove{Point{p.pos.x, p.pos.y - 1}, tmp});
 			visited.at(p.pos.x, p.pos.y - 1) = 1;
 		}
@@ -112,7 +112,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 		// moving right
 		if (p.pos.y + 1 < map->getCols() and not visited.at(p.pos.x, p.pos.y + 1)) {
 			std::vector<MOVE> tmp = p.moves;
-			tmp.push_back(RIGHT);
+			tmp.push_back(MOVE::RIGHT);
 			q.push(CellPosMove{Point{p.pos.x, p.pos.y + 1}, tmp});
 			visited.at(p.pos.x, p.pos.y + 1) = 1;
 		}

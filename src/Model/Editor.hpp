@@ -16,7 +16,7 @@ class Editor {
 	int step_limit = 20;
 
 	bool is_selected = false;
-	CELL selected = EMPTY;
+	CELL selected = CELL::EMPTY;
 
 	// COLOR GETTERS
 	COLOR getBoxColor() const ;

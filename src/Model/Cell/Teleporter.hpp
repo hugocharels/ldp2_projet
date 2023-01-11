@@ -11,8 +11,8 @@ class Teleporter: public ColorCell {
 
 public:
 
-	Teleporter(Point dest, COLOR color=COLOR::NONE): Cell(TP), ColorCell(TP, color), destination{dest} {}
-	Teleporter(COLOR color=COLOR::NONE): Cell(TP), ColorCell(TP, color) {}
+	Teleporter(Point dest, COLOR color=COLOR::NONE): Cell(CELL::TP), ColorCell(CELL::TP, color), destination{dest} {}
+	Teleporter(COLOR color=COLOR::NONE): Cell(CELL::TP), ColorCell(CELL::TP, color) {}
 	~Teleporter()=default;
 
 	virtual bool walkable() override { return true; }

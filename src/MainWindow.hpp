@@ -11,15 +11,15 @@ class MainWindow : public Fl_Double_Window {
     MainDisplay* display;
     MainController* controller;
 
-	int time_in_welcome = refreshPerSecond * 2;
+	int time_in_welcome = REFRESH_PER_SECOND * 2;
 	GAME_STATE state = GAME_STATE::WELCOME;
 
 public:
 
 	MainWindow(MainDisplay* display, MainController* controller):
-            Fl_Double_Window(500, 200, windowWidth, windowHeight, "Sokoban"), 
+            Fl_Double_Window(500, 200, WINDOW_WIDTH, WINDOW_HEIGHT, "Sokoban"), 
             display{display}, controller{controller} {
-		Fl::add_timeout(1.0 / refreshPerSecond, Timer_CB, this);
+		Fl::add_timeout(1.0 / REFRESH_PER_SECOND, Timer_CB, this);
 		color(fl_rgb_color(112,146,191));
 	}
 
@@ -48,7 +48,7 @@ public:
 	static void Timer_CB(void *userdata) {
 		MainWindow *o = static_cast<MainWindow *>(userdata);
 		o->redraw();
-		Fl::repeat_timeout(1.0 / refreshPerSecond, Timer_CB, userdata);
+		Fl::repeat_timeout(1.0 / REFRESH_PER_SECOND, Timer_CB, userdata);
 	}
 
 };

@@ -39,41 +39,41 @@ void EditorDisplay::drawButtons(){ //la meme que dans menu display sauf button
 }
 
 void EditorDisplay::drawBox(){
-	Text{"Box", Point{655, 60}, textSize}.print();
+	Text{"Box", Point{655, 60}, TEXT_SIZE}.print();
 	DrawCell{Point{630, 80}, box_list[model->getBoxIdx()]};
 }
 
 void EditorDisplay::drawPlayer(){
-	Text{"Player", Point{810, 60}, textSize}.print();
+	Text{"Player", Point{810, 60}, TEXT_SIZE}.print();
 	DrawCell{Point{785, 70}, IM_PLAYER};
 }
 
 void EditorDisplay::drawTarget(){
-	Text{"Target", Point{660, 195}, textSize}.print();
+	Text{"Target", Point{660, 195}, TEXT_SIZE}.print();
 	DrawCell{Point{630, 200}, target_list[model->getTargetIdx()]};
 }
 
 void EditorDisplay::drawTeleporter(){
-	Text{"Teleporter", Point{810, 195}, textSize}.print();
+	Text{"Teleporter", Point{810, 195}, TEXT_SIZE}.print();
 	DrawCell{Point{785, 200}, tp_list[model->getTeleporterIdx()]};
 }
 
 void EditorDisplay::drawWall(){
-	Text{"Wall", Point{655, 300}, textSize}.print();
+	Text{"Wall", Point{655, 300}, TEXT_SIZE}.print();
 	DrawCell{Point{630, 320}, IM_WALL};
 }
 
 void EditorDisplay::drawEmpty(){
-	Text{"Empty", Point{810, 300}, textSize}.print();
+	Text{"Empty", Point{810, 300}, TEXT_SIZE}.print();
 	DrawCell{Point{785, 320}, FLOOR};
 }
 
 void EditorDisplay::drawStepLimit(){
-	Text{"Step limit", Point{700, 440}, textSize}.print();
+	Text{"Step limit", Point{700, 440}, TEXT_SIZE}.print();
 	if (model->getStepLimit()==0) {
-		Text{"-", Point{810, 440}, textSize}.print();
+		Text{"-", Point{810, 440}, TEXT_SIZE}.print();
 	}
 	else {
-		Text{std::to_string(model->getStepLimit()), Point{810, 440}, textSize}.print();
+		Text{std::to_string(model->getStepLimit()), Point{810, 440}, TEXT_SIZE}.print();
 	}
 }

@@ -14,11 +14,11 @@ public:
 	virtual ~Cell()=default;
 
 	bool operator==(CELL cell) { return type == cell; }
-	virtual bool walkable() { return type==EMPTY; }
+	virtual bool walkable() { return type==CELL::EMPTY; }
 
 	// GETTER
-	char getType() const { return type; }
-	
+	CELL getType() const { return type; }
+
 };
 
 #endif

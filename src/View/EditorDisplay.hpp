@@ -13,7 +13,6 @@ class EditorDisplay: public AbstractDisplay {
 	const std::array<const std::string, N_TP> tp_list{GREEN_TP, PINK_TP, PURPLE_TP};
 
 	Editor* model;
-	int textSize = 20;
 
 	// DRAW
 	void drawButtons();

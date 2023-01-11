@@ -9,7 +9,6 @@
 class GameBoardController: public AbstractBoardController {
 
 	Sokoban* model;
-
 	GAME_STATE state;
 
 public:

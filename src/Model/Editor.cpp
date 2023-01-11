@@ -26,19 +26,19 @@ void Editor::placeElem(Point pos) {
 
 	switch(this->selected) {
 
-		case EMPTY:
+		case CELL::EMPTY:
 			board->removeIfBox(pos);
 			if (player->getPos() == pos) { break; }
-			map->at(pos.x, pos.y) = std::make_unique<Cell>(EMPTY);
+			map->at(pos.x, pos.y) = std::make_unique<Cell>(CELL::EMPTY);
 			break;
 		
-		case WALL:
+		case CELL::WALL:
 			board->removeIfBox(pos);
 			if (player->getPos() == pos) { break; }
-			map->at(pos.x, pos.y) = std::make_unique<Cell>(WALL);
+			map->at(pos.x, pos.y) = std::make_unique<Cell>(CELL::WALL);
 			break;
 		
-		case TARGET:
+		case CELL::TARGET:
 			board->removeIfBox(pos);
 			if (player->getPos() == pos) { break; }
 			std::cout << " target idx : " << this->target_idx << std::endl;
@@ -46,13 +46,13 @@ void Editor::placeElem(Point pos) {
 			std::cout << "target aa " << ColorToLetter(this->getTargetColor()) << std::endl;
 			break;
 
-		case TP:
+		case CELL::TP:
 			board->removeIfBox(pos);
 			if (player->getPos() == pos) { break; }
 			map->at(pos.x, pos.y) = std::make_unique<Teleporter>(this->getTeleporterColor());
 			break;
 
-		case PLAYER:
+		case CELL::PLAYER:
 			board->removeIfBox(pos);
 			if (map->at(pos.x, pos.y)->walkable()) {
 				std::cout << "player has been moved to " << pos.x << "/" << pos.y << std::endl;
@@ -60,7 +60,7 @@ void Editor::placeElem(Point pos) {
 			}
 			break;
 
-		case BOX:
+		case CELL::BOX:
 			if (map->at(pos.x, pos.y)->walkable()) {
 				board->removeIfBox(pos);
 				boxes->push_back(Box{pos, this->getBoxColor()});
@@ -105,11 +105,11 @@ COLOR Editor::getTeleporterColor() const {
 
 int Editor::getElemIdx() {
 	switch(this->selected) {
-		case BOX: return 0;
-		case PLAYER: return 1;
-		case TARGET: return 2;
-		case TP: return 3;
-		case WALL: return 4;
-		case EMPTY: return 5;
+		case CELL::BOX: return 0;
+		case CELL::PLAYER: return 1;
+		case CELL::TARGET: return 2;
+		case CELL::TP: return 3;
+		case CELL::WALL: return 4;
+		case CELL::EMPTY: return 5;
 	} return 5;
 }

@@ -12,7 +12,7 @@ class BoardDisplay: public AbstractDisplay {
 
 	Sokoban* model;
 
-	inline Point modelPosToDisplayPos(Point model_pos) { return Point{cellSize+(cellSize*model_pos.y), cellSize+(cellSize*model_pos.x)}; }
+	inline Point modelPosToDisplayPos(Point model_pos) { return Point{CELL_SIZE+(CELL_SIZE*model_pos.y), CELL_SIZE+(CELL_SIZE*model_pos.x)}; }
 	
 	// DRAW
 	void drawStatus();

@@ -11,8 +11,6 @@ class MenuDisplay: public AbstractDisplay {
 
 	Sokoban* model;
 
-	int textSize=20;
-
 	// DRAW
 	void drawButtons();
 	void drawBestScore();

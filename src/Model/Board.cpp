@@ -5,10 +5,13 @@
 Point getNextPos(MoveableCell &obj, MOVE move) {
 	int x = obj.getPos().x;
 	int y = obj.getPos().y;
-	if (move == UP) { x--; }
-	else if (move == DOWN) { x++; }
-	else if (move == LEFT) { y--; }
-	else if (move == RIGHT) { y++; }
+	switch (move) {
+		case MOVE::UP: x--; break;
+		case MOVE::DOWN: x++; break;
+		case MOVE::LEFT: y--; break;
+		case MOVE::RIGHT: y++; break;
+		case MOVE::INVALID: break;
+	}
 	return Point{x, y};
 }
 
@@ -28,7 +31,7 @@ void Board::print() {
 			} else if (this->boxHere(Point{i,j})) {
 				to_print += "B";
 			} else {
-				to_print += this->map.at(i, j)->getType();
+				to_print += (char)this->map.at(i, j)->getType();
 			}
 		}
 		to_print += "\n";
@@ -38,7 +41,7 @@ void Board::print() {
 
 
 bool Board::play(MOVE move) {
-	if (move == INVALID) { return false; }
+	if (move == MOVE::INVALID) { return false; }
 	if (this->canPlayerMove(move)) {
 		if (this->moveBoxOnMove(move)) {
 			player.move(move);
@@ -81,8 +84,8 @@ void Board::loadMap(int rows, int cols, std::string &str_map) {
 	int i = 0, j = 0;		//actual pos
 	for (auto c : str_map) {
 		if (c == '\n') { ++i; j=0; continue; }
-		if (c == WALL) { this->map.at(i, j) = std::make_unique<Cell>(WALL); }
-		else if (c == EMPTY) { this->map.at(i, j) = std::make_unique<Cell>(EMPTY); }
+		if (c == (char)CELL::WALL) { this->map.at(i, j) = std::make_unique<Cell>(CELL::WALL); }
+		else if (c == (char)CELL::EMPTY) { this->map.at(i, j) = std::make_unique<Cell>(CELL::EMPTY); }
 		else if (isdigit(c)) { this->map.at(i, j) = std::make_unique<Target>(charToColor(c)); this->target_nb++; }
 		else { 
 			this->map.at(i, j) = std::make_unique<Teleporter>(charToColor(c));
@@ -172,7 +175,7 @@ bool Board::moveBoxOnMove(MOVE move) {
 			if (canBoxMove(box, move)) {
 				box.move(move);
 				Point box_pos = box.getPos();
-				if (*(this->map.at(box_pos.x, box_pos.y)) == TARGET) {
+				if (*(this->map.at(box_pos.x, box_pos.y)) == CELL::TARGET) {
 					if (dynamic_cast<Target*>(this->map.at(box_pos.x, box_pos.y).get())->getColor() == box.getColor()) {
 						box.setTarget(true);
 					} else { box.setTarget(false); }
@@ -187,7 +190,7 @@ void Board::movePlayerOnTp() {
 	int x = this->player.getPos().x;
 	int y = this->player.getPos().y;
 
-	if (*(this->map.at(x, y)) == TP) {
+	if (*(this->map.at(x, y)) == CELL::TP) {
 		Point tp_pos = dynamic_cast<Teleporter*>(this->map.at(x, y).get())->getTpPos();
 		if (not this->boxHere(tp_pos)) {
 			this->player.tp(tp_pos);

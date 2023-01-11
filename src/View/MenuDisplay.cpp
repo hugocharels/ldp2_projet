@@ -1,8 +1,7 @@
 #include "../include.hpp"
 #include "MenuDisplay.hpp"
 #include "../Elements/Buttons.hpp"
-
-const char* WELCOME = "images/soko_mainpage.png";
+#include "../images.hpp"
 
 
 // PUBLIC DRAW
@@ -17,7 +16,7 @@ void MenuDisplay::draw() {
 }
 
 void MenuDisplay::drawWelcome() {
-	Fl_Image* image_ptr = Fl_PNG_Image(WELCOME).copy(windowWidth, windowHeight);
+	Fl_Image* image_ptr = Fl_PNG_Image(&WELCOME[0]).copy(WINDOW_WIDTH, WINDOW_HEIGHT);
 	image_ptr->draw(0, 0);
 	delete image_ptr;
 }
@@ -32,19 +31,19 @@ void MenuDisplay::drawButtons() {
 }
 
 void MenuDisplay::drawBestScore() {
-    Text{"Best score:", Point{725, 60}, textSize}.print();
+    Text{"Best score:", Point{725, 60}, TEXT_SIZE}.print();
     std::string score = (model->getBestScore() == 0) ? "No best score" : std::to_string(model->getBestScore());
 	TextRectangle{Point{725,90}, 125, 35, score}.print();
 }
 
 void MenuDisplay::drawStepCounter() {
-	Text{"Steps:", Point{725,160}, textSize}.print();
+	Text{"Steps:", Point{725,160}, TEXT_SIZE}.print();
 	int count = model->getPlayer()->getSteps();
     TextRectangle{Point{725,190}, 125, 35, std::to_string(count)}.print();
 }
 
 void MenuDisplay::drawLimitStep() {
-	Text{"Left steps:", Point{725,260}, textSize}.print();
+	Text{"Left steps:", Point{725,260}, TEXT_SIZE}.print();
 	if (model->getStepLimit() == 0){
 		TextRectangle{Point{725,290}, 125, 35, "No limit"}.print();
 	}
@@ -55,6 +54,6 @@ void MenuDisplay::drawLimitStep() {
 }
 
 void MenuDisplay::drawLevelSelector() {
-	Text{"Select level:", Point{735,370}, textSize}.print();
+	Text{"Select level:", Point{735,370}, TEXT_SIZE}.print();
 	TextRectangle{Point{725,400}, 110, 35, "Level " + std::to_string(model->getSelectIdx())}.print();
 }

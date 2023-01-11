@@ -29,4 +29,6 @@ const std::string GREEN_TP      = "images/greentp.png";
 const std::string PINK_TP       = "images/pinktp.png";
 const std::string PURPLE_TP     = "images/purpletp.png";
 
+const std::string WELCOME       = "images/soko_mainpage.png";
+
 #endif
