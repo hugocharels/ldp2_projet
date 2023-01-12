@@ -27,6 +27,12 @@ public:
 	}
 
 	T& at(int x, int y) {
+		if ( x < 0 or x >= rows or y < 0 or y >= cols) { perror("Bad Index"); exit(1); }
+		return this->matrix[x][y];
+	}
+
+	const T& at(int x, int y) const {
+		if ( x < 0 or x >= rows or y < 0 or y >= cols) { perror("Bad Index"); exit(1); }
 		return this->matrix[x][y];
 	}
 

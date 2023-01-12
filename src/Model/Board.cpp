@@ -2,7 +2,7 @@
 #include "Board.hpp"
 
 
-Point getNextPos(MoveableCell &obj, MOVE move) {
+Point getNextPos(const MoveableCell &obj, MOVE move) {
 	int x = obj.getPos().x;
 	int y = obj.getPos().y;
 	switch (move) {
@@ -38,7 +38,7 @@ bool Board::win() const {
 }
 
 // si num of blocked box > num target - num box
-bool Board::loose() {
+bool Board::loose() const {
 	unsigned short num_blocked_box = 0;
 	for (const auto &box : this->boxes) {
 		if (not box.onTarget() and this->blockedBox(box)) { 
@@ -105,7 +105,7 @@ void Board::loadBoxes(Json::Value &boxes_info) {
 
 
 
-void Board::print() {
+void Board::print() const {
 	std::string to_print = "";
 	for (int i=0; i<this->map.getRows(); i++) {
 	    for (int j=0; j<this->map.getCols(); j++) {
@@ -151,7 +151,7 @@ bool Board::boxHere(Point pos) const {
 
 // CAN MOVE
 
-bool Board::canPlayerMove(MOVE move) {
+bool Board::canPlayerMove(MOVE move) const {
 	Point next_pos = getNextPos(this->player, move);
 	int x = next_pos.x;
 	int y = next_pos.y;
@@ -159,7 +159,7 @@ bool Board::canPlayerMove(MOVE move) {
 	return this->map.at(x, y)->walkable();
 }
 
-bool Board::canBoxMove(Box &box, MOVE move) {
+bool Board::canBoxMove(Box &box, MOVE move) const {
 	Point next_pos = getNextPos(box, move);
 	int x = next_pos.x;
 	int y = next_pos.y;
@@ -201,7 +201,7 @@ void Board::movePlayerOnTp() {
 }
 
 
-bool Board::blockedBox(const Box &box) {
+bool Board::blockedBox(const Box &box) const {
 	int x, y;
 	x = box.getPos().x;
 	y = box.getPos().y;

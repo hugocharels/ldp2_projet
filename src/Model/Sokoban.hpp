@@ -28,12 +28,12 @@ public:
  	GAME_STATE inputPlayer(MOVE move);
  	
 	// GAME STATE
- 	bool win() { return board.win(); }
- 	bool loose() { return board.loose(); }
- 	bool looseNoMoreStep() { return step_limit <= board.getPlayer()->getSteps(); }
+ 	bool win() const { return board.win(); }
+ 	bool loose() const { return board.loose(); }
+ 	bool looseNoMoreStep() const { return step_limit <= board.getPlayer()->getSteps(); }
 
 	// MOVE
- 	void canMovePlayerTo(std::vector<MOVE>& moves, Point pos);
+ 	void canMovePlayerTo(std::vector<MOVE>& moves, Point pos) const ;
  	void movePlayer(std::vector<MOVE>& moves);
 
 	// FILES

@@ -56,7 +56,7 @@ GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 
 // MOVE
 
-void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
+void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) const {
 
 	if (board.boxHere(pos)) { return; }
 
@@ -67,7 +67,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) {
 
 	CellPosMove source{board.getPlayer()->getPos(), std::vector<MOVE>{}};
 
-	auto* map = this->getMap();
+	auto* map = this->board.getMap();
 
 	Matrix<char> visited{map->getRows(), map->getCols()};
 
