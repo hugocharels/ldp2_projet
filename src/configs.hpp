@@ -10,7 +10,7 @@ constexpr int    WINDOW_HEIGHT      = 600;
 constexpr int 	 CELL_SIZE          = 50; 
 constexpr double REFRESH_PER_SECOND = 30;
 constexpr int    TEXT_SIZE          = 20;
-
+constexpr int    MAX_STEP_LIMIT     = 120;
 
 // POINT
 struct Point {

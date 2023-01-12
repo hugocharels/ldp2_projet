@@ -57,8 +57,9 @@ GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 // MOVE
 
 void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) const {
-
 	if (board.boxHere(pos)) { return; }
+
+	// inspired by https://www.geeksforgeeks.org/shortest-distance-two-cells-matrix-grid/
 
 	struct CellPosMove {
 		Point pos;
@@ -66,9 +67,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) const {
 	};
 
 	CellPosMove source{board.getPlayer()->getPos(), std::vector<MOVE>{}};
-
 	auto* map = this->board.getMap();
-
 	Matrix<char> visited{map->getRows(), map->getCols()};
 
 	for (int i = 0; i < map->getRows(); i++) {
@@ -133,31 +132,30 @@ void Sokoban::movePlayer(std::vector<MOVE>& moves) {
 }
 
 
-// SETTTER
+// SETTER
 
 void Sokoban::setStatus(int code){
-	/*
-	0 = win
-	1 = new best score
-	2 = loose bc all boxes are blocked
-	3 = loose bc no more steps left
-	*/
+	/**
+	 * 0 = win
+	 * 1 = new best score
+	 * 2 = loose bc all boxes are blocked
+	 * 3 = loose bc no more steps left
+	**/
 	switch(code) {
 		case 0:
-			status = "You win !";
+			this->status = "You win !";
 			break;
 		case 1:
-			status = "You win and new best score !";
+			this->status = "You win and new best score !";
 			break;
-
 		case 2:
-			status = "You lose ! (too much blocked boxes)";
+			this->status = "You lose ! (too much blocked boxes)";
 			break;
 		case 3:
-			status = "You lose ! (no more steps left)";
+			this->status = "You lose ! (no more steps left)";
 			break;
 		case 4:
-			status = "You are in editing mode";
+			this->status = "You are in editing mode";
 			break;
 	}
 }

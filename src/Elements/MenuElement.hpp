@@ -4,6 +4,8 @@
 #include "../include.hpp" //pour struct point et observer(subject)
 
 
+// COME FROM LABO 10
+
 // ###################################################################
 class Printable {
  public:

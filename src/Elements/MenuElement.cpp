@@ -1,6 +1,8 @@
 #include "../include.hpp"
 #include "MenuElement.hpp"
 
+// COME FROM LABO 10
+
 //--------------------------------------------------------------------
 void Text::print() {
   fl_color(color);

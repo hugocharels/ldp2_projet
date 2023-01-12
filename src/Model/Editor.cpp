@@ -14,9 +14,8 @@ void Editor::selectElem(CELL cell) {
 	}
 }
 
-
 void Editor::placeElem(Point pos) {
-	if (not is_selected) { return; }
+	if (not this->is_selected) { return; }
 	Board* board = this->model->getBoard();
 	if (not board->inMap(pos.x, pos.y)) { return; }
 
@@ -102,8 +101,7 @@ COLOR Editor::getTeleporterColor() const {
 	} return COLOR::NONE;
 }
 
-
-int Editor::getElemIdx() {
+int Editor::getElemIdx() const {
 	switch(this->selected) {
 		case CELL::BOX: return 0;
 		case CELL::PLAYER: return 1;
