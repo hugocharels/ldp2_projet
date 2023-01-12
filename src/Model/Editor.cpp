@@ -40,9 +40,7 @@ void Editor::placeElem(Point pos) {
 		case CELL::TARGET:
 			board->removeIfBox(pos);
 			if (player->getPos() == pos) { break; }
-			std::cout << " target idx : " << this->target_idx << std::endl;
 			map->at(pos.x, pos.y) = std::make_unique<Target>(this->getTargetColor());
-			std::cout << "target aa " << ColorToLetter(this->getTargetColor()) << std::endl;
 			break;
 
 		case CELL::TP:

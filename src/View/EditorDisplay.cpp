@@ -28,7 +28,7 @@ void EditorDisplay::drawButtons(){ //la meme que dans menu display sauf button
 	}
 
 	if (model->isSelected()) {
-		SELECT_ELEM_BUTTONS[model->getElemIdx()]->setFillColor(FL_RED);   
+		SELECT_ELEM_BUTTONS[model->getElemIdx()]->setFillColor(FL_GRAY);   
 	}
 	for (auto& button : SELECT_ELEM_BUTTONS) {
 		button->print();
