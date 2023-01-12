@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS += -std='c++2a' -Werror -Wall -Wextra -pedantic
+CXXFLAGS += -std='c++20' -Werror -Wall -Wextra -pedantic
 CXXLIBS += -lfltk -lfltk_images -ljsoncpp
 
 main: main.cpp
@@ -11,7 +11,7 @@ main: main.cpp
 	make MenuElement.o
 	${CXX} ${CXXFLAGS} -o sokoban main.cpp Model/obj.o View/obj.o Controller/obj.o configs.o MenuElement.o ${CXXLIBS} || make rm
 	make clean
-	make rm
+	make rm_obj
 
 
 configs.o: configs.cpp configs.hpp
@@ -48,12 +48,10 @@ Model: Model/Sokoban.cpp Model/Sokoban.hpp Model/Levels.cpp Model/Levels.hpp Mod
 clean:
 	rm *.o || echo -n ""
 
-rm:
-	rm View/obj.o || echo -n ""
-	rm Controller/obj.o || echo -n ""
-	rm Model/obj.o || echo -n ""
+rm_obj:
+	rm */obj.o || echo -n ""
 	
-clean_all:
+fclean:
 	make clean
-	make rm
-	rm sokoban ||echo -n ""
+	make rm_obj
+	rm sokoban || echo -n ""
