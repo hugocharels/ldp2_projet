@@ -117,7 +117,7 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) const {
 GAME_STATE Sokoban::movePlayer(std::vector<MOVE>& moves) {
 	for (auto &move : moves) {
 		if (this->inputPlayer(move) == GAME_STATE::ENDGAME) { return GAME_STATE::ENDGAME; }
-	} return GAME_STATE::INGAME;
+	} return this->inputPlayer(MOVE::INVALID);
 }
 
 
