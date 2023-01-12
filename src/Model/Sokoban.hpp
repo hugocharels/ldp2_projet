@@ -34,7 +34,7 @@ public:
 
 	// MOVE
  	void canMovePlayerTo(std::vector<MOVE>& moves, Point pos) const ;	// if can move, fill the list with movements
- 	void movePlayer(std::vector<MOVE>& moves);	// move player for each move in list
+	GAME_STATE movePlayer(std::vector<MOVE>& moves);	// move player for each move in list
 
 	// FILES
 	void save(int limit) { this->levels.saveBoard(board, limit); this->start(this->current_idx); }	// save the edited level to new JSON level file

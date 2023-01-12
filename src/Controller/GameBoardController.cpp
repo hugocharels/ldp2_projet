@@ -27,10 +27,8 @@ void GameBoardController::keyPressed(int key_code) {
 
 
 void GameBoardController::mouseClick(Point mouse_loc) {
-	this->state = this->model->inputPlayer(MOVE::INVALID);	
 	Point pos = this->displayPosToBoardPos(mouse_loc);
 	std::vector<MOVE> moves;
 	this->model->canMovePlayerTo(moves, pos);
-	if (not moves.empty()) { this->model->movePlayer(moves); }
-	this->state = this->model->inputPlayer(MOVE::INVALID);    
+	if (not moves.empty()) { this->state = this->model->movePlayer(moves); }  
 }

@@ -124,11 +124,10 @@ void Sokoban::canMovePlayerTo(std::vector<MOVE>& moves, Point pos) const {
 	moves = std::vector<MOVE>{};
 }
 
-void Sokoban::movePlayer(std::vector<MOVE>& moves) {
-	Player* p = board.getPlayer();
+GAME_STATE Sokoban::movePlayer(std::vector<MOVE>& moves) {
 	for (auto &move : moves) {
-		p->move(move);
-	}
+		if (this->inputPlayer(move) == GAME_STATE::ENDGAME) { return GAME_STATE::ENDGAME; }
+	} return GAME_STATE::INGAME;
 }
 
 
