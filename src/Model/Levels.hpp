@@ -14,17 +14,19 @@ public:
 	Levels() { this->loadFiles(); }
 	~Levels()=default;
 
-	void loadFiles();
+	// FILES
+	void loadFiles();	// search in level directory all levels
 
-	void createBoard(int idx, Board &board, int &best_score, int &step_limit) const;
+	// BOARD
+	void createBoard(int idx, Board &board, int &best_score, int &step_limit) const;	// read JSON level file and load the board
+	void saveBoard(Board &board, int step_limit);	// create a new level JSON file and save the board in it
 
-	void saveBoard(Board &board, int step_limit);
+	// UPDATE
+	void updateBestScore(int idx, int new_best_score);	// write the new bestscore in the level JSON file
 
-	void updateBestScore(int idx, int new_best_score);
-
+	// GETTERS
 	const std::string& getFile(int idx) const { return this->files[idx]; }
-
-	int getSize() { return this->files.size(); }
+	int getSize() const { return this->files.size(); }
 
 };
 

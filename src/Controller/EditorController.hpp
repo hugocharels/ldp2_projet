@@ -7,19 +7,22 @@
 
 
 class EditorController: public AbstractController {
+
 	Editor* model;
 	GAME_STATE state;
 
 public:
 
+	// EVENTS
 	void keyPressed(int key_code) override;
 	void mouseClick(Point mous_loc) override;
 
-	void setModel(Editor* m) { this->model = m; }
-	
+	// GETTER
 	GAME_STATE getNewState() const { return state; }
+	
+	// SETTER
+	void setModel(Editor* m) { this->model = m; }
 
 };
-
 
 #endif

@@ -2,43 +2,26 @@
 #include "Board.hpp"
 
 
-Point getNextPos(MoveableCell &obj, MOVE move) {
+Point getNextPos(const MoveableCell &obj, MOVE move) {
 	int x = obj.getPos().x;
 	int y = obj.getPos().y;
-	if (move == UP) { x--; }
-	else if (move == DOWN) { x++; }
-	else if (move == LEFT) { y--; }
-	else if (move == RIGHT) { y++; }
+	switch (move) {
+		case MOVE::UP: x--; break;
+		case MOVE::DOWN: x++; break;
+		case MOVE::LEFT: y--; break;
+		case MOVE::RIGHT: y++; break;
+		case MOVE::INVALID: break;
+	}
 	return Point{x, y};
 }
 
 
-// public 
+// PUBLIC 
 
-
-//print verifie pour chaque case de la matrice MAP, si il n'y aurait pas un objet moveable (box ou player)
-//si c'est le cas, un caractère correspondant est mis là
-
-void Board::print() {
-	std::string to_print = "";
-	for (int i=0; i<this->map.getRows(); i++) {
-	    for (int j=0; j<this->map.getCols(); j++) {
-			if (this->player.getPos() == Point{i,j}) {
-				to_print += "P";
-			} else if (this->boxHere(Point{i,j})) {
-				to_print += "B";
-			} else {
-				to_print += this->map.at(i, j)->getType();
-			}
-		}
-		to_print += "\n";
-	}
-	std::cout<<to_print<<std::endl;
-}
-
+// PLAY
 
 bool Board::play(MOVE move) {
-	if (move == INVALID) { return false; }
+	if (move == MOVE::INVALID) { return false; }
 	if (this->canPlayerMove(move)) {
 		if (this->moveBoxOnMove(move)) {
 			player.move(move);
@@ -54,9 +37,8 @@ bool Board::win() const {
 	} return true;
 }
 
-
 // si num of blocked box > num target - num box
-bool Board::loose() {
+bool Board::loose() const {
 	unsigned short num_blocked_box = 0;
 	for (const auto &box : this->boxes) {
 		if (not box.onTarget() and this->blockedBox(box)) { 
@@ -81,8 +63,8 @@ void Board::loadMap(int rows, int cols, std::string &str_map) {
 	int i = 0, j = 0;		//actual pos
 	for (auto c : str_map) {
 		if (c == '\n') { ++i; j=0; continue; }
-		if (c == WALL) { this->map.at(i, j) = std::make_unique<Cell>(WALL); }
-		else if (c == EMPTY) { this->map.at(i, j) = std::make_unique<Cell>(EMPTY); }
+		if (c == (char)CELL::WALL) { this->map.at(i, j) = std::make_unique<Cell>(CELL::WALL); }
+		else if (c == (char)CELL::EMPTY) { this->map.at(i, j) = std::make_unique<Cell>(CELL::EMPTY); }
 		else if (isdigit(c)) { this->map.at(i, j) = std::make_unique<Target>(charToColor(c)); this->target_nb++; }
 		else { 
 			this->map.at(i, j) = std::make_unique<Teleporter>(charToColor(c));
@@ -122,6 +104,25 @@ void Board::loadBoxes(Json::Value &boxes_info) {
 }
 
 
+
+void Board::print() const {
+	std::string to_print = "";
+	for (int i=0; i<this->map.getRows(); i++) {
+	    for (int j=0; j<this->map.getCols(); j++) {
+			if (this->player.getPos() == Point{i,j}) {
+				to_print += "P";
+			} else if (this->boxHere(Point{i,j})) {
+				to_print += "B";
+			} else {
+				to_print += (char)this->map.at(i, j)->getType();
+			}
+		}
+		to_print += "\n";
+	}
+	std::cout<<to_print<<std::endl;
+}
+
+
 bool Board::inMap(int x, int y) const {
 	return x > 0 and x < this->map.getRows()-1 and y > 0 and y < this->map.getCols()-1 ;
 }
@@ -136,9 +137,6 @@ void Board::removeIfBox(Point pos) {
 	}
 }
 
-
-// private
-
 bool Board::boxHere(Point pos) const {
 	for (const auto &box : this->boxes) {
 		if (pos == box.getPos()) {
@@ -149,7 +147,11 @@ bool Board::boxHere(Point pos) const {
 }
 
 
-bool Board::canPlayerMove(MOVE move) {
+// PRIVATE
+
+// CAN MOVE
+
+bool Board::canPlayerMove(MOVE move) const {
 	Point next_pos = getNextPos(this->player, move);
 	int x = next_pos.x;
 	int y = next_pos.y;
@@ -157,7 +159,7 @@ bool Board::canPlayerMove(MOVE move) {
 	return this->map.at(x, y)->walkable();
 }
 
-bool Board::canBoxMove(Box &box, MOVE move) {
+bool Board::canBoxMove(Box &box, MOVE move) const {
 	Point next_pos = getNextPos(box, move);
 	int x = next_pos.x;
 	int y = next_pos.y;
@@ -165,21 +167,24 @@ bool Board::canBoxMove(Box &box, MOVE move) {
 	return this->map.at(x, y)->walkable();
 }
 
+
+// MOVE
+
 bool Board::moveBoxOnMove(MOVE move) {
 	Point next_pos = getNextPos(this->player, move);
+
+	// return if a box is on target or not
+	auto onTarget = [this](const Box& box) {
+		return *(this->map.at(box.getPos().x, box.getPos().y)) == CELL::TARGET and 
+		dynamic_cast<Target*>(map.at(box.getPos().x, box.getPos().y).get())->getColor() == box.getColor();
+	};
+
 	for (auto &box : this->boxes) {
-		if (box.getPos() == next_pos) {
-			if (canBoxMove(box, move)) {
-				box.move(move);
-				Point box_pos = box.getPos();
-				if (*(this->map.at(box_pos.x, box_pos.y)) == TARGET) {
-					if (dynamic_cast<Target*>(this->map.at(box_pos.x, box_pos.y).get())->getColor() == box.getColor()) {
-						box.setTarget(true);
-					} else { box.setTarget(false); }
-				} else { box.setTarget(false); }
-				return true;
-			} else { return false; }
-		}
+		if (not (box.getPos() == next_pos)) { continue; } 
+		if (not canBoxMove(box, move)) { return false; }
+		box.move(move);
+		box.setTarget(onTarget(box));
+		return true;
 	} return true;
 }
 
@@ -187,7 +192,7 @@ void Board::movePlayerOnTp() {
 	int x = this->player.getPos().x;
 	int y = this->player.getPos().y;
 
-	if (*(this->map.at(x, y)) == TP) {
+	if (*(this->map.at(x, y)) == CELL::TP) {
 		Point tp_pos = dynamic_cast<Teleporter*>(this->map.at(x, y).get())->getTpPos();
 		if (not this->boxHere(tp_pos)) {
 			this->player.tp(tp_pos);
@@ -195,7 +200,8 @@ void Board::movePlayerOnTp() {
 	}
 }
 
-bool Board::blockedBox(const Box &box) {
+
+bool Board::blockedBox(const Box &box) const {
 	int x, y;
 	x = box.getPos().x;
 	y = box.getPos().y;

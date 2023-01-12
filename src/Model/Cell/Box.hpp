@@ -8,16 +8,16 @@
 
 class Box: public MoveableCell, public ColorCell {
 
-	bool on_target=false;
+	bool on_target = false;
 
 public:
 
-	Box(Point pos, COLOR color=COLOR::NONE): Cell(BOX), MoveableCell(BOX, pos), ColorCell(BOX, color) {}
-
+	Box(Point pos, COLOR color=COLOR::NONE): Cell(CELL::BOX), MoveableCell(CELL::BOX, pos), ColorCell(CELL::BOX, color) {}
 	~Box()=default;
 
 	bool onTarget() const { return on_target; }
 
+	// SETTER
 	void setTarget(bool x) { this->on_target = x; }
 
 };

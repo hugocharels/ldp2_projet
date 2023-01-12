@@ -11,8 +11,7 @@ class MenuDisplay: public AbstractDisplay {
 
 	Sokoban* model;
 
-	int textSize=20;
-
+	// DRAW
 	void drawButtons();
 	void drawBestScore();
 	void drawStepCounter();
@@ -21,10 +20,11 @@ class MenuDisplay: public AbstractDisplay {
 
 public:
 
+	// DRAW
 	void draw() override;
-
 	void drawWelcome();
 
+	// SETTER
 	void setModel(Sokoban* m) { this->model = m; }
 	
 };

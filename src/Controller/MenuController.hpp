@@ -13,14 +13,16 @@ class MenuController: public AbstractController {
 	
 public:
 
+	// EVENTS
 	void keyPressed(int key_code) override;
 	void mouseClick(Point mous_loc) override;
 
-	void setModel(Sokoban* m) { this->model = m; }
-	
+	// GETTERS
 	GAME_STATE getNewState() const { return state; }
 
+	// SETTERS
+	void setModel(Sokoban* m) { this->model = m; }
+	
 };
-
 
 #endif

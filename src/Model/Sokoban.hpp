@@ -9,56 +9,54 @@
 class Sokoban {
 
 	Board board;
-	Levels levels; 
+	Levels levels;
+
 	int step_limit;
 	int best_score;
-	int current_idx = 0; //current level
-	int select_idx = 0;
-	std::string status;
-
+	int current_idx = 0;	// current level
+	int select_idx = 0;		// next level to load
 	
+	std::string status;
 
 public:
 
-	Sokoban() { this->restart(0); }
+	Sokoban() { this->start(0); }
 	~Sokoban()=default;
  	
-	void start();	// only in terminal
-
- 	GAME_STATE inputPlayer(MOVE move);
+	// PLAY
+	void start(int idx);
+ 	GAME_STATE inputPlayer(MOVE move);	// call everytime the user want to move the player
  	
-	void restart(int idx);
+	// GAME STATE
+ 	bool win() const { return this->board.win(); }
+ 	bool loose() const { return this->board.loose(); }	// blocked box
+ 	bool looseNoMoreStep() const { return this->step_limit <= this->board.getPlayer()->getSteps(); }
 
- 	bool win() { return board.win(); }
- 	bool loose() { return board.loose(); }
- 	bool looseNoMoreStep() { return step_limit <= board.getPlayerPTR()->getSteps(); }
+	// MOVE
+ 	void canMovePlayerTo(std::vector<MOVE>& moves, Point pos) const ;	// if can move, fill the list with movements
+	GAME_STATE movePlayer(std::vector<MOVE>& moves);	// move player for each move in list
 
- 	void canMovePlayerTo(std::vector<MOVE>& moves, Point pos);
- 	void movePlayer(std::vector<MOVE>& moves);
+	// FILES
+	void save(int limit) { this->levels.saveBoard(board, limit); this->start(this->current_idx); }	// save the edited level to new JSON level file
+	void resetBestScore() { this->best_score=0; this->levels.updateBestScore(this->current_idx, 0); }
 
+	// GETTERS
+	const std::string& getStatus() const { return this->status; }
+	int getBestScore() const { return this->best_score; }
+	int getStepLimit() const { return this->step_limit; }
+	int getCurrentIdx() const { return this->current_idx; }
+	int getSelectIdx() const { return this->select_idx; }
 
- 	Player* getPlayerPTR() { return board.getPlayerPTR(); }
-	auto* getToutDeg() { return board.getToutDeg(); } 
-	auto* getTouBoxDeg() { return board.getTouBoxDeg(); }
-	Board* getBoard() { return &board; }
+	// BOARD GETTERS
+ 	Player* getPlayer() { return this->board.getPlayer(); }
+	Matrix<std::unique_ptr<Cell>>* getMap() { return this->board.getMap(); } 
+	std::vector<Box>* getBoxes() { return this->board.getBoxes(); }
+	Board* getBoard() { return &this->board; }
 
-	int getBestScore() { return best_score; }
-	int getStepLimit() { return step_limit; }
-
-	int getCurrentIdx() { return current_idx; }
-	int getSelectIdx() { return select_idx; }
-	
-	std::string getStatus() { return status; }
-
-	void setSelectIdx(int inc) { select_idx = mod(select_idx+inc, levels.getSize()) ; std::cout<<select_idx<<std::endl;}
-
-	void resetBestScore() { best_score=0; this->levels.updateBestScore(this->current_idx, 0); }
-
-	void save(int limit) { levels.saveBoard(board, limit); this->restart(this->current_idx); }
-
+	// SETTERS
+	void setSelectIdx(int inc) { this->select_idx = mod(this->select_idx+inc, this->levels.getSize()); }
 	void setStatus(int code);
 
 };
-
 
 #endif

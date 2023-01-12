@@ -11,23 +11,23 @@ class MainWindow : public Fl_Double_Window {
     MainDisplay* display;
     MainController* controller;
 
-	int time_in_welcome = refreshPerSecond * 2;
+	int time_in_welcome_remaining = REFRESH_PER_SECOND * TIME_IN_WELCOME;
 	GAME_STATE state = GAME_STATE::WELCOME;
 
 public:
 
 	MainWindow(MainDisplay* display, MainController* controller):
-            Fl_Double_Window(500, 200, windowWidth, windowHeight, "Sokoban"), 
+            Fl_Double_Window(500, 200, WINDOW_WIDTH, WINDOW_HEIGHT, "Sokoban"), 
             display{display}, controller{controller} {
-		Fl::add_timeout(1.0 / refreshPerSecond, Timer_CB, this);
+		Fl::add_timeout(1.0 / REFRESH_PER_SECOND, Timer_CB, this);
 		color(fl_rgb_color(112,146,191));
 	}
 
 	void draw() {
 		Fl_Window::draw();
 		if (state == GAME_STATE::WELCOME) {
-			if (this->time_in_welcome <= 0) { state = GAME_STATE::PLAY; }
-			else { this->time_in_welcome--; }
+			if (this->time_in_welcome_remaining <= 0) { state = GAME_STATE::INGAME; }
+			else { this->time_in_welcome_remaining--; }
 		}
 		display->draw(state);
 	}
@@ -48,10 +48,9 @@ public:
 	static void Timer_CB(void *userdata) {
 		MainWindow *o = static_cast<MainWindow *>(userdata);
 		o->redraw();
-		Fl::repeat_timeout(1.0 / refreshPerSecond, Timer_CB, userdata);
+		Fl::repeat_timeout(1.0 / REFRESH_PER_SECOND, Timer_CB, userdata);
 	}
 
 };
-
 
 #endif

@@ -13,8 +13,8 @@ class EditorDisplay: public AbstractDisplay {
 	const std::array<const std::string, N_TP> tp_list{GREEN_TP, PINK_TP, PURPLE_TP};
 
 	Editor* model;
-	int textSize=20;
 
+	// DRAW
 	void drawButtons();
 	void drawBox();
 	void drawTarget();
@@ -26,11 +26,12 @@ class EditorDisplay: public AbstractDisplay {
 
 public:
 
+	// DRAW
 	void draw() override;
 
+	// SETTER
 	void setModel(Editor* m) { this->model = m; }
 
 };
-
 
 #endif

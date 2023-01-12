@@ -12,48 +12,42 @@ void EditorController::keyPressed(int key_code) {
 void EditorController::mouseClick(Point mouse_loc) {
 	this->state = GAME_STATE::EDITOR;
 
-	if (EDIT_ELEM_BUTTONS[0]->contains(mouse_loc)) { model->setBoxIdx(-1); }
-	if (EDIT_ELEM_BUTTONS[1]->contains(mouse_loc)) { model->setBoxIdx(1); }
-
-	if (EDIT_ELEM_BUTTONS[2]->contains(mouse_loc)) { model->setTargetIdx(-1); }
-	if (EDIT_ELEM_BUTTONS[3]->contains(mouse_loc)) { model->setTargetIdx(1); }
-
-	if (EDIT_ELEM_BUTTONS[4]->contains(mouse_loc)) { model->setTeleporterIdx(-1); }
-	if (EDIT_ELEM_BUTTONS[5]->contains(mouse_loc)) { model->setTeleporterIdx(1); }
-
-	if (EDIT_ELEM_BUTTONS[6]->contains(mouse_loc)) { model->setStepLimit(-1); }
-	if (EDIT_ELEM_BUTTONS[7]->contains(mouse_loc)) { model->setStepLimit(1); }
-
 	// finish
 	if (EDIT_ELEM_BUTTONS[8]->contains(mouse_loc)) {
-		model->save();
-		this->state = GAME_STATE::PLAY;	
+		this->model->save();
+		this->state = GAME_STATE::INGAME;	
+	}
+
+	else if (EDIT_ELEM_BUTTONS[0]->contains(mouse_loc)) { 
+		this->model->setBoxIdx(-1);
+	} else if (EDIT_ELEM_BUTTONS[1]->contains(mouse_loc)) { 
+		this->model->setBoxIdx(1);
+	} else if (EDIT_ELEM_BUTTONS[2]->contains(mouse_loc)) {
+		this->model->setTargetIdx(-1);
+	} else if (EDIT_ELEM_BUTTONS[3]->contains(mouse_loc)) {
+		this->model->setTargetIdx(1);
+	} else if (EDIT_ELEM_BUTTONS[4]->contains(mouse_loc)) {
+		this->model->setTeleporterIdx(-1);
+	} else if (EDIT_ELEM_BUTTONS[5]->contains(mouse_loc)) {
+		this->model->setTeleporterIdx(1);
+	} else if (EDIT_ELEM_BUTTONS[6]->contains(mouse_loc)) {
+		this->model->setStepLimit(-1);
+	} else if (EDIT_ELEM_BUTTONS[7]->contains(mouse_loc)) {
+		this->model->setStepLimit(1);
 	}
 
 	//select
-	if (SELECT_ELEM_BUTTONS[0]->contains(mouse_loc)) { 
-		SELECT_ELEM_BUTTONS[0]->setFillColor(FL_RED);
-		SELECT_ELEM_BUTTONS[0]->setHeight(15);
-		model->selectElem(BOX);
-	}
-	if (SELECT_ELEM_BUTTONS[1]->contains(mouse_loc)) { 
-		SELECT_ELEM_BUTTONS[1]->setFillColor(FL_RED);
-		model->selectElem(PLAYER);
-	}
-	if (SELECT_ELEM_BUTTONS[2]->contains(mouse_loc)) { 
-		SELECT_ELEM_BUTTONS[2]->setFillColor(FL_RED);
-		model->selectElem(TARGET);
-	}
-	if (SELECT_ELEM_BUTTONS[3]->contains(mouse_loc)) { 
-		SELECT_ELEM_BUTTONS[3]->setFillColor(FL_RED);
-		model->selectElem(TP);
-	}
-	if (SELECT_ELEM_BUTTONS[4]->contains(mouse_loc)) { 
-		SELECT_ELEM_BUTTONS[4]->setFillColor(FL_RED);
-		model->selectElem(WALL); 
-	}
-	if (SELECT_ELEM_BUTTONS[5]->contains(mouse_loc)) { 
-		SELECT_ELEM_BUTTONS[5]->setFillColor(FL_RED);
-		model->selectElem(EMPTY);
+	else if (SELECT_ELEM_BUTTONS[0]->contains(mouse_loc)) { 
+		this->model->selectElem(CELL::BOX);
+	} else if (SELECT_ELEM_BUTTONS[1]->contains(mouse_loc)) { 
+		this->model->selectElem(CELL::PLAYER);
+	} else if (SELECT_ELEM_BUTTONS[2]->contains(mouse_loc)) { 
+		this->model->selectElem(CELL::TARGET);
+	} else if (SELECT_ELEM_BUTTONS[3]->contains(mouse_loc)) { 
+		this->model->selectElem(CELL::TP);
+	} else if (SELECT_ELEM_BUTTONS[4]->contains(mouse_loc)) { 
+		this->model->selectElem(CELL::WALL); 
+	} else if (SELECT_ELEM_BUTTONS[5]->contains(mouse_loc)) { 
+		this->model->selectElem(CELL::EMPTY);
 	}
 }

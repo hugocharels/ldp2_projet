@@ -5,11 +5,13 @@
 
 
 // CONST
-constexpr int    windowWidth      = 900;
-constexpr int    windowHeight     = 600;
-constexpr int 	 cellSize         = 50; 
-constexpr double refreshPerSecond = 30;
-
+constexpr int    WINDOW_WIDTH       = 900;
+constexpr int    WINDOW_HEIGHT      = 600;
+constexpr int 	 CELL_SIZE          = 50; 
+constexpr double REFRESH_PER_SECOND = 30;
+constexpr int    TIME_IN_WELCOME    = 2;
+constexpr int    TEXT_SIZE          = 20;
+constexpr int    MAX_STEP_LIMIT     = 120;
 
 // POINT
 struct Point {
@@ -19,10 +21,10 @@ struct Point {
 
 
 // ENUM
-typedef enum { UP, DOWN, LEFT, RIGHT, INVALID } MOVE;
-typedef enum { EMPTY = '-', WALL = '#', TARGET = '@', TP = '%', PLAYER = '$', BOX = '&' } CELL;
+enum class MOVE { UP, DOWN, LEFT, RIGHT, INVALID };
+enum class CELL { EMPTY = '-', WALL = '#', TARGET = '@', TP = '%', PLAYER = '$', BOX = '&' };
 enum class COLOR { NONE = 1, RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE, PINK };
-enum class GAME_STATE { WELCOME, PLAY, EDITOR, WON, LOST };
+enum class GAME_STATE { WELCOME, EDITOR, INGAME, ENDGAME };
 
 
 // FUNCTIONS
@@ -32,6 +34,5 @@ char ColorToNum(COLOR color);
 char ColorToLetter(COLOR color);
 
 int mod(int x, int y);
-
 
 #endif

@@ -9,8 +9,7 @@ class Target: public ColorCell {
 
 public:
 
-	Target(COLOR color=COLOR::NONE): Cell(TARGET), ColorCell(TARGET, color) {}
-
+	Target(COLOR color=COLOR::NONE): Cell(CELL::TARGET), ColorCell(CELL::TARGET, color) {}
 	~Target()=default;
 
 	void operator=(Target &other) { this->setColor(other.getColor()); }

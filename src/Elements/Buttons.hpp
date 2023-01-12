@@ -35,6 +35,4 @@ const std::array<std::shared_ptr<Rectangle>, 6> SELECT_ELEM_BUTTONS{
 		std::make_shared<Rectangle>(Point{810,260}, 30, 15),		//tp
 		std::make_shared<Rectangle>(Point{655,390}, 30, 15),		//wall
 		std::make_shared<Rectangle>(Point{810,390}, 30, 15),		//empty
-
 };
-

@@ -11,15 +11,15 @@ class ColorCell: public virtual Cell {
 
 public:
 
-
 	ColorCell(CELL cell, COLOR color=COLOR::NONE): Cell(cell), color{color} {}
-	
 	~ColorCell()=default;
 
+	// GETTER
 	virtual COLOR getColor() const { return color; }
+	
+	// SETTER
 	virtual void setColor(COLOR new_color) { this->color = new_color; }
 
 };
-
 
 #endif

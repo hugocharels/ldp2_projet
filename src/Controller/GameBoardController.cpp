@@ -3,23 +3,23 @@
 
 
 void GameBoardController::keyPressed(int key_code) {
-	MOVE move = INVALID;
+	MOVE move = MOVE::INVALID;
 	switch(key_code) {
 		case 65362:
 		case 'z':
-			move = UP;
+			move = MOVE::UP;
 			break;
 		case 65364:
 		case 's':
-			move = DOWN;
+			move = MOVE::DOWN;
 			break;
 		case 65361:
 		case 'q':
-			move = LEFT;
+			move = MOVE::LEFT;
 			break;
 		case 65363:
 		case 'd':
-			move = RIGHT;
+			move = MOVE::RIGHT;
 			break;
 	}
 	this->state = this->model->inputPlayer(move);
@@ -27,10 +27,8 @@ void GameBoardController::keyPressed(int key_code) {
 
 
 void GameBoardController::mouseClick(Point mouse_loc) {
-	this->state = this->model->inputPlayer(INVALID);	
 	Point pos = this->displayPosToBoardPos(mouse_loc);
 	std::vector<MOVE> moves;
 	this->model->canMovePlayerTo(moves, pos);
-	if (not moves.empty()) { this->model->movePlayer(moves); }
-	this->state = this->model->inputPlayer(INVALID);    
+	if (not moves.empty()) { this->state = this->model->movePlayer(moves); }  
 }

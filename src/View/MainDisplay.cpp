@@ -13,9 +13,8 @@ void MainDisplay::draw(GAME_STATE state) {
 			menu.drawWelcome();
 			break;
 
-		case GAME_STATE::WON:
-		case GAME_STATE::LOST:
-		case GAME_STATE::PLAY:
+		case GAME_STATE::INGAME:
+		case GAME_STATE::ENDGAME:
 			board.draw();
 			menu.draw();
 			break;
