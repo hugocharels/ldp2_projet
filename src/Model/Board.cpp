@@ -172,19 +172,19 @@ bool Board::canBoxMove(Box &box, MOVE move) const {
 
 bool Board::moveBoxOnMove(MOVE move) {
 	Point next_pos = getNextPos(this->player, move);
+
+	// return if a box is on target or not
+	auto onTarget = [this](const Box& box) {
+		return *(this->map.at(box.getPos().x, box.getPos().y)) == CELL::TARGET and 
+		dynamic_cast<Target*>(map.at(box.getPos().x, box.getPos().y).get())->getColor() == box.getColor();
+	};
+
 	for (auto &box : this->boxes) {
-		if (box.getPos() == next_pos) {
-			if (canBoxMove(box, move)) {
-				box.move(move);
-				Point box_pos = box.getPos();
-				if (*(this->map.at(box_pos.x, box_pos.y)) == CELL::TARGET) {
-					if (dynamic_cast<Target*>(this->map.at(box_pos.x, box_pos.y).get())->getColor() == box.getColor()) {
-						box.setTarget(true);
-					} else { box.setTarget(false); }
-				} else { box.setTarget(false); }
-				return true;
-			} else { return false; }
-		}
+		if (not (box.getPos() == next_pos)) { continue; } 
+		if (not canBoxMove(box, move)) { return false; }
+		box.move(move);
+		box.setTarget(onTarget(box));
+		return true;
 	} return true;
 }
 

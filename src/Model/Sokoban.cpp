@@ -22,33 +22,23 @@ void Sokoban::start(int idx) {
 
 GAME_STATE Sokoban::inputPlayer(MOVE move)  {
 	this->board.play(move);
-	//this->board.print();
 
 	if (this->win()) {
 		int win_step = board.getPlayer()->getSteps();
-		if (this->best_score==0 or win_step<best_score){
-			levels.updateBestScore(this->current_idx, win_step);
+		if (this->best_score == 0 or win_step < this->best_score){
+			this->levels.updateBestScore(this->current_idx, win_step);
 			this->best_score=win_step;
 			this->setStatus(1);
-			return GAME_STATE::ENDGAME;
-		}
-		else{
-			this->setStatus(0);
-			return GAME_STATE::ENDGAME;
-		}
+		} else{ this->setStatus(0); }
+		return GAME_STATE::ENDGAME;
 	} 
 	else if (this->loose()) {
 		this->setStatus(2);
-		std::cout << "ripun" << std::endl;
 		return GAME_STATE::ENDGAME;
-
 	}
-
-	else if (this->step_limit>1){
-		if (this->looseNoMoreStep()){
-			this->setStatus(3);
-			return GAME_STATE::ENDGAME;			
-		}
+	else if (this->step_limit > 1 and this->looseNoMoreStep()){
+		this->setStatus(3);
+		return GAME_STATE::ENDGAME;			
 	}
 	return GAME_STATE::INGAME;
 }

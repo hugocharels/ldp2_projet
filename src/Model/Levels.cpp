@@ -25,11 +25,7 @@ void Levels::createBoard(int idx, Board &board, int &best_score, int &step_limit
 	Json::Value root;
 	Json::Reader reader;
 	std::ifstream file("levels/" + this->files[idx]);
-	if (not reader.parse(file, root)) {
-		// Erreur de parsing
-		std::cerr << "Error parsing file" << std::endl;
-		return;
-	}
+	if (not reader.parse(file, root)) { perror("Error parsing file"); return; }
 
 	int rows = root["size"]["x"].asInt();
 	int cols = root["size"]["y"].asInt();

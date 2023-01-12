@@ -19,7 +19,7 @@ class Board {
 	
 	// MOVE
 	void movePlayerOnTp();
-	bool moveBoxOnMove(MOVE move);
+	bool moveBoxOnMove(MOVE move);	// true if a box has been moved 
 
 	bool blockedBox(const Box &box) const ;
 
